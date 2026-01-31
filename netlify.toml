@@ -1,6 +1,3 @@
 [build]
   command = "npm run build"
-  publish = ".svelte-kit/output/client"
-
-# SPA fallback so /dashboard, /swap etc don't 404
-
+  publish = "build"
