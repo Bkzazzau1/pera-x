@@ -1,0 +1,47 @@
+/* File: src/app.css */
+@import 'tailwindcss';
+
+:root {
+	--glass-blur: 24px;
+	--refraction: saturate(180%) contrast(90%);
+	--perax-glow: radial-gradient(circle at center, rgba(96, 165, 250, 0.15), transparent 70%);
+}
+
+body {
+	background: #030812;
+	color: white;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Luxury Liquid Glass: 2050 Standard */
+.glass {
+	background: rgba(255, 255, 255, 0.02);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	backdrop-filter: var(--glass-blur) var(--refraction);
+	box-shadow:
+		inset 0 1px 1px rgba(255, 255, 255, 0.1),
+		0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Kinetic Aura: Background that feels "alive" */
+.perax-bg {
+	background:
+		var(--perax-glow),
+		radial-gradient(1000px circle at 10% 10%, rgba(96, 165, 250, 0.1), transparent),
+		radial-gradient(800px circle at 90% 90%, rgba(34, 211, 238, 0.05), transparent), #030812;
+	min-height: 100vh;
+}
+
+/* Micro-interaction: The "Breathe" Effect */
+.glow-hover {
+	transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-hover:hover {
+	background: rgba(255, 255, 255, 0.04);
+	border-color: rgba(96, 165, 250, 0.3);
+	box-shadow:
+		0 40px 100px -20px rgba(0, 0, 0, 0.9),
+		0 0 20px rgba(96, 165, 250, 0.1);
+	transform: translateY(-4px) scale(1.01);
+}
