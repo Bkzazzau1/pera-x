@@ -94,7 +94,7 @@
 			>
 				P
 			</div>
-			<div class="text-2xl font-black tracking-tighter tracking-widest uppercase italic">
+			<div class="text-2xl font-black tracking-widest uppercase italic">
 				PERA-X
 			</div>
 		</div>
@@ -127,7 +127,7 @@
 					>
 				</div>
 				<h1
-					class="mb-8 bg-gradient-to-b from-white via-white to-white/20 bg-clip-text text-7xl leading-[0.85] font-black tracking-tighter text-transparent uppercase italic md:text-[10rem]"
+					class="mb-8 bg-linear-to-b from-white via-white to-white/20 bg-clip-text text-7xl leading-[0.85] font-black tracking-tighter text-transparent uppercase italic md:text-[10rem]"
 				>
 					Own the Future <br /> <span class="text-sky-500">at Half Price.</span>
 				</h1>
@@ -140,12 +140,12 @@
 				<div class="flex flex-col justify-center gap-6 md:flex-row">
 					<a
 						href="/dashboard"
-						class="group relative overflow-hidden rounded-[2rem] bg-white px-12 py-6 font-black text-black transition-all hover:scale-105 active:scale-95"
+						class="group relative overflow-hidden rounded-4xl bg-white px-12 py-6 font-black text-black transition-all hover:scale-105 active:scale-95"
 					>
 						<span class="relative z-10">ENTER THE CORE</span>
 					</a>
 					<button
-						class="glass rounded-[2rem] border-white/10 px-12 py-6 text-xs font-black tracking-widest uppercase transition-all hover:bg-white/5"
+						class="glass rounded-4xl border-white/10 px-12 py-6 text-xs font-black tracking-widest uppercase transition-all hover:bg-white/5"
 						>Audit Whitepaper</button
 					>
 				</div>
@@ -159,15 +159,15 @@
 				<div
 					class="glass group relative aspect-square overflow-hidden rounded-[4rem] border-sky-500/20 shadow-2xl"
 				>
-					<div class="absolute inset-0 bg-gradient-to-br from-sky-500/30 to-transparent"></div>
+					<div class="absolute inset-0 bg-linear-to-br from-sky-500/30 to-transparent"></div>
 					<div
-						class="absolute inset-0 flex items-center justify-center text-[15rem] opacity-20 transition-transform duration-[2000ms] group-hover:scale-125"
+						class="absolute inset-0 flex items-center justify-center text-[15rem] opacity-20 transition-transform duration-2000 group-hover:scale-125"
 					>
 						📱
 					</div>
 				</div>
 				<div
-					class="glass absolute -right-12 -bottom-12 rounded-[2rem] border-emerald-400/20 p-8 shadow-2xl"
+					class="glass absolute -right-12 -bottom-12 rounded-4xl border-emerald-400/20 p-8 shadow-2xl"
 				>
 					<div class="mb-1 text-[9px] font-black tracking-widest text-emerald-400 uppercase">
 						Live Status
@@ -183,7 +183,7 @@
 					{#each visionPoints as feature}
 						<div class="group flex gap-8">
 							<div
-								class="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 text-2xl transition-all group-hover:border-sky-500/50"
+								class="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl border border-white/10 bg-white/5 text-2xl transition-all group-hover:border-sky-500/50"
 							>
 								{feature.icon}
 							</div>
@@ -263,7 +263,7 @@
 							<h4 class="text-xl font-black tracking-tighter text-white uppercase italic">
 								{delivery.item}
 							</h4>
-							<div class="h-[1px] w-full bg-white/5"></div>
+							<div class="h-px w-full bg-white/5"></div>
 							<div class="flex justify-between text-[10px] font-bold tracking-widest uppercase">
 								<span class="text-white/30">Burn:</span><span class="text-white italic"
 									>{delivery.burn}</span
@@ -369,7 +369,7 @@
 
 	<section id="roadmap" class="relative overflow-hidden px-6 py-48 lg:px-24">
 		<div
-			class="absolute top-0 left-1/2 hidden h-full w-[1px] bg-gradient-to-b from-transparent via-sky-500/50 to-transparent md:block"
+			class="absolute top-0 left-1/2 hidden h-full w-px bg-linear-to-b from-transparent via-sky-500/50 to-transparent md:block"
 		></div>
 		<div class="relative z-10 mx-auto max-w-6xl">
 			<header class="mb-32 text-center">
@@ -415,20 +415,22 @@
 		</div>
 	</section>
 
-	<section class="relative overflow-hidden px-6 py-64 text-center">
+	<section class="relative overflow-hidden px-4 py-32 text-center md:px-6 md:py-64">
 		<div
-			class="glass relative mx-auto max-w-6xl overflow-hidden rounded-[5rem] border-sky-500/20 p-32 shadow-2xl"
+			class="glass relative mx-auto max-w-6xl overflow-hidden rounded-[3rem] border-sky-500/20 p-10 py-20 shadow-2xl md:rounded-[5rem] md:p-32"
 		>
 			<div
-				class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-sky-500/20 blur-[150px]"
+				class="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-sky-500/20 blur-[80px] md:h-96 md:w-96 md:blur-[150px]"
 			></div>
 			<div class="relative z-10 text-center">
-				<h2 class="mb-8 text-7xl font-black tracking-tighter text-white uppercase italic">
-					Not a Token. <br /> <span class="text-sky-500">An Economy.</span>
+				<h2
+					class="mb-8 text-4xl leading-[0.9] font-black tracking-tighter text-white uppercase italic md:text-7xl"
+				>
+					Not a Token. <br class="hidden md:block" /> <span class="text-sky-500">An Economy.</span>
 				</h2>
 				<a
 					href="/dashboard"
-					class="inline-block rounded-[2.5rem] bg-sky-500 px-20 py-8 text-lg font-black text-white shadow-[0_0_60px_rgba(14,165,233,0.4)] transition-all hover:scale-110 active:scale-95"
+					class="inline-block w-full rounded-3xl bg-sky-500 px-10 py-5 text-sm font-black text-white shadow-[0_0_40px_rgba(14,165,233,0.3)] transition-all hover:scale-110 active:scale-95 md:w-auto md:rounded-[2.5rem] md:px-20 md:py-8 md:text-lg"
 					>ENTER DASHBOARD</a
 				>
 			</div>
@@ -436,7 +438,7 @@
 	</section>
 
 	<footer class="border-t border-white/5 py-20 text-center">
-		<p class="text-[9px] font-black tracking-[0.8em] text-white/20 uppercase">
+		<p class="px-6 text-[9px] font-black tracking-[0.8em] text-white/20 uppercase">
 			Architected for $5B+ Capital Efficiency • Pera-X Core Logic
 		</p>
 	</footer>

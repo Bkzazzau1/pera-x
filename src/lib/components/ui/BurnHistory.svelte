@@ -33,28 +33,28 @@
 			</p>
 		</div>
 
-		<div
-			class="flex items-center gap-3 rounded-2xl border border-blue-400/20 bg-blue-400/5 px-4 py-2 shadow-lg transition-all hover:bg-blue-400/10"
-		>
-			<span class="text-[10px] font-black tracking-widest text-blue-400 uppercase italic"
-				>On-Chain</span
+			<div
+				class="flex items-center gap-3 rounded-2xl border border-blue-400/20 bg-blue-400/5 px-4 py-2 shadow-lg transition-all hover:bg-blue-400/10"
 			>
-			<div class="h-3 w-px bg-blue-400/30"></div>
-			<span
-				class="text-[10px] font-black tracking-tighter tracking-widest text-white uppercase italic"
-				>Live</span
-			>
-		</div>
+				<span class="text-[10px] font-black tracking-widest text-blue-400 uppercase italic"
+					>On-Chain</span
+				>
+				<div class="h-3 w-px bg-blue-400/30"></div>
+				<span
+					class="text-[10px] font-black tracking-widest text-white uppercase italic"
+					>Live</span
+				>
+			</div>
 	</header>
 
 	<div class="relative z-10 space-y-4">
 		{#each history as event, i}
 			<div
-				class="group relative flex items-center justify-between overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:border-blue-500/30 hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(59,130,246,0.05)]"
+				class="group relative flex items-center justify-between overflow-hidden rounded-3xl border border-white/5 bg-white/2 p-6 transition-all duration-500 hover:border-blue-500/30 hover:bg-white/4 hover:shadow-[0_0_40px_rgba(59,130,246,0.05)]"
 				in:fly={{ x: -20, delay: i * 150, duration: 800 }}
 			>
 				<div
-					class="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/[0.02] to-blue-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+				class="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/2 to-blue-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
 				></div>
 
 				<div class="relative z-10 flex items-center gap-6">

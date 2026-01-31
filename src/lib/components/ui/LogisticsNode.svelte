@@ -42,7 +42,7 @@
 	<div class="relative z-10 space-y-5">
 		{#each logisticsData as item, i}
 			<div
-				class="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.01] p-5 transition-all hover:bg-white/[0.03]"
+				class="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/1 p-5 transition-all hover:bg-white/3"
 				in:fly={{ x: -20, delay: i * 150 }}
 			>
 				<div class="flex items-center gap-5">

@@ -37,7 +37,7 @@
 	<div class="relative z-10 space-y-4">
 		{#each auditData as item, i}
 			<div
-				class="group grid grid-cols-4 items-center rounded-2xl border border-white/5 bg-white/[0.01] p-5 transition-all hover:bg-white/[0.03]"
+				class="group grid grid-cols-4 items-center rounded-2xl border border-white/5 bg-white/1 p-5 transition-all hover:bg-white/3"
 				in:fly={{ y: 10, delay: i * 100 }}
 			>
 				<div class="flex flex-col">

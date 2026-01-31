@@ -145,7 +145,7 @@
 	</section>
 
 	<aside
-		class="flex h-full flex-col overflow-hidden rounded-[3.5rem] border border-white/10 bg-white/[0.02] p-8 shadow-2xl backdrop-blur-[60px]"
+		class="flex h-full flex-col overflow-hidden rounded-[3.5rem] border border-white/10 bg-white/2 p-8 shadow-2xl backdrop-blur-[60px]"
 	>
 		<GovernanceAudit />
 
@@ -172,7 +172,7 @@
 		<LiquidityBridge />
 
 		<div
-			class="mt-8 shrink-0 rounded-[2rem] border border-emerald-500/20 bg-emerald-500/5 p-6 backdrop-blur-md"
+			class="mt-8 shrink-0 rounded-4xl border border-emerald-500/20 bg-emerald-500/5 p-6 backdrop-blur-md"
 		>
 			<div class="mb-2 flex items-center gap-2">
 				<div

@@ -24,7 +24,7 @@
 </script>
 
 <div
-	class="glass glow-hover relative flex h-full min-h-[35rem] w-full flex-col overflow-hidden rounded-[3.5rem] border border-white/10 p-10 shadow-[0_0_50px_rgba(0,0,0,0.2)] transition-all duration-700"
+	class="glass glow-hover relative flex h-full min-h-140 w-full flex-col overflow-hidden rounded-[3.5rem] border border-white/10 p-10 shadow-[0_0_50px_rgba(0,0,0,0.2)] transition-all duration-700"
 >
 	<div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-500/10 blur-[120px]"></div>
 	<div
@@ -136,7 +136,7 @@
 
 		<div class="flex gap-4">
 			<button
-				class="rounded-2xl border border-white/5 bg-white/[0.03] px-8 py-4 text-[10px] font-black tracking-[0.3em] text-white/60 uppercase transition-all hover:bg-white/10 hover:text-white"
+				class="rounded-2xl border border-white/5 bg-white/3 px-8 py-4 text-[10px] font-black tracking-[0.3em] text-white/60 uppercase transition-all hover:bg-white/10 hover:text-white"
 			>
 				View Ledger
 			</button>

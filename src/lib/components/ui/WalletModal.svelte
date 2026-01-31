@@ -23,7 +23,12 @@
 		class="fixed inset-0 z-100 flex items-center justify-center p-6 backdrop-blur-xl"
 		transition:fade
 	>
-		<div class="absolute inset-0 bg-black/60" onclick={() => (wallet.showModal = false)}></div>
+		<button
+			type="button"
+			aria-label="Close wallet modal"
+			class="absolute inset-0 border-none bg-black/60 p-0 focus:outline-none"
+			onclick={() => (wallet.showModal = false)}
+		></button>
 
 		<div
 			class="glass relative w-full max-w-lg overflow-hidden rounded-[3rem] border border-white/10 p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)]"
@@ -68,7 +73,7 @@
 
 					<div class="grid grid-cols-2 gap-4">
 						<button
-							class="glass flex flex-col items-center gap-3 rounded-[2rem] border-white/5 py-6 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
+							class="glass flex flex-col items-center gap-3 rounded-4xl border-white/5 py-6 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
 						>
 							<div class="h-8 w-8 rounded-full bg-orange-500/20"></div>
 							<span class="text-[9px] font-black tracking-widest text-white/60 uppercase"
@@ -76,7 +81,7 @@
 							>
 						</button>
 						<button
-							class="glass flex flex-col items-center gap-3 rounded-[2rem] border-white/5 py-6 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
+							class="glass flex flex-col items-center gap-3 rounded-4xl border-white/5 py-6 transition-all hover:border-blue-500/40 hover:bg-blue-500/5"
 						>
 							<div class="h-8 w-8 rounded-full bg-blue-500/20"></div>
 							<span class="text-[9px] font-black tracking-widest text-white/60 uppercase"

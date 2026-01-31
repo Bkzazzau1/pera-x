@@ -25,11 +25,22 @@ body {
 
 /* Kinetic Aura: Background that feels "alive" */
 .perax-bg {
+	min-height: 100vh;
+	position: relative;
+	background: transparent;
+}
+
+.perax-bg::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
 	background:
 		var(--perax-glow),
 		radial-gradient(1000px circle at 10% 10%, rgba(96, 165, 250, 0.1), transparent),
-		radial-gradient(800px circle at 90% 90%, rgba(34, 211, 238, 0.05), transparent), #030812;
-	min-height: 100vh;
+		radial-gradient(800px circle at 90% 90%, rgba(34, 211, 238, 0.05), transparent);
+	opacity: 0.65;
 }
 
 /* Micro-interaction: The "Breathe" Effect */
