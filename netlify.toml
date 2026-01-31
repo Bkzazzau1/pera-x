@@ -1,3 +1,8 @@
 [build]
-  command = "npm run build"
+  command = "npm ci --include=optional && npm run build"
   publish = "build"
+
+[build.environment]
+  NPM_FLAGS = "--include=optional"
+  NPM_CONFIG_OPTIONAL = "true"
+  NPM_CONFIG_PRODUCTION = "false"
