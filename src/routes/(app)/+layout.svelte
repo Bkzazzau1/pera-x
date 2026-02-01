@@ -34,7 +34,6 @@
 
 	// ───────────────────────────────────────────────────────────────────────────────
 	// Bloomberg-style Microline: WAT clock + date, Node status + latency, ticker text
-	// No extra libs.
 	// ───────────────────────────────────────────────────────────────────────────────
 
 	let now = $state(new Date());
@@ -69,23 +68,18 @@
 
 	// Node status / latency (only "alive" when wallet is connected)
 	let latencyMs = $state<number | null>(null);
-
-	// status text can still show LINKING/IDLE, but we only animate/jitter when connected.
 	let statusText = $derived(wallet.address ? 'SYNCED' : wallet.isConnecting ? 'LINKING' : 'IDLE');
 
 	let latencyTimer: number | null = null;
 
 	function jitterLatency() {
-		// Only called when wallet is connected
 		const base = 16;
 		const j = Math.floor((Math.random() - 0.5) * 16);
 		latencyMs = Math.max(11, Math.min(62, base + j));
 	}
 
 	function startNodeTelemetry() {
-		// prevent duplicates
 		if (latencyTimer) return;
-		// set a real-looking initial ping once connected
 		latencyMs = 18;
 		latencyTimer = window.setInterval(() => jitterLatency(), 1400);
 	}
@@ -112,7 +106,6 @@
 		tickerIndex = (tickerIndex + 1) % tickerItems.length;
 	}
 
-	// Pause-on-touch ticker
 	let tickerPaused = $state(false);
 	function pauseTicker() {
 		tickerPaused = true;
@@ -121,7 +114,6 @@
 		tickerPaused = false;
 	}
 
-	// Watch wallet connection (Svelte 5 runes)
 	$effect(() => {
 		if (wallet.address) startNodeTelemetry();
 		else stopNodeTelemetry();
@@ -226,7 +218,6 @@
 		<!-- ✅ Mobile-only Bloomberg microline -->
 		<div class="-mt-1 mb-3 sm:hidden">
 			<div class="flex items-center gap-3 px-1">
-				<!-- LEFT: WAT -->
 				<div class="flex shrink-0 items-center gap-2">
 					<span class="relative flex h-2 w-2">
 						<span
@@ -237,12 +228,12 @@
 
 					<div class="leading-none">
 						<div class="flex items-baseline gap-2">
-							<span class="text-[10px] font-black tracking-[0.22em] text-white/70 uppercase">
-								{wat.time}
-							</span>
-							<span class="text-[8px] font-black tracking-[0.35em] text-blue-400/60 uppercase">
-								{wat.tz}
-							</span>
+							<span class="text-[10px] font-black tracking-[0.22em] text-white/70 uppercase"
+								>{wat.time}</span
+							>
+							<span class="text-[8px] font-black tracking-[0.35em] text-blue-400/60 uppercase"
+								>{wat.tz}</span
+							>
 						</div>
 						<div class="mt-1 text-[8px] font-bold tracking-[0.28em] text-white/30 uppercase">
 							{wat.date}
@@ -252,7 +243,6 @@
 
 				<div class="h-px flex-1 bg-linear-to-r from-white/10 via-white/5 to-transparent"></div>
 
-				<!-- RIGHT: NODE + LATENCY (only “moves” once connected) -->
 				<div class="flex shrink-0 items-center gap-2">
 					<span
 						class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1.5"
@@ -265,9 +255,9 @@
 									? 'bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.5)]'
 									: 'bg-white/20'}"
 						></span>
-						<span class="text-[8px] font-black tracking-[0.3em] text-white/35 uppercase">
-							NODE: {statusText}
-						</span>
+						<span class="text-[8px] font-black tracking-[0.3em] text-white/35 uppercase"
+							>NODE: {statusText}</span
+						>
 					</span>
 
 					<span class="text-[9px] font-black tracking-[0.25em] text-blue-400/60 uppercase">
@@ -276,7 +266,6 @@
 				</div>
 			</div>
 
-			<!-- TICKER STRIP (pause on touch / press) -->
 			<div
 				class="mt-2 overflow-hidden rounded-2xl border border-white/10 bg-black/35 px-3 py-2 backdrop-blur-2xl"
 				onpointerdown={pauseTicker}
@@ -303,12 +292,12 @@
 			</div>
 
 			<div class="mt-2 flex items-center justify-between px-1">
-				<span class="text-[9px] font-black tracking-[0.32em] text-white/30 uppercase">
-					System View • v2026
-				</span>
-				<span class="text-[9px] font-black tracking-[0.28em] text-blue-400/55 uppercase">
-					Mainnet
-				</span>
+				<span class="text-[9px] font-black tracking-[0.32em] text-white/30 uppercase"
+					>System View • v2026</span
+				>
+				<span class="text-[9px] font-black tracking-[0.28em] text-blue-400/55 uppercase"
+					>Mainnet</span
+				>
 			</div>
 		</div>
 
@@ -336,9 +325,9 @@
 					<div class="relative z-10 flex items-center gap-3">
 						<span class="h-1 w-6 rounded-full bg-linear-to-r from-blue-400/60 to-transparent"
 						></span>
-						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">
-							Quick Actions
-						</span>
+						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase"
+							>Quick Actions</span
+						>
 						<span
 							class="rounded-full border border-white/10 bg-black/30 px-2 py-1 text-[8px] font-black tracking-[0.25em] text-white/35 uppercase"
 						>
@@ -408,7 +397,6 @@
 			</div>
 		</div>
 
-		<!-- Mobile Slide Nav -->
 		{#if showMobileNav}
 			<nav
 				transition:slide
@@ -463,7 +451,6 @@
 		box-shadow: 0 0 80px rgba(37, 99, 235, 0.08);
 	}
 
-	/* Bloomberg-style ticker */
 	.ticker {
 		white-space: nowrap;
 		will-change: transform;

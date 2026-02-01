@@ -7,11 +7,10 @@
 	import BurnVisualizer from '$lib/components/ui/BurnVisualizer.svelte';
 	import GovernanceAudit from '$lib/components/ui/GovernanceAudit.svelte';
 	import LiquidityBridge from '$lib/components/ui/LiquidityBridge.svelte';
+	import LogisticsNode from '$lib/components/ui/LogisticsNode.svelte';
 	import ModuleIcon from '$lib/components/ui/ModuleIcon.svelte';
 	import ParityAudit from '$lib/components/ui/ParityAudit.svelte';
 	import ParityMonitor from '$lib/components/ui/ParityMonitor.svelte';
-// FIXED: Added Audit
-	import LogisticsNode from '$lib/components/ui/LogisticsNode.svelte';
 	import ProjectionChart from '$lib/components/ui/ProjectionChart.svelte';
 	import StatCard from '$lib/components/ui/StatCard.svelte';
 	import TransactionTicker from '$lib/components/ui/TransactionTicker.svelte';
@@ -45,12 +44,10 @@
 
 <PlanetScene />
 
-<!-- ✅ PAGE WRAPPER (Right rail starts lower, not at top) -->
 <div class="relative z-10 w-full pb-8 selection:bg-blue-500/30" in:fade={{ duration: 1000 }}>
 	<section class="flex flex-col gap-8 overflow-hidden">
 		<!-- ✅ SYSTEM HEADER (DESKTOP ONLY) -->
 		<header class="hidden flex-col gap-6 md:flex" in:fly={{ y: -20, duration: 1000 }}>
-			<!-- top row -->
 			<div class="flex items-center justify-between gap-6">
 				<div class="group flex items-center gap-4">
 					<div class="relative">
@@ -80,8 +77,7 @@
 						<span class="relative flex h-2 w-2">
 							<span
 								class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400/40"
-							>
-							</span>
+							></span>
 							<span class="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
 						</span>
 						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">
@@ -107,7 +103,6 @@
 				</div>
 			</div>
 
-			<!-- quick actions row (desktop) -->
 			<div class="glass relative overflow-hidden rounded-[2.25rem] border border-white/10 p-2">
 				<div class="pointer-events-none absolute inset-0">
 					<div
@@ -129,9 +124,9 @@
 
 				<div class="relative z-10 flex items-center justify-between gap-3 px-3 py-2">
 					<div class="flex items-center gap-2">
-						<span class="text-[9px] font-black tracking-[0.35em] text-white/30 uppercase">
-							Quick Actions
-						</span>
+						<span class="text-[9px] font-black tracking-[0.35em] text-white/30 uppercase"
+							>Quick Actions</span
+						>
 						<span class="h-1 w-8 rounded-full bg-linear-to-r from-blue-500/40 to-transparent"
 						></span>
 					</div>
@@ -161,7 +156,7 @@
 			</div>
 		</header>
 
-		<!-- ✅ MOBILE QUICK ACTIONS (MOBILE VIEW) -->
+		<!-- ✅ MOBILE QUICK ACTIONS -->
 		<div class="md:hidden">
 			<div class="glass rounded-[2.25rem] border border-white/10 p-4">
 				<div class="mb-3 flex items-center justify-between">
@@ -220,7 +215,7 @@
 			</div>
 		</div>
 
-		<!-- ✅ TOP SUMMARY ROW (FULL WIDTH): fills space professionally -->
+		<!-- ✅ TOP SUMMARY ROW -->
 		<div class="grid gap-6 lg:grid-cols-3">
 			<div class="lg:col-span-2">
 				<BurnVisualizer rate={7.5} />
@@ -236,7 +231,7 @@
 			</div>
 		</div>
 
-		<!-- ✅ MAIN + RIGHT RAIL (RIGHT PANEL NOW STARTS LOWER) -->
+		<!-- ✅ MAIN + RIGHT RAIL -->
 		<div class="grid w-full gap-6 lg:grid-cols-[1fr_400px] lg:gap-8">
 			<main class="space-y-8 md:space-y-10">
 				<div class="grid gap-6 md:gap-8 lg:grid-cols-2">
@@ -261,7 +256,7 @@
 					<ProjectionChart />
 				</div>
 
-				<!-- ✅ POLICY ENGINE (unchanged) -->
+				<!-- ✅ POLICY ENGINE -->
 				<div
 					class="glass glow-hover relative overflow-hidden rounded-[2.5rem] border border-white/10 p-6 md:rounded-[3.5rem] md:p-12"
 				>
@@ -381,7 +376,6 @@
 				</div>
 			</main>
 
-			<!-- ✅ RIGHT RAIL (starts lower because it’s in this lower grid) -->
 			<aside
 				class="flex flex-col overflow-hidden rounded-[3.5rem] border border-white/10 bg-white/2 p-6 shadow-2xl backdrop-blur-[60px] md:p-8"
 			>
@@ -400,7 +394,6 @@
 						</p>
 					</header>
 
-					<!-- ✅ FIX 1 APPLIED: mobile-friendly wrapper to prevent clipping -->
 					<div
 						class="custom-scrollbar -mx-1 max-h-[70vh] overflow-x-hidden overflow-y-auto px-1 pr-1 md:mx-0 md:max-h-85 md:px-0 md:pr-2 lg:max-h-130"
 					>
@@ -433,8 +426,6 @@
 		</div>
 	</section>
 </div>
-
-<!-- ✅ Removed sticky ParityMonitor block (it’s now in normal flow above) -->
 
 <WalletModal />
 
