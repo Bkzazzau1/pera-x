@@ -1,25 +1,27 @@
 <script lang="ts">
 	import { calculateOrbit, type OrbitalObject } from '$lib/logic/OrbitalEngine';
-	import { onMount } from 'svelte';
-	import * as THREE from 'three';
 	import { wallet } from '$lib/stores/wallet.svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import * as THREE from 'three';
 
 	let container: HTMLDivElement;
 	let boostValue = 1;
+
+	let renderer: THREE.WebGLRenderer | null = null;
+	let scene: THREE.Scene | null = null;
+	let camera: THREE.PerspectiveCamera | null = null;
+
+	let frameId: number | null = null;
+	let handleResize: (() => void) | null = null;
 
 	onMount(() => {
 		if (!container) return;
 
 		// 1. Cinematic Void Scene
-		const scene = new THREE.Scene();
-		const camera = new THREE.PerspectiveCamera(
-			40,
-			window.innerWidth / window.innerHeight,
-			0.1,
-			1000
-		);
+		scene = new THREE.Scene();
+		camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-		const renderer = new THREE.WebGLRenderer({
+		renderer = new THREE.WebGLRenderer({
 			antialias: true,
 			alpha: true,
 			powerPreference: 'high-performance'
@@ -29,6 +31,14 @@
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		renderer.toneMapping = THREE.ACESFilmicToneMapping;
 		renderer.toneMappingExposure = 0.8;
+
+		// Ensure canvas is pure background overlay (never affects layout)
+		renderer.domElement.style.position = 'absolute';
+		renderer.domElement.style.inset = '0';
+		renderer.domElement.style.width = '100%';
+		renderer.domElement.style.height = '100%';
+		renderer.domElement.style.display = 'block';
+
 		container.appendChild(renderer.domElement);
 
 		// 2. The "Sovereign Core" (Crystalline Dark Matter)
@@ -77,7 +87,6 @@
 				yOffset: (Math.random() - 0.5) * 1.5
 			};
 
-			// Create a line for each neural connection
 			const lineGeom = new THREE.BufferGeometry().setFromPoints([
 				new THREE.Vector3(0, 0, 0),
 				new THREE.Vector3(0, 0, 0)
@@ -100,12 +109,11 @@
 
 		camera.position.z = 7;
 
-		let frameId: number;
-
 		function animate(time: number) {
-			const delta = 0.016; // Standardized delta
+			if (!renderer || !scene || !camera) return;
 
-			// TRANSITION LOGIC: Accelerate core
+			const delta = 0.016;
+
 			if (wallet.transitionActive) {
 				boostValue = THREE.MathUtils.lerp(boostValue, 15, 0.05);
 				camera.fov = THREE.MathUtils.lerp(camera.fov, 65, 0.05);
@@ -123,14 +131,12 @@
 				mesh.position.set(pos.x, pos.y, pos.z);
 				mesh.lookAt(planet.position);
 
-				// Update Neural Line Positions
 				const positions = connectionLines[i].geometry.attributes.position.array as Float32Array;
-				positions[3] = pos.x; // To Node X
-				positions[4] = pos.y; // To Node Y
-				positions[5] = pos.z; // To Node Z
+				positions[3] = pos.x;
+				positions[4] = pos.y;
+				positions[5] = pos.z;
 				connectionLines[i].geometry.attributes.position.needsUpdate = true;
 
-				// Neural Pulse Logic: Opacity fluctuates based on orbit speed
 				const pulse = (Math.sin(time * 0.002 + i) + 1) / 2;
 				(connectionLines[i].material as THREE.LineBasicMaterial).opacity = 0.05 + pulse * 0.15;
 			});
@@ -138,20 +144,38 @@
 			renderer.render(scene, camera);
 			frameId = requestAnimationFrame(animate);
 		}
+
 		frameId = requestAnimationFrame(animate);
 
-		const handleResize = () => {
+		handleResize = () => {
+			if (!renderer || !camera) return;
 			camera.aspect = window.innerWidth / window.innerHeight;
 			camera.updateProjectionMatrix();
 			renderer.setSize(window.innerWidth, window.innerHeight);
 		};
-		window.addEventListener('resize', handleResize);
 
-		return () => {
-			if (frameId) cancelAnimationFrame(frameId);
-			window.removeEventListener('resize', handleResize);
-			renderer.dispose();
-		};
+		window.addEventListener('resize', handleResize);
+	});
+
+	onDestroy(() => {
+		if (frameId) cancelAnimationFrame(frameId);
+		frameId = null;
+
+		if (handleResize) window.removeEventListener('resize', handleResize);
+		handleResize = null;
+
+		// Remove canvas cleanly
+		if (renderer?.domElement && renderer.domElement.parentNode) {
+			renderer.domElement.parentNode.removeChild(renderer.domElement);
+		}
+
+		// Dispose renderer
+		renderer?.dispose();
+		renderer = null;
+
+		// Let GC reclaim scene/camera/materials (minimal safe cleanup)
+		scene = null;
+		camera = null;
 	});
 </script>
 

@@ -24,25 +24,34 @@
 	});
 </script>
 
-<div
-	class="fixed right-0 bottom-0 left-0 z-50 h-10 border-t border-white/5 bg-black/40 backdrop-blur-xl"
->
-	<div class="relative flex h-full items-center overflow-hidden">
+<!-- FIX: removed fixed positioning. Parent decides placement. -->
+<div class="relative w-full border-t border-white/5 bg-black/40 backdrop-blur-xl">
+	<div class="relative flex h-8 items-center overflow-hidden md:h-10">
+		<!-- FIX: tighter padding on mobile -->
 		<div
-			class="z-20 flex h-full items-center bg-blue-600 px-6 shadow-[20px_0_40px_rgba(0,0,0,0.5)]"
+			class="z-20 flex h-full items-center bg-blue-600 px-4 shadow-[20px_0_40px_rgba(0,0,0,0.5)] md:px-6"
 		>
-			<span class="text-[9px] font-black tracking-[0.3em] text-white uppercase">
+			<span class="text-[8px] font-black tracking-[0.28em] text-white uppercase md:text-[9px]">
 				Global Parity: ${globalPrice.toFixed(4)}
 			</span>
 		</div>
 
-		<div class="animate-marquee flex py-2 whitespace-nowrap">
+		<!-- Premium edge fade so ticker doesn't feel like it "fills" too much -->
+		<div
+			class="pointer-events-none absolute inset-y-0 left-0 z-30 w-10 bg-linear-to-r from-black/60 to-transparent"
+		></div>
+		<div
+			class="pointer-events-none absolute inset-y-0 right-0 z-30 w-10 bg-linear-to-l from-black/60 to-transparent"
+		></div>
+
+		<!-- FIX: tighter vertical padding and spacing -->
+		<div class="animate-marquee flex items-center py-1 whitespace-nowrap md:py-2">
 			{#each [...pools, ...pools] as pool}
-				<div class="flex items-center gap-4 px-12">
-					<span class="text-[9px] font-bold tracking-widest text-white/30 uppercase">
+				<div class="flex items-center gap-3 px-8 md:gap-4 md:px-10">
+					<span class="text-[8px] font-bold tracking-widest text-white/30 uppercase md:text-[9px]">
 						{pool.provider}
 					</span>
-					<span class="text-[10px] font-black text-white">
+					<span class="text-[9px] font-black text-white md:text-[10px]">
 						{pool.pair}: <span class="text-blue-400">${pool.price.toFixed(4)}</span>
 					</span>
 					<div class="flex items-center gap-1.5">
@@ -51,7 +60,9 @@
 								? 'bg-emerald-400'
 								: 'bg-amber-400'}"
 						></span>
-						<span class="text-[8px] font-black tracking-tighter text-white/20 uppercase">
+						<span
+							class="text-[7px] font-black tracking-tight text-white/20 uppercase md:text-[8px]"
+						>
 							{pool.liquidity}M LIQ
 						</span>
 					</div>

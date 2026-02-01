@@ -3,18 +3,25 @@
 	import { fade, fly } from 'svelte/transition';
 </script>
 
-<div class="flex w-full flex-col gap-3">
+<!-- FIX: tighter vertical rhythm -->
+<div class="flex w-full flex-col gap-2">
 	{#each ticker.transactions as tx (tx.id)}
 		<div
-			in:fly={{ x: 20, duration: 800, opacity: 0 }}
-			out:fade={{ duration: 400 }}
-			class="glass flex items-center gap-3 rounded-2xl border-blue-400/20 px-5 py-3 shadow-xl backdrop-blur-2xl"
+			in:fly={{ x: 16, duration: 700, opacity: 0 }}
+			out:fade={{ duration: 300 }}
+			class="glass flex items-center gap-3 rounded-xl border-blue-400/20 px-4 py-2 backdrop-blur-2xl"
 		>
+			<!-- FIX: smaller icon box -->
 			<div
-				class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blue-400/30 bg-blue-500/10"
+				class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-blue-400/30 bg-blue-500/10"
 			>
 				{#if tx.type === 'BURN'}
-					<svg class="h-4 w-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<svg
+						class="h-3.5 w-3.5 text-blue-400"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -24,7 +31,7 @@
 					</svg>
 				{:else}
 					<svg
-						class="h-4 w-4 text-emerald-400"
+						class="h-3.5 w-3.5 text-emerald-400"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
@@ -39,15 +46,16 @@
 				{/if}
 			</div>
 
-			<div class="overflow-hidden">
-				<div class="text-[8px] font-black tracking-[0.2em] text-blue-400/60 uppercase">
+			<div class="min-w-0">
+				<div class="text-[7px] font-black tracking-[0.18em] text-blue-400/60 uppercase">
 					{tx.type} CONFIRMED
 				</div>
-				<div class="flex items-baseline gap-1.5">
-					<span class="text-lg font-black tracking-tighter text-white">
+
+				<div class="flex items-baseline gap-1">
+					<span class="text-base font-black tracking-tight text-white">
 						-{new Intl.NumberFormat().format(tx.amount)}
 					</span>
-					<span class="text-[8px] font-bold tracking-widest text-white/30 uppercase">PX</span>
+					<span class="text-[7px] font-bold tracking-widest text-white/30 uppercase"> PX </span>
 				</div>
 			</div>
 		</div>

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	export let label: string;
-	export let value: string;
-	export let hint: string = '';
-	export let variant: 'default' | 'neon' = 'default';
+
+	// Svelte 5 Props: High-Status Component Definition
+	let { label, value, hint = '', variant = 'default' } = $props();
 </script>
 
 <div
-	class="glass glow-hover group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-[2.5rem] p-7 transition-all duration-700 ease-out"
+	class="glass glow-hover group relative flex min-h-45 flex-col justify-between overflow-hidden rounded-3xl p-6 transition-all duration-700 ease-out md:min-h-55 md:rounded-4xl md:p-7"
 	in:fly={{ y: 20, duration: 800 }}
 >
 	<div
@@ -18,20 +17,24 @@
 	></div>
 
 	<div
-		class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/[0.05] via-transparent to-transparent"
+		class="pointer-events-none absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent"
 	></div>
 
 	<div class="relative z-10">
 		<div class="flex items-start justify-between gap-4">
-			<div class="space-y-1">
+			<div class="flex-1 space-y-1 overflow-hidden">
 				<div class="flex items-center gap-2">
 					<span class="h-1 w-1 animate-pulse rounded-full bg-blue-400"></span>
-					<span class="text-[9px] font-black tracking-[0.4em] text-white/30 uppercase">{label}</span
+					<span
+						class="truncate text-[8px] font-black tracking-widest text-white/30 uppercase md:text-[9px] md:tracking-[0.4em]"
 					>
+						{label}
+					</span>
 				</div>
 
+				<!-- FIX: keep value on ONE LINE + better numeric look -->
 				<div
-					class={'mt-4 text-4xl font-black tracking-tighter transition-all duration-500 ' +
+					class={'mt-3 text-2xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums transition-all duration-500 md:mt-4 md:text-4xl ' +
 						(variant === 'neon'
 							? 'bg-linear-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(96,165,250,0.4)]'
 							: 'text-white/90')}
@@ -40,30 +43,38 @@
 				</div>
 			</div>
 
-			<div class="relative transition-transform duration-500 group-hover:rotate-12">
+			<div
+				class="relative hidden shrink-0 transition-transform duration-500 group-hover:rotate-12 sm:block"
+			>
 				<div
 					class="absolute inset-0 bg-blue-500/20 opacity-0 blur-xl transition-opacity group-hover:opacity-100"
 				></div>
 				<div
-					class="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl"
+					class="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 backdrop-blur-2xl md:h-12 md:w-12 md:rounded-2xl"
 				>
 					<div
-						class="absolute inset-0 translate-x-[-100%] bg-linear-to-tr from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]"
+						class="absolute inset-0 -translate-x-full bg-linear-to-tr from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
 					></div>
-					<span class="font-mono text-[8px] font-bold tracking-widest text-white/20 uppercase"
-						>{label.slice(0, 3)}</span
+					<span
+						class="font-mono text-[7px] font-bold tracking-widest text-white/20 uppercase md:text-[8px]"
 					>
+						{label.slice(0, 3)}
+					</span>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	{#if hint}
-		<div class="relative z-10 mt-6 border-t border-white/5 pt-5">
-			<div class="flex items-center justify-between">
-				<span class="text-[10px] font-bold tracking-[0.2em] text-white/20 uppercase">{hint}</span>
+		<div class="relative z-10 mt-4 border-t border-white/5 pt-4 md:mt-6 md:pt-5">
+			<div class="flex items-center justify-between gap-2">
+				<span
+					class="truncate text-[8px] font-bold tracking-widest text-white/20 uppercase italic md:text-[10px] md:tracking-[0.2em]"
+				>
+					{hint}
+				</span>
 				<svg
-					class="h-3 w-3 text-white/10 transition-colors group-hover:text-blue-400/40"
+					class="h-3 w-3 shrink-0 text-white/10 transition-colors group-hover:text-blue-400/40"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -79,3 +90,10 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	/* Ensures consistent digit widths for big numbers */
+	:global(.tabular-nums) {
+		font-variant-numeric: tabular-nums;
+	}
+</style>
