@@ -1,8 +1,32 @@
 <script lang="ts">
+	import HeartbeatMini from '$lib/components/ui/HeartbeatMini.svelte';
 	import { fly } from 'svelte/transition';
 
-	// Svelte 5 Props: High-Status Component Definition
-	let { label, value, hint = '', variant = 'default' } = $props();
+	// Svelte 5 Props
+	let {
+		label,
+		value,
+		hint = '',
+		variant = 'default',
+
+		// ✅ heartbeat options (optional)
+		heartbeat = false,
+		heartbeatLabel = 'LIVE',
+		heartbeatHeight = 22,
+		heartbeatSpeed = 2.8,
+		heartbeatIntensity = 'soft'
+	} = $props<{
+		label: string;
+		value: string | number;
+		hint?: string;
+		variant?: 'default' | 'neon';
+
+		heartbeat?: boolean;
+		heartbeatLabel?: string;
+		heartbeatHeight?: number;
+		heartbeatSpeed?: number;
+		heartbeatIntensity?: 'soft' | 'normal' | 'strong';
+	}>();
 </script>
 
 <div
@@ -32,7 +56,7 @@
 					</span>
 				</div>
 
-				<!-- FIX: keep value on ONE LINE + better numeric look -->
+				<!-- value -->
 				<div
 					class={'mt-3 text-2xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums transition-all duration-500 md:mt-4 md:text-4xl ' +
 						(variant === 'neon'
@@ -41,6 +65,18 @@
 				>
 					{value}
 				</div>
+
+				<!-- ✅ heartbeat line (tiny, futuristic, phone friendly) -->
+				{#if heartbeat}
+					<div class="mt-3 md:mt-4">
+						<HeartbeatMini
+							height={heartbeatHeight}
+							speed={heartbeatSpeed}
+							intensity={heartbeatIntensity}
+							label={heartbeatLabel}
+						/>
+					</div>
+				{/if}
 			</div>
 
 			<div
@@ -92,7 +128,6 @@
 </div>
 
 <style>
-	/* Ensures consistent digit widths for big numbers */
 	:global(.tabular-nums) {
 		font-variant-numeric: tabular-nums;
 	}

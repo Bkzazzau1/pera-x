@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 // UI Components
 	import BurnHistory from '$lib/components/ui/BurnHistory.svelte';
 	import BurnVisualizer from '$lib/components/ui/BurnVisualizer.svelte';
@@ -18,20 +18,12 @@
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
 // Logic & Stores
 	import { startNetworkSimulation } from '$lib/logic/NetworkSimulator';
-	import { wallet } from '$lib/stores/wallet.svelte';
 
 	onMount(() => {
 		startNetworkSimulation();
 	});
 
-	// Header quick actions (SYSTEM VIEW ONLY)
-	const headerActions = [
-		{ name: 'Dashboard', href: '/dashboard', tag: 'Home' },
-		{ name: 'Trade', href: '/trade', tag: 'DEX' },
-		{ name: 'Swap', href: '/swap', tag: 'v4' },
-		{ name: 'Redeem', href: '/redeem', tag: 'Burn' }
-	];
-
+	// ✅ still used by Policy Engine cards (keep)
 	const policyModules = [
 		{ name: 'Swap', href: '/swap', tag: 'DEX v4' },
 		{ name: 'Redeem', href: '/redeem', tag: 'Direct Burn' },
@@ -46,174 +38,8 @@
 
 <div class="relative z-10 w-full pb-8 selection:bg-blue-500/30" in:fade={{ duration: 1000 }}>
 	<section class="flex flex-col gap-8 overflow-hidden">
-		<!-- ✅ SYSTEM HEADER (DESKTOP ONLY) -->
-		<header class="hidden flex-col gap-6 md:flex" in:fly={{ y: -20, duration: 1000 }}>
-			<div class="flex items-center justify-between gap-6">
-				<div class="group flex items-center gap-4">
-					<div class="relative">
-						<div class="absolute inset-0 bg-blue-600 opacity-20 blur-xl"></div>
-						<div
-							class="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-linear-to-br from-blue-700 to-blue-500 text-2xl font-bold text-white shadow-2xl"
-						>
-							P
-						</div>
-					</div>
-					<div>
-						<h1
-							class="bg-linear-to-b from-white to-white/60 bg-clip-text text-3xl font-black tracking-tighter text-transparent uppercase italic"
-						>
-							Pera-X <span class="font-light text-blue-500 not-italic">Protocol</span>
-						</h1>
-						<p class="mt-1 text-[10px] font-bold tracking-[0.25em] text-white/30 uppercase">
-							System View • Institutional Console
-						</p>
-					</div>
-				</div>
-
-				<div class="flex items-center gap-3">
-					<div
-						class="hidden items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-2xl lg:flex"
-					>
-						<span class="relative flex h-2 w-2">
-							<span
-								class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400/40"
-							></span>
-							<span class="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
-						</span>
-						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">
-							Mainnet • v2026
-						</span>
-					</div>
-
-					<button
-						type="button"
-						onclick={() => wallet.connect()}
-						disabled={wallet.isConnecting}
-						class="glass group relative overflow-hidden rounded-2xl border-blue-400/20 px-8 py-3 text-[10px] font-black tracking-[0.2em] text-blue-400 transition-all hover:border-blue-400/50 hover:bg-blue-400/5 active:scale-95 disabled:opacity-60"
-					>
-						<div
-							class="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
-						></div>
-						{wallet.isConnecting
-							? 'ESTABLISHING NODE...'
-							: wallet.address
-								? wallet.address
-								: 'CONNECT WALLET'}
-					</button>
-				</div>
-			</div>
-
-			<div class="glass relative overflow-hidden rounded-[2.25rem] border border-white/10 p-2">
-				<div class="pointer-events-none absolute inset-0">
-					<div
-						class="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-blue-500/10 blur-[90px]"
-					></div>
-					<div
-						class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-[100px]"
-					></div>
-					<div
-						class="absolute inset-0 opacity-[0.06]"
-						style="
-							background-image:
-								linear-gradient(to right, rgba(255,255,255,0.25) 1px, transparent 1px),
-								linear-gradient(to bottom, rgba(255,255,255,0.25) 1px, transparent 1px);
-							background-size: 44px 44px;
-						"
-					></div>
-				</div>
-
-				<div class="relative z-10 flex items-center justify-between gap-3 px-3 py-2">
-					<div class="flex items-center gap-2">
-						<span class="text-[9px] font-black tracking-[0.35em] text-white/30 uppercase"
-							>Quick Actions</span
-						>
-						<span class="h-1 w-8 rounded-full bg-linear-to-r from-blue-500/40 to-transparent"
-						></span>
-					</div>
-
-					<div class="flex items-center gap-2">
-						{#each headerActions as a}
-							<button
-								type="button"
-								onclick={() => goto(a.href)}
-								class="group/action relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-5 py-3 text-[10px] font-black tracking-[0.28em] text-white/70 uppercase transition-all hover:border-blue-400/30 hover:bg-blue-400/10 hover:text-white active:scale-95"
-							>
-								<div
-									class="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover/action:translate-x-full"
-								></div>
-								<span class="relative z-10 flex items-center gap-3">
-									<span class="text-white/90">{a.name}</span>
-									<span
-										class="rounded-full border border-white/10 bg-black/30 px-2 py-1 text-[8px] font-black tracking-[0.25em] text-white/35"
-									>
-										{a.tag}
-									</span>
-								</span>
-							</button>
-						{/each}
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<!-- ✅ MOBILE QUICK ACTIONS -->
-		<div class="md:hidden">
-			<div class="glass rounded-[2.25rem] border border-white/10 p-4">
-				<div class="mb-3 flex items-center justify-between">
-					<div>
-						<div class="text-[9px] font-black tracking-[0.35em] text-white/30 uppercase">Quick</div>
-						<div class="mt-1 text-base font-black tracking-tight text-white uppercase italic">
-							Actions
-						</div>
-					</div>
-
-					<button
-						type="button"
-						onclick={() => wallet.connect()}
-						disabled={wallet.isConnecting}
-						class="rounded-2xl border border-blue-400/20 bg-blue-400/10 px-4 py-2 text-[9px] font-black tracking-[0.22em] text-blue-300 uppercase active:scale-95 disabled:opacity-60"
-					>
-						{wallet.isConnecting ? 'LINKING...' : wallet.address ? 'SYNCED' : 'CONNECT'}
-					</button>
-				</div>
-
-				<div class="grid grid-cols-2 gap-3">
-					{#each headerActions as a}
-						<button
-							type="button"
-							onclick={() => goto(a.href)}
-							class="glass group relative flex items-center justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-4 py-4 text-left transition-all hover:border-blue-400/25 hover:bg-blue-400/10 active:scale-95"
-						>
-							<div
-								class="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
-							></div>
-
-							<div class="relative z-10">
-								<div class="text-[10px] font-black tracking-[0.28em] text-white/80 uppercase">
-									{a.name}
-								</div>
-								<div class="mt-1 text-[8px] font-black tracking-[0.25em] text-white/25 uppercase">
-									{a.tag}
-								</div>
-							</div>
-
-							<div
-								class="relative z-10 rounded-xl border border-white/10 bg-black/30 p-2 text-white/40"
-							>
-								<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-									/>
-								</svg>
-							</div>
-						</button>
-					{/each}
-				</div>
-			</div>
-		</div>
+		<!-- ✅ HEADER REMOVED (GLOBAL ProtocolHeader is used instead) -->
+		<!-- ✅ MOBILE QUICK ACTIONS REMOVED (GLOBAL ProtocolHeader is used instead) -->
 
 		<!-- ✅ TOP SUMMARY ROW -->
 		<div class="grid gap-6 lg:grid-cols-3">
@@ -227,6 +53,11 @@
 					value="156,000,000"
 					variant="neon"
 					hint="DEX Liquidity Audit"
+					heartbeat={true}
+					heartbeatLabel="CIRCULATING"
+					heartbeatHeight={18}
+					heartbeatSpeed={3.0}
+					heartbeatIntensity="soft"
 				/>
 			</div>
 		</div>
@@ -370,7 +201,6 @@
 				<ParityAudit />
 				<BurnHistory />
 
-				<!-- ✅ ParityMonitor moved DOWN into normal flow (not sticky) -->
 				<div class="pt-2">
 					<ParityMonitor />
 				</div>

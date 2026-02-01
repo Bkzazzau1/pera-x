@@ -133,87 +133,9 @@
 
 <div class="perax-bg-layer pointer-events-none fixed inset-0 -z-50 opacity-40"></div>
 
-<div class="relative min-h-screen bg-transparent selection:bg-blue-500/30">
+<div class="relative min-h-screen overflow-visible bg-transparent selection:bg-blue-500/30">
 	<div class="relative z-10 mx-auto max-w-7xl px-4 pt-0 md:px-8 md:pt-0">
-		<header class="flex items-center justify-between gap-4 py-4">
-			<div class="flex min-w-0 items-center gap-4">
-				<div
-					class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-400/25 bg-sky-400/10 font-black text-blue-400 backdrop-blur-xl transition-transform hover:scale-105 md:h-12 md:w-12"
-				>
-					PX
-				</div>
-
-				<div class="min-w-0">
-					<div
-						class="truncate text-[13px] leading-none font-black tracking-tighter text-white uppercase italic sm:text-lg md:text-xl"
-					>
-						Pera-X
-					</div>
-					<div
-						class="mt-1 truncate text-[8px] font-bold tracking-[0.2em] text-white/40 uppercase sm:text-[9px]"
-					>
-						Monetary Standard
-					</div>
-				</div>
-			</div>
-
-			<nav class="hidden items-center gap-2 lg:flex">
-				{#each navLinks as link}
-					<a
-						class="glass glow-hover rounded-full px-6 py-2 text-[10px] font-black tracking-[0.2em] uppercase transition-all
-						{isActive(link.path)
-							? 'border-blue-400/40 bg-blue-400/5 text-blue-400'
-							: 'text-white/60 hover:text-white'}"
-						href={link.path}
-					>
-						{link.label}
-					</a>
-				{/each}
-			</nav>
-
-			<div class="flex shrink-0 items-center gap-3">
-				<div
-					class="hidden items-center gap-2 rounded-xl border border-white/5 bg-white/5 px-4 py-2 xl:flex"
-				>
-					<span
-						class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.5)]"
-					></span>
-					<span class="text-[9px] font-black tracking-widest text-white/40 uppercase"
-						>Mainnet v2026</span
-					>
-				</div>
-
-				<button
-					type="button"
-					onclick={() => wallet.connect()}
-					class="glass glow-hover rounded-2xl border-blue-400/20 px-4 py-2.5 text-[9px] font-black tracking-widest text-blue-400 uppercase transition-all hover:bg-blue-400/10 active:scale-95 sm:px-5 md:px-8 md:text-[10px]"
-				>
-					{wallet.address ? 'SYNCED' : 'CONNECT'}
-				</button>
-
-				<button
-					type="button"
-					class="rounded-xl border border-white/10 bg-white/5 p-2.5 text-white/80 transition-all hover:border-blue-400/40 lg:hidden"
-					aria-label="Toggle Global Navigation"
-					aria-expanded={showMobileNav}
-					onclick={() => (showMobileNav = !showMobileNav)}
-				>
-					<div class="flex w-5 flex-col gap-1.5">
-						<span
-							class="h-0.5 w-full bg-current transition-all {showMobileNav
-								? 'translate-y-2 rotate-45'
-								: ''}"
-						></span>
-						<span class="h-0.5 w-full bg-current {showMobileNav ? 'opacity-0' : ''}"></span>
-						<span
-							class="h-0.5 w-full bg-current transition-all {showMobileNav
-								? '-translate-y-2 -rotate-45'
-								: ''}"
-						></span>
-					</div>
-				</button>
-			</div>
-		</header>
+		<!-- ✅ Header REMOVED: Marketing header is now global -->
 
 		<!-- ✅ Mobile-only Bloomberg microline -->
 		<div class="-mt-1 mb-3 sm:hidden">
@@ -228,12 +150,12 @@
 
 					<div class="leading-none">
 						<div class="flex items-baseline gap-2">
-							<span class="text-[10px] font-black tracking-[0.22em] text-white/70 uppercase"
-								>{wat.time}</span
-							>
-							<span class="text-[8px] font-black tracking-[0.35em] text-blue-400/60 uppercase"
-								>{wat.tz}</span
-							>
+							<span class="text-[10px] font-black tracking-[0.22em] text-white/70 uppercase">
+								{wat.time}
+							</span>
+							<span class="text-[8px] font-black tracking-[0.35em] text-blue-400/60 uppercase">
+								{wat.tz}
+							</span>
 						</div>
 						<div class="mt-1 text-[8px] font-bold tracking-[0.28em] text-white/30 uppercase">
 							{wat.date}
@@ -255,9 +177,9 @@
 									? 'bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.5)]'
 									: 'bg-white/20'}"
 						></span>
-						<span class="text-[8px] font-black tracking-[0.3em] text-white/35 uppercase"
-							>NODE: {statusText}</span
-						>
+						<span class="text-[8px] font-black tracking-[0.3em] text-white/35 uppercase">
+							NODE: {statusText}
+						</span>
 					</span>
 
 					<span class="text-[9px] font-black tracking-[0.25em] text-blue-400/60 uppercase">
@@ -292,12 +214,12 @@
 			</div>
 
 			<div class="mt-2 flex items-center justify-between px-1">
-				<span class="text-[9px] font-black tracking-[0.32em] text-white/30 uppercase"
-					>System View • v2026</span
-				>
-				<span class="text-[9px] font-black tracking-[0.28em] text-blue-400/55 uppercase"
-					>Mainnet</span
-				>
+				<span class="text-[9px] font-black tracking-[0.32em] text-white/30 uppercase">
+					System View • v2026
+				</span>
+				<span class="text-[9px] font-black tracking-[0.28em] text-blue-400/55 uppercase">
+					Mainnet
+				</span>
 			</div>
 		</div>
 
@@ -325,9 +247,9 @@
 					<div class="relative z-10 flex items-center gap-3">
 						<span class="h-1 w-6 rounded-full bg-linear-to-r from-blue-400/60 to-transparent"
 						></span>
-						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase"
-							>Quick Actions</span
-						>
+						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">
+							Quick Actions
+						</span>
 						<span
 							class="rounded-full border border-white/10 bg-black/30 px-2 py-1 text-[8px] font-black tracking-[0.25em] text-white/35 uppercase"
 						>
@@ -444,11 +366,6 @@
 		backdrop-filter: blur(16px);
 		-webkit-backdrop-filter: blur(16px);
 		border: 1px solid rgba(255, 255, 255, 0.06);
-	}
-
-	.glow-hover:hover {
-		border-color: rgba(59, 130, 246, 0.3);
-		box-shadow: 0 0 80px rgba(37, 99, 235, 0.08);
 	}
 
 	.ticker {
