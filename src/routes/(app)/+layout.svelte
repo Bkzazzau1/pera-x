@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import WalletModal from '$lib/components/ui/WalletModal.svelte';
 	import { wallet } from '$lib/stores/wallet.svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
 	/**
@@ -10,7 +11,6 @@
 	 * Restoration of Institutional Navigation State.
 	 */
 
-	// Keep your original nav list, but upgrade it to structured links (so we can show labels + quick actions)
 	const navLinks = [
 		{ label: 'Dashboard', path: '/dashboard' },
 		{ label: 'Trade', path: '/trade' },
@@ -18,7 +18,6 @@
 		{ label: 'Analytics', path: '/analytics' }
 	];
 
-	// Mobile Quick Actions (fast tap grid)
 	const quickActions = [
 		{ label: 'Trade', path: '/trade', tag: 'DEX' },
 		{ label: 'Redeem', path: '/redeem', tag: 'BURN' },
@@ -27,38 +26,145 @@
 	];
 
 	let { children } = $props();
+
 	let showMobileNav = $state(false);
+	let showQuickActions = $state(true);
 
 	const isActive = (path: string) => $page.url.pathname.startsWith(path);
+
+	// ───────────────────────────────────────────────────────────────────────────────
+	// Bloomberg-style Microline: WAT clock + date, Node status + latency, ticker text
+	// No extra libs.
+	// ───────────────────────────────────────────────────────────────────────────────
+
+	let now = $state(new Date());
+	let clockTimer: number | null = null;
+
+	function formatWAT(d: Date) {
+		const parts = new Intl.DateTimeFormat('en-GB', {
+			timeZone: 'Africa/Lagos',
+			weekday: 'short',
+			day: '2-digit',
+			month: 'short',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+			hour12: false
+		})
+			.formatToParts(d)
+			.reduce((acc: Record<string, string>, p) => {
+				if (p.type !== 'literal') acc[p.type] = p.value;
+				return acc;
+			}, {});
+
+		return {
+			time: `${parts.hour}:${parts.minute}:${parts.second}`,
+			date: `${(parts.weekday || '').toUpperCase()} ${parts.day} ${(parts.month || '').toUpperCase()} ${parts.year}`,
+			tz: 'WAT'
+		};
+	}
+
+	const wat = $derived(formatWAT(now));
+
+	// Node status / latency (only "alive" when wallet is connected)
+	let latencyMs = $state<number | null>(null);
+
+	// status text can still show LINKING/IDLE, but we only animate/jitter when connected.
+	let statusText = $derived(wallet.address ? 'SYNCED' : wallet.isConnecting ? 'LINKING' : 'IDLE');
+
+	let latencyTimer: number | null = null;
+
+	function jitterLatency() {
+		// Only called when wallet is connected
+		const base = 16;
+		const j = Math.floor((Math.random() - 0.5) * 16);
+		latencyMs = Math.max(11, Math.min(62, base + j));
+	}
+
+	function startNodeTelemetry() {
+		// prevent duplicates
+		if (latencyTimer) return;
+		// set a real-looking initial ping once connected
+		latencyMs = 18;
+		latencyTimer = window.setInterval(() => jitterLatency(), 1400);
+	}
+
+	function stopNodeTelemetry() {
+		if (latencyTimer) window.clearInterval(latencyTimer);
+		latencyTimer = null;
+		latencyMs = null;
+	}
+
+	// Ticker text
+	const tickerItems = [
+		'PX SYSTEM VIEW • POLICY ROUTER: ARMED',
+		'MAINNET v2026 • AUDIT TRAIL: ENABLED',
+		'BURN PROOFS: ATOMIC • LEDGER: IMMUTABLE',
+		'DEX ROUTES: ACTIVE • SWAP ENGINE: STANDBY',
+		'FULFILLMENT: VERIFIED • LOGISTICS: GREEN'
+	];
+
+	let tickerIndex = $state(0);
+	let tickerTimer: number | null = null;
+
+	function nextTicker() {
+		tickerIndex = (tickerIndex + 1) % tickerItems.length;
+	}
+
+	// Pause-on-touch ticker
+	let tickerPaused = $state(false);
+	function pauseTicker() {
+		tickerPaused = true;
+	}
+	function resumeTicker() {
+		tickerPaused = false;
+	}
+
+	// Watch wallet connection (Svelte 5 runes)
+	$effect(() => {
+		if (wallet.address) startNodeTelemetry();
+		else stopNodeTelemetry();
+	});
+
+	onMount(() => {
+		clockTimer = window.setInterval(() => (now = new Date()), 1000);
+		tickerTimer = window.setInterval(() => nextTicker(), 5200);
+	});
+
+	onDestroy(() => {
+		if (clockTimer) window.clearInterval(clockTimer);
+		if (tickerTimer) window.clearInterval(tickerTimer);
+		stopNodeTelemetry();
+	});
 </script>
 
-<!-- FIX: renamed perax-bg -> perax-bg-layer to avoid global CSS collision -->
 <div class="perax-bg-layer pointer-events-none fixed inset-0 -z-50 opacity-40"></div>
 
 <div class="relative min-h-screen bg-transparent selection:bg-blue-500/30">
 	<div class="relative z-10 mx-auto max-w-7xl px-4 pt-0 md:px-8 md:pt-0">
 		<header class="flex items-center justify-between gap-4 py-4">
-			<div class="flex items-center gap-4">
+			<div class="flex min-w-0 items-center gap-4">
 				<div
-					class="flex h-10 w-10 items-center justify-center rounded-2xl border border-sky-400/25 bg-sky-400/10 font-black text-blue-400 backdrop-blur-xl transition-transform hover:scale-105 md:h-12 md:w-12"
+					class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-sky-400/25 bg-sky-400/10 font-black text-blue-400 backdrop-blur-xl transition-transform hover:scale-105 md:h-12 md:w-12"
 				>
 					PX
 				</div>
-				<div class="hidden sm:block">
+
+				<div class="min-w-0">
 					<div
-						class="text-lg leading-none font-black tracking-tighter text-white uppercase italic md:text-xl"
+						class="truncate text-[13px] leading-none font-black tracking-tighter text-white uppercase italic sm:text-lg md:text-xl"
 					>
 						Pera-X
 					</div>
 					<div
-						class="mt-1 text-[8px] font-bold tracking-[0.2em] text-white/40 uppercase md:text-[9px]"
+						class="mt-1 truncate text-[8px] font-bold tracking-[0.2em] text-white/40 uppercase sm:text-[9px]"
 					>
 						Monetary Standard
 					</div>
 				</div>
 			</div>
 
-			<!-- Desktop Nav -->
 			<nav class="hidden items-center gap-2 lg:flex">
 				{#each navLinks as link}
 					<a
@@ -73,22 +179,22 @@
 				{/each}
 			</nav>
 
-			<div class="flex items-center gap-3">
+			<div class="flex shrink-0 items-center gap-3">
 				<div
 					class="hidden items-center gap-2 rounded-xl border border-white/5 bg-white/5 px-4 py-2 xl:flex"
 				>
 					<span
 						class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.5)]"
 					></span>
-					<span class="text-[9px] font-black tracking-widest text-white/40 uppercase">
-						Mainnet v2026
-					</span>
+					<span class="text-[9px] font-black tracking-widest text-white/40 uppercase"
+						>Mainnet v2026</span
+					>
 				</div>
 
 				<button
 					type="button"
 					onclick={() => wallet.connect()}
-					class="glass glow-hover rounded-2xl border-blue-400/20 px-5 py-2.5 text-[9px] font-black tracking-widest text-blue-400 uppercase transition-all hover:bg-blue-400/10 active:scale-95 md:px-8 md:text-[10px]"
+					class="glass glow-hover rounded-2xl border-blue-400/20 px-4 py-2.5 text-[9px] font-black tracking-widest text-blue-400 uppercase transition-all hover:bg-blue-400/10 active:scale-95 sm:px-5 md:px-8 md:text-[10px]"
 				>
 					{wallet.address ? 'SYNCED' : 'CONNECT'}
 				</button>
@@ -97,6 +203,7 @@
 					type="button"
 					class="rounded-xl border border-white/10 bg-white/5 p-2.5 text-white/80 transition-all hover:border-blue-400/40 lg:hidden"
 					aria-label="Toggle Global Navigation"
+					aria-expanded={showMobileNav}
 					onclick={() => (showMobileNav = !showMobileNav)}
 				>
 					<div class="flex w-5 flex-col gap-1.5">
@@ -116,32 +223,188 @@
 			</div>
 		</header>
 
-		<!-- ✅ Mobile Quick Actions (only on mobile) -->
-		<div class="lg:hidden">
-			<div class="glass rounded-4xl border border-white/10 bg-black/30 p-3 backdrop-blur-3xl">
-				<div class="grid grid-cols-4 gap-2">
-					{#each quickActions as act}
-						<button
-							type="button"
-							onclick={() => goto(act.path)}
-							class="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 px-3 py-3 text-center transition-all active:scale-95
-							{isActive(act.path) ? 'border-blue-400/30 bg-blue-400/10' : 'hover:border-blue-400/20'}"
-						>
-							<div
-								class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_60%)] opacity-0 transition-opacity group-hover:opacity-100"
-							></div>
+		<!-- ✅ Mobile-only Bloomberg microline -->
+		<div class="-mt-1 mb-3 sm:hidden">
+			<div class="flex items-center gap-3 px-1">
+				<!-- LEFT: WAT -->
+				<div class="flex shrink-0 items-center gap-2">
+					<span class="relative flex h-2 w-2">
+						<span
+							class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400/25"
+						></span>
+						<span class="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
+					</span>
 
-							<div class="relative z-10">
-								<div class="text-[10px] font-black tracking-[0.2em] text-white/80 uppercase">
-									{act.label}
-								</div>
-								<div class="mt-1 text-[8px] font-bold tracking-widest text-blue-400/60 uppercase">
-									{act.tag}
-								</div>
-							</div>
-						</button>
-					{/each}
+					<div class="leading-none">
+						<div class="flex items-baseline gap-2">
+							<span class="text-[10px] font-black tracking-[0.22em] text-white/70 uppercase">
+								{wat.time}
+							</span>
+							<span class="text-[8px] font-black tracking-[0.35em] text-blue-400/60 uppercase">
+								{wat.tz}
+							</span>
+						</div>
+						<div class="mt-1 text-[8px] font-bold tracking-[0.28em] text-white/30 uppercase">
+							{wat.date}
+						</div>
+					</div>
 				</div>
+
+				<div class="h-px flex-1 bg-linear-to-r from-white/10 via-white/5 to-transparent"></div>
+
+				<!-- RIGHT: NODE + LATENCY (only “moves” once connected) -->
+				<div class="flex shrink-0 items-center gap-2">
+					<span
+						class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1.5"
+					>
+						<span
+							class="h-1.5 w-1.5 rounded-full
+							{wallet.address
+								? 'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)]'
+								: wallet.isConnecting
+									? 'bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.5)]'
+									: 'bg-white/20'}"
+						></span>
+						<span class="text-[8px] font-black tracking-[0.3em] text-white/35 uppercase">
+							NODE: {statusText}
+						</span>
+					</span>
+
+					<span class="text-[9px] font-black tracking-[0.25em] text-blue-400/60 uppercase">
+						{latencyMs === null ? '—' : `${latencyMs}ms`}
+					</span>
+				</div>
+			</div>
+
+			<!-- TICKER STRIP (pause on touch / press) -->
+			<div
+				class="mt-2 overflow-hidden rounded-2xl border border-white/10 bg-black/35 px-3 py-2 backdrop-blur-2xl"
+				onpointerdown={pauseTicker}
+				onpointerup={resumeTicker}
+				onpointercancel={resumeTicker}
+				onpointerleave={resumeTicker}
+				ontouchstart={pauseTicker}
+				ontouchend={resumeTicker}
+				ontouchcancel={resumeTicker}
+				role="presentation"
+			>
+				<div
+					class="ticker flex items-center gap-6"
+					style="animation-play-state: {tickerPaused ? 'paused' : 'running'};"
+				>
+					<span class="ticker-item">{tickerItems[tickerIndex]}</span>
+					<span class="ticker-dot"></span>
+					<span class="ticker-item">{tickerItems[(tickerIndex + 1) % tickerItems.length]}</span>
+					<span class="ticker-dot"></span>
+					<span class="ticker-item">{tickerItems[(tickerIndex + 2) % tickerItems.length]}</span>
+					<span class="ticker-dot"></span>
+					<span class="ticker-item">{tickerItems[(tickerIndex + 3) % tickerItems.length]}</span>
+				</div>
+			</div>
+
+			<div class="mt-2 flex items-center justify-between px-1">
+				<span class="text-[9px] font-black tracking-[0.32em] text-white/30 uppercase">
+					System View • v2026
+				</span>
+				<span class="text-[9px] font-black tracking-[0.28em] text-blue-400/55 uppercase">
+					Mainnet
+				</span>
+			</div>
+		</div>
+
+		<!-- ✅ Mobile Quick Actions (premium + collapsible) -->
+		<div class="lg:hidden">
+			<div
+				class="glass overflow-hidden rounded-4xl border border-white/10 bg-black/35 backdrop-blur-3xl"
+			>
+				<button
+					type="button"
+					class="group relative flex w-full items-center justify-between px-4 py-3"
+					aria-expanded={showQuickActions}
+					aria-controls="mobile-quick-actions"
+					onclick={() => (showQuickActions = !showQuickActions)}
+				>
+					<div class="absolute inset-0 opacity-60">
+						<div
+							class="absolute -top-10 -left-10 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl"
+						></div>
+						<div
+							class="absolute -right-10 -bottom-10 h-24 w-24 rounded-full bg-cyan-400/8 blur-2xl"
+						></div>
+					</div>
+
+					<div class="relative z-10 flex items-center gap-3">
+						<span class="h-1 w-6 rounded-full bg-linear-to-r from-blue-400/60 to-transparent"
+						></span>
+						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">
+							Quick Actions
+						</span>
+						<span
+							class="rounded-full border border-white/10 bg-black/30 px-2 py-1 text-[8px] font-black tracking-[0.25em] text-white/35 uppercase"
+						>
+							{showQuickActions ? 'OPEN' : 'CLOSED'}
+						</span>
+					</div>
+
+					<div
+						class="relative z-10 flex h-8 w-8 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/70 transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-400/10"
+					>
+						<svg
+							class="h-4 w-4 transition-transform duration-300 {showQuickActions
+								? 'rotate-180'
+								: ''}"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"
+							/>
+						</svg>
+					</div>
+				</button>
+
+				{#if showQuickActions}
+					<div id="mobile-quick-actions" transition:slide class="px-3 pb-3">
+						<div class="grid grid-cols-2 gap-2">
+							{#each quickActions as act}
+								<button
+									type="button"
+									onclick={() => goto(act.path)}
+									class="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 px-4 py-4 text-left transition-all active:scale-95
+									{isActive(act.path)
+										? 'border-blue-400/30 bg-blue-400/10'
+										: 'hover:border-blue-400/20 hover:bg-white/4'}"
+								>
+									<div
+										class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.20),transparent_65%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+									></div>
+									<div
+										class="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
+									></div>
+
+									<div class="relative z-10">
+										<div class="text-[11px] font-black tracking-[0.26em] text-white/80 uppercase">
+											{act.label}
+										</div>
+										<div
+											class="mt-1 text-[8px] font-bold tracking-[0.28em] text-blue-400/60 uppercase"
+										>
+											{act.tag}
+										</div>
+									</div>
+
+									<div
+										class="relative z-10 mt-3 h-px w-full bg-linear-to-r from-white/10 via-white/5 to-transparent"
+									></div>
+								</button>
+							{/each}
+						</div>
+					</div>
+				{/if}
 			</div>
 		</div>
 
@@ -182,7 +445,6 @@
 		overflow-x: hidden;
 	}
 
-	/* FIX: background layer now uses perax-bg-layer (no collision) */
 	.perax-bg-layer {
 		background:
 			radial-gradient(circle at top right, rgba(14, 165, 233, 0.15), transparent 60%),
@@ -199,5 +461,37 @@
 	.glow-hover:hover {
 		border-color: rgba(59, 130, 246, 0.3);
 		box-shadow: 0 0 80px rgba(37, 99, 235, 0.08);
+	}
+
+	/* Bloomberg-style ticker */
+	.ticker {
+		white-space: nowrap;
+		will-change: transform;
+		animation: ticker 14s linear infinite;
+	}
+
+	.ticker-item {
+		font-size: 9px;
+		font-weight: 800;
+		letter-spacing: 0.28em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.38);
+	}
+
+	.ticker-dot {
+		width: 4px;
+		height: 4px;
+		border-radius: 999px;
+		background: rgba(96, 165, 250, 0.55);
+		box-shadow: 0 0 10px rgba(96, 165, 250, 0.25);
+	}
+
+	@keyframes ticker {
+		from {
+			transform: translateX(0%);
+		}
+		to {
+			transform: translateX(-45%);
+		}
 	}
 </style>

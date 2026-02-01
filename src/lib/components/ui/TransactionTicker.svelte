@@ -1,27 +1,24 @@
 <script lang="ts">
 	import { ticker } from '$lib/stores/ticker.svelte';
 	import { fade, fly } from 'svelte/transition';
+
+	const fmt = new Intl.NumberFormat();
 </script>
 
-<!-- FIX: tighter vertical rhythm -->
+<!-- Mobile-safe: icon | details | amount (amount never clips off-screen) -->
 <div class="flex w-full flex-col gap-2">
 	{#each ticker.transactions as tx (tx.id)}
 		<div
 			in:fly={{ x: 16, duration: 700, opacity: 0 }}
 			out:fade={{ duration: 300 }}
-			class="glass flex items-center gap-3 rounded-xl border-blue-400/20 px-4 py-2 backdrop-blur-2xl"
+			class="glass flex w-full items-center gap-3 rounded-2xl border border-blue-400/15 bg-white/2 px-3 py-3 backdrop-blur-2xl sm:px-4"
 		>
-			<!-- FIX: smaller icon box -->
+			<!-- Icon -->
 			<div
-				class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-blue-400/30 bg-blue-500/10"
+				class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-400/25 bg-blue-500/10"
 			>
 				{#if tx.type === 'BURN'}
-					<svg
-						class="h-3.5 w-3.5 text-blue-400"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
+					<svg class="h-4 w-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -31,7 +28,7 @@
 					</svg>
 				{:else}
 					<svg
-						class="h-3.5 w-3.5 text-emerald-400"
+						class="h-4 w-4 text-emerald-400"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
@@ -46,18 +43,59 @@
 				{/if}
 			</div>
 
-			<div class="min-w-0">
-				<div class="text-[7px] font-black tracking-[0.18em] text-blue-400/60 uppercase">
-					{tx.type} CONFIRMED
+			<!-- Middle: details (allowed to shrink) -->
+			<div class="min-w-0 flex-1">
+				<div class="flex items-center gap-2">
+					<span class="truncate text-[9px] font-black tracking-[0.28em] text-white/55 uppercase">
+						{tx.type === 'BURN' ? 'REDEMPTION BURN' : tx.type}
+					</span>
+
+					<span class="shrink-0 text-[8px] font-black tracking-[0.28em] text-blue-400/55 uppercase">
+						CONFIRMED
+					</span>
 				</div>
 
-				<div class="flex items-baseline gap-1">
-					<span class="text-base font-black tracking-tight text-white">
-						-{new Intl.NumberFormat().format(tx.amount)}
+				<!-- Microline (terminal feel) -->
+				<div class="mt-1 flex items-center gap-2">
+					<span class="text-[8px] font-bold tracking-[0.22em] text-white/25 uppercase">
+						FINALIZED
 					</span>
-					<span class="text-[7px] font-bold tracking-widest text-white/30 uppercase"> PX </span>
+					<span class="text-[8px] text-white/15">•</span>
+					<span class="text-[8px] font-bold tracking-[0.22em] text-emerald-400/50 uppercase">
+						ATOMIC
+					</span>
+				</div>
+			</div>
+
+			<!-- Right: amount (right aligned, never spills outside) -->
+			<div class="min-w-0 shrink-0 text-right">
+				<div class="flex items-baseline justify-end gap-1">
+					<span
+						class="max-w-[48vw] truncate text-[18px] leading-none font-black tracking-tight
+							text-white tabular-nums sm:text-[20px]"
+						title={`-${fmt.format(tx.amount)} PX`}
+					>
+						-{fmt.format(tx.amount)}
+					</span>
+					<span class="shrink-0 text-[9px] font-black tracking-[0.28em] text-white/25 uppercase">
+						PX
+					</span>
+				</div>
+
+				<!-- Optional tiny right-side sublabel (helps spacing + “terminal”) -->
+				<div class="mt-1 text-[8px] font-bold tracking-[0.24em] text-blue-400/40 uppercase">
+					ledger
 				</div>
 			</div>
 		</div>
 	{/each}
 </div>
+
+<style>
+	/* Local glass (keeps component self-contained) */
+	.glass {
+		background: rgba(255, 255, 255, 0.03);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+	}
+</style>

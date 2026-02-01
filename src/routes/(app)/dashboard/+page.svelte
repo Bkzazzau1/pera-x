@@ -80,7 +80,8 @@
 						<span class="relative flex h-2 w-2">
 							<span
 								class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400/40"
-							></span>
+							>
+							</span>
 							<span class="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
 						</span>
 						<span class="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">
@@ -307,9 +308,9 @@
 									></span>
 									<span class="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
 								</span>
-								<span class="text-[9px] font-black tracking-[0.35em] text-blue-300 uppercase">
-									ARMED
-								</span>
+								<span class="text-[9px] font-black tracking-[0.35em] text-blue-300 uppercase"
+									>ARMED</span
+								>
 							</div>
 						</div>
 
@@ -318,7 +319,7 @@
 								<button
 									type="button"
 									onclick={() => goto(module.href)}
-							class="glass group relative flex aspect-square items-center justify-center overflow-hidden rounded-4xl border border-white/5 p-5 transition-all duration-500 hover:-translate-y-0.5 hover:border-blue-500/40 hover:bg-white/4 active:translate-y-0 md:rounded-[2.5rem] md:p-7"
+									class="glass group relative flex aspect-square items-center justify-center overflow-hidden rounded-4xl border border-white/5 p-5 transition-all duration-500 hover:-translate-y-0.5 hover:border-blue-500/40 hover:bg-white/4 active:translate-y-0 md:rounded-[2.5rem] md:p-7"
 								>
 									<div
 										class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -399,8 +400,9 @@
 						</p>
 					</header>
 
+					<!-- ✅ FIX 1 APPLIED: mobile-friendly wrapper to prevent clipping -->
 					<div
-						class="custom-scrollbar max-h-65 overflow-y-auto pr-2 md:max-h-85 lg:max-h-130"
+						class="custom-scrollbar -mx-1 max-h-[70vh] overflow-x-hidden overflow-y-auto px-1 pr-1 md:mx-0 md:max-h-85 md:px-0 md:pr-2 lg:max-h-130"
 					>
 						<TransactionTicker />
 					</div>
