@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 // UI Components
@@ -31,7 +32,7 @@
 		{ name: 'Portfolio', href: '/portfolio', tag: 'Vault' },
 		{ name: 'Analytics', href: '/analytics', tag: 'Audit' },
 		{ name: 'Policy', href: '/policy', tag: 'Engine' }
-	];
+	] as const;
 </script>
 
 <PlanetScene />
@@ -141,10 +142,10 @@
 						</div>
 
 						<div class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
-							{#each policyModules as module}
+							{#each policyModules as module (module.href)}
 								<button
 									type="button"
-									onclick={() => goto(module.href)}
+									onclick={() => goto(resolve(module.href))}
 									class="glass group relative flex aspect-square items-center justify-center overflow-hidden rounded-4xl border border-white/5 p-5 transition-all duration-500 hover:-translate-y-0.5 hover:border-blue-500/40 hover:bg-white/4 active:translate-y-0 md:rounded-[2.5rem] md:p-7"
 								>
 									<div
