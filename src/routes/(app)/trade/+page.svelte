@@ -17,7 +17,7 @@
 			Market <span class="font-light text-blue-500 not-italic">Radar</span>
 		</h1>
 		<p class="mt-4 max-w-2xl text-xs font-bold tracking-[0.2em] text-white/40 uppercase">
-			Aggregated liquidity for $5B+ Capital Efficiency • Ver. 2026.V
+			Solana DEX access for acquiring PX before converting into service credits
 		</p>
 	</header>
 
@@ -27,7 +27,7 @@
 		>
 			<div class="mb-8 flex items-center justify-between">
 				<div class="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">
-					Verified Venues
+					Verified Solana Venues
 				</div>
 				<div
 					class="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1"
@@ -41,7 +41,7 @@
 				{#each venues as venue}
 					<a
 						class="glass group relative overflow-hidden rounded-[2.5rem] border-white/5 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30"
-						href="https://app.uniswap.org/#/swap?outputCurrency=0xPeraXAddress"
+						href="https://jup.ag/swap/USDC-PX"
 						target="_blank"
 						rel="noreferrer"
 					>
@@ -86,10 +86,10 @@
 				<div
 					class="mb-8 text-center text-[10px] font-black tracking-[0.3em] text-white/40 uppercase"
 				>
-					Protocol Safety
+					Trader Confidence
 				</div>
 				<ul class="space-y-6">
-					{#each [{ label: 'Contract Integrity', desc: '0x...60a5 - Verify before swap' }, { label: 'Slippage Guard', desc: 'Prefer venues with >$500M depth' }, { label: 'Anti-Phishing', desc: 'Always use official protocol portals' }] as rule}
+					{#each [{ label: 'SPL Mint Integrity', desc: 'Verify the official Solana mint before swap' }, { label: 'Route Review', desc: 'Check depth and price impact before execution' }, { label: 'Anti-Phishing', desc: 'Always use official protocol portals' }] as rule}
 						<li class="flex gap-4">
 							<div
 								class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/10"
@@ -126,10 +126,9 @@
 					Notice
 				</div>
 				<p class="text-[9px] leading-relaxed font-bold text-amber-500/60 uppercase">
-					Trading on external DEXs does not trigger the <span class="text-white"
-						>Burn-Velocity Paradox</span
-					>. For deflationary impact, use the
-					<a href="/swap" class="text-amber-500 underline decoration-2">Native Portal</a>.
+					DEX trading does not trigger service-revenue burns. Burn begins after PX is
+					converted into credits through the
+					<a href="/redeem" class="text-amber-500 underline decoration-2">Service Portal</a>.
 				</p>
 			</div>
 		</div>

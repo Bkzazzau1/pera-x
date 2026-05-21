@@ -6,8 +6,7 @@
 	let manualAddress = $state('');
 
 	const handleManualSubmit = () => {
-		// Standard 0x format verification for institutional nodes
-		if (manualAddress.startsWith('0x') && manualAddress.length === 42) {
+		if (manualAddress.length >= 32) {
 			wallet.setAddress(manualAddress);
 		}
 	};
@@ -39,7 +38,7 @@
 					Establish <span class="font-light text-blue-500 not-italic">Connection</span>
 				</h2>
 				<p class="mt-2 text-[9px] font-bold tracking-[0.3em] text-white/40 uppercase italic">
-					Secure Protocol Onboarding • Ver. 2026.01.V
+					Solana Wallet Onboarding • Utility Credit Access
 				</p>
 			</header>
 
@@ -48,13 +47,13 @@
 					<div class="group flex flex-col gap-3">
 						<label
 							class="ml-4 text-[9px] font-black tracking-widest text-white/20 uppercase"
-							for="address">Manual Node Entry</label
+							for="address">Manual Wallet Entry</label
 						>
 						<div class="relative">
 							<input
 								id="address"
 								bind:value={manualAddress}
-								placeholder="Enter 0x address..."
+								placeholder="Enter Solana address..."
 								class="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-xs font-medium text-white transition-all placeholder:text-white/10 focus:border-blue-500/50 focus:outline-none"
 							/>
 							<button
@@ -77,7 +76,7 @@
 						>
 							<div class="h-8 w-8 rounded-full bg-orange-500/20"></div>
 							<span class="text-[9px] font-black tracking-widest text-white/60 uppercase"
-								>MetaMask</span
+								>Phantom</span
 							>
 						</button>
 						<button
@@ -85,7 +84,7 @@
 						>
 							<div class="h-8 w-8 rounded-full bg-blue-500/20"></div>
 							<span class="text-[9px] font-black tracking-widest text-white/60 uppercase"
-								>WalletConnect</span
+								>Solflare</span
 							>
 						</button>
 					</div>

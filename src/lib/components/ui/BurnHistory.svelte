@@ -2,10 +2,10 @@
 	import { fly } from 'svelte/transition';
 
 	const history = [
-		{ id: 1, amount: '45,230', type: 'Redemption Burn', date: '2h ago', status: 'Finalized' },
-		{ id: 2, amount: '12,000', type: 'Policy Adjustment', date: '5h ago', status: 'Finalized' },
-		{ id: 3, amount: '89,400', type: 'Redemption Burn', date: '12h ago', status: 'Finalized' },
-		{ id: 4, amount: '2,500', type: 'Admin Incineration', date: '1d ago', status: 'Finalized' }
+		{ id: 1, amount: '45,230', type: 'AI Credit Burn', date: '2h ago', status: 'Finalized' },
+		{ id: 2, amount: '12,000', type: 'SMS Unit Burn', date: '5h ago', status: 'Finalized' },
+		{ id: 3, amount: '89,400', type: 'Utility Bill Burn', date: '12h ago', status: 'Finalized' },
+		{ id: 4, amount: '2,500', type: 'Call Credit Burn', date: '1d ago', status: 'Finalized' }
 	];
 </script>
 

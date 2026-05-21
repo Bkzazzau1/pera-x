@@ -20,7 +20,7 @@
 
 	const quickActions = [
 		{ label: 'Trade', path: '/trade', tag: 'DEX' },
-		{ label: 'Redeem', path: '/redeem', tag: 'BURN' },
+		{ label: 'Services', path: '/redeem', tag: 'CREDITS' },
 		{ label: 'Swap', path: '/swap', tag: 'ROUTE' },
 		{ label: 'Policy', path: '/policy', tag: 'ENGINE' }
 	];
@@ -92,11 +92,11 @@
 
 	// Ticker text
 	const tickerItems = [
-		'PX SYSTEM VIEW • POLICY ROUTER: ARMED',
-		'MAINNET v2026 • AUDIT TRAIL: ENABLED',
-		'BURN PROOFS: ATOMIC • LEDGER: IMMUTABLE',
-		'DEX ROUTES: ACTIVE • SWAP ENGINE: STANDBY',
-		'FULFILLMENT: VERIFIED • LOGISTICS: GREEN'
+		'PX SYSTEM VIEW • SOLANA UTILITY TOKEN',
+		'TOKEN-TO-CREDIT FLOW • TRADING COMPANY WALLET',
+		'SERVICE BURNS: 2%-30% • LEDGER: ENABLED',
+		'AI • CALLS • SMS • WEBSITES • UTILITY BILLS',
+		'DISCOUNT POLICY: 10-60+ HOLDING DAYS'
 	];
 
 	let tickerIndex = $state(0);

@@ -10,7 +10,6 @@
 	let globalPrice = $state(0);
 
 	onMount(() => {
-		// Initial audit for the billion-dollar ledger
 		pools = fetchParityMetrics();
 		globalPrice = calculateGlobalParity(pools);
 
@@ -32,7 +31,7 @@
 			class="z-20 flex h-full items-center bg-blue-600 px-4 shadow-[20px_0_40px_rgba(0,0,0,0.5)] md:px-6"
 		>
 			<span class="text-[8px] font-black tracking-[0.28em] text-white uppercase md:text-[9px]">
-				Global Parity: ${globalPrice.toFixed(4)}
+				PX Spot: ${globalPrice.toFixed(6)}
 			</span>
 		</div>
 
@@ -52,7 +51,7 @@
 						{pool.provider}
 					</span>
 					<span class="text-[9px] font-black text-white md:text-[10px]">
-						{pool.pair}: <span class="text-blue-400">${pool.price.toFixed(4)}</span>
+						{pool.pair}: <span class="text-blue-400">${pool.price.toFixed(6)}</span>
 					</span>
 					<div class="flex items-center gap-1.5">
 						<span

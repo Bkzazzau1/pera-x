@@ -2,15 +2,13 @@
 import { ticker } from '$lib/stores/ticker.svelte';
 
 /**
- * High-Status Network Simulation Engine.
- * Randomly generates protocol activity to demonstrate Burn-Velocity.
+ * Simulates service credit conversions and service-revenue burns.
  */
 export function startNetworkSimulation() {
 	const triggerRandomEvent = () => {
 		const types: ('BURN' | 'REDEEM')[] = ['BURN', 'REDEEM'];
 		const randomType = types[Math.floor(Math.random() * types.length)];
 
-		// Premium volumes for a $5B valuation
 		const amount = Math.floor(Math.random() * 5000) + 1200;
 
 		ticker.add({

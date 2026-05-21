@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 
-	// Real-time fulfillment metrics for the $5B audit
+	// Real-time service-credit metrics from the whitepaper utility areas.
 	const logisticsData = [
-		{ hub: 'Sovereign Hub Alpha', status: 'Processing', load: '82%', transit: 1420 },
-		{ hub: 'Trading Co. North', status: 'Dispatched', load: '94%', transit: 3105 },
-		{ hub: 'Euro-Redemption Center', status: 'Idle', load: '12%', transit: 0 }
+		{ hub: 'AI Credit Router', status: 'Crediting', load: '82%', transit: 1420 },
+		{ hub: 'Voice + SMS Providers', status: 'Settling', load: '94%', transit: 3105 },
+		{ hub: 'Utility Bill Partners', status: 'Verified', load: '64%', transit: 725 }
 	];
 </script>
 
@@ -24,11 +24,11 @@
 					class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,1)]"
 				></div>
 				<h3 class="text-xs font-black tracking-[0.5em] text-white/40 uppercase italic">
-					Hardware Logistics Node
+					Service Credit Node
 				</h3>
 			</div>
 			<p class="mt-2 text-3xl font-black tracking-tighter text-white uppercase italic">
-				Physical <span class="font-light text-blue-500 not-italic">Fulfillment Audit</span>
+				Token-to-Credit <span class="font-light text-blue-500 not-italic">Activation Audit</span>
 			</p>
 		</div>
 		<div class="text-right">
@@ -70,7 +70,7 @@
 							>{item.hub}</span
 						>
 						<span class="mt-0.5 text-[8px] font-bold tracking-tighter text-white/20 uppercase"
-							>Capacity Load: {item.load}</span
+							>Provider Load: {item.load}</span
 						>
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 						>{item.status}</span
 					>
 					<span class="text-[10px] font-bold text-white/10 uppercase tabular-nums"
-						>+{item.transit} Units Transit</span
+						>+{item.transit} Credits Issued</span
 					>
 				</div>
 			</div>
@@ -93,13 +93,13 @@
 				>Global Aggregate</span
 			>
 			<span class="text-xl font-black tracking-tighter text-white italic"
-				>4,525 <span class="text-[10px] text-sky-400/50">Units</span></span
+				>4,525 <span class="text-[10px] text-sky-400/50">Credits</span></span
 			>
 		</div>
 		<button
 			class="glass rounded-xl border-white/10 px-6 py-2.5 text-[9px] font-black tracking-widest text-white/60 uppercase transition-all hover:text-white"
 		>
-			Full Manifest
+			Usage Dashboard
 		</button>
 	</footer>
 </div>

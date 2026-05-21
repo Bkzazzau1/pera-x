@@ -76,11 +76,11 @@
 			<p
 				class="mt-2 truncate text-xl font-black tracking-tight text-white uppercase italic sm:text-2xl md:text-3xl"
 			>
-				Luxury <span class="font-light text-blue-400 not-italic">Scarcity</span>
+				Service <span class="font-light text-blue-400 not-italic">Revenue Burn</span>
 			</p>
 
 			<p class="mt-1 text-[9px] font-bold tracking-[0.22em] text-white/30 uppercase">
-				sovereign curve • burn horizon
+				2%-30% dynamic burn horizon
 			</p>
 		</div>
 

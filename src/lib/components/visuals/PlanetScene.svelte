@@ -41,7 +41,7 @@
 
 		container.appendChild(renderer.domElement);
 
-		// 2. The "Sovereign Core" (Crystalline Dark Matter)
+		// 2. Utility core
 		const planetGeom = new THREE.IcosahedronGeometry(1.4, 20);
 		const planetMat = new THREE.MeshPhysicalMaterial({
 			color: 0x075985,
@@ -63,7 +63,7 @@
 		const lineGroup = new THREE.Group();
 		scene.add(lineGroup);
 
-		// 4. Premium Gadget Nodes
+		// 4. Service credit nodes
 		const gadgetMeshes: THREE.Mesh[] = [];
 		const orbitData: OrbitalObject[] = [];
 		const connectionLines: THREE.Line[] = [];

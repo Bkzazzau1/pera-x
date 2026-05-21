@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 
-	// Parameters derived from the CBPE Roadmap [cite: 360, 361]
 	const activeProposals = [
-		{ id: 'PXIP-04', type: 'Burn Rate', progress: 68, label: 'Aggressive' },
-		{ id: 'PXIP-05', type: 'Expansion', progress: 12, label: 'Tier 5' }
+		{ id: 'PXIP-04', type: 'Burn Rate', progress: 68, label: '20% Service' },
+		{ id: 'PXIP-05', type: 'Provider', progress: 42, label: 'SMS + Bills' }
 	];
 
 	const quorumTotal = '84.2M';
@@ -16,7 +15,7 @@
 			<span class="text-[9px] font-black tracking-widest text-white/30 uppercase italic">
 				Consensus Health
 			</span>
-			<span class="text-[8px] font-bold text-emerald-400 uppercase">Phase 2 Active</span>
+			<span class="text-[8px] font-bold text-emerald-400 uppercase">Policy Active</span>
 		</div>
 
 		<div class="flex items-end justify-between">
@@ -80,7 +79,7 @@
 			<span class="text-[8px] font-black tracking-widest text-blue-400 uppercase">Oracle Sync</span>
 		</div>
 		<p class="text-[8px] leading-relaxed font-medium text-white/30 uppercase">
-			Market integrity is secured via the **Price Band Control System**.
+			Burn, discount, and release rules follow the published utility-token policy.
 		</p>
 	</div>
 </div>

@@ -8,41 +8,41 @@
 
 	const visionPoints = [
 		{
-			t: '50% Purchase Power',
-			d: 'Strategic staking of $PX unlocks institutional-grade discounts on global electronics.',
-			icon: '⚡'
+			t: 'Token-to-Service Credits',
+			d: 'Users convert Pera-X into AI credits, call time, SMS units, website builder credits, or utility bill credits.',
+			icon: 'PX'
 		},
 		{
-			t: 'Atomic Deflation',
-			d: 'The Central Bank Engine incinerates token supply upon every physical redemption.',
-			icon: '🔥'
+			t: '2%-30% Dynamic Burn',
+			d: 'Burning begins only after a user is credited with a service, and applies to service revenue inside the Trading Company Wallet.',
+			icon: '2%'
 		},
 		{
-			t: 'Sovereign Logistics',
-			d: 'Verified hardware delivery from global tech hubs directly to your vault.',
-			icon: '📦'
+			t: 'Holding-Based Bill Discounts',
+			d: 'Utility bill discounts start after 10 holding days and can reach 30% after 60+ days, subject to policy rules.',
+			icon: '30'
 		}
 	];
 
 	const milestones = [
 		{
 			q: 'Q1 2026',
-			t: 'Consumer Tech Genesis',
-			d: 'Activation of the Pera-X Core. iPhones, MacBooks, and peripherals available for immediate PX redemption.',
+			t: 'Service Credit Core',
+			d: 'Launch token-to-credit conversion for agentic AI tools, app-to-phone calls, SMS units, website credits, and utility bills.',
 			status: 'Live',
 			side: 'left'
 		},
 		{
 			q: 'Q3 2026',
-			t: 'The Mobility Epoch',
-			d: 'Strategic partnership with EV manufacturers. PX holders gain access to high-tier mobility redemptions.',
+			t: 'Provider Routing Expansion',
+			d: 'Add approved voice, SMS, AI, website, and bill partners with transparent settlement records.',
 			status: 'Pending',
 			side: 'right'
 		},
 		{
 			q: 'Q1 2027',
-			t: 'Sovereign Real Estate',
-			d: 'Implementation of RWA (Real World Asset) tokens to secure global property equity.',
+			t: 'Public Dashboard Layer',
+			d: 'Publish dashboards for burn activity, utility usage, labeled wallets, discount tiers, and supply statistics.',
 			status: 'Draft',
 			side: 'left'
 		}
@@ -50,31 +50,31 @@
 
 	const vendors = [
 		{
-			name: 'Apple Cluster',
-			icon: '🍎',
-			desc: 'iPhone 17 Pro, MacBook M5, Ultra 3 Watch, and Studio peripherals.',
-			tier: 'Tier 1-4'
+			name: 'Agentic AI',
+			icon: 'AI',
+			desc: 'AI detector, plagiarism checker, rephraser, grammar assistant, document generation, code help, and academic support.',
+			tier: 'AI Credits'
 		},
 		{
-			name: 'Samsung Core',
-			icon: '💎',
-			desc: 'Galaxy S26 Ultra, Z Fold 8, and high-fidelity monitor ranges.',
-			tier: 'Global Parity'
+			name: 'Communication',
+			icon: 'CALL',
+			desc: 'App-to-phone calls, personal SMS, bulk SMS, OTP messages, transaction alerts, and developer SMS APIs.',
+			tier: 'Minutes + Units'
 		},
 		{
-			name: 'Specialist Hub',
-			icon: '🛰️',
-			desc: 'Sony Alpha optics, DJI flight systems, and high-performance gaming hardware.',
-			tier: 'Diversified'
+			name: 'Bills + Websites',
+			icon: 'WEB',
+			desc: 'Electricity, TV, internet, water, waste, institutional bills, plus AI-generated websites and landing pages.',
+			tier: 'Utility Credits'
 		}
 	];
 
 	const allocation = [
-		{ cat: 'Public Liquidity & Market', alloc: '25%', color: 'bg-sky-500' },
-		{ cat: 'Treasury & Liquidity Mgmt', alloc: '20%', color: 'bg-blue-600' },
-		{ cat: 'Team & Strategic Partners', alloc: '15%', color: 'bg-indigo-500' },
-		{ cat: 'Investors & Growth', alloc: '30%', color: 'bg-purple-500' },
-		{ cat: 'Strategic Reserves', alloc: '10%', color: 'bg-emerald-500' }
+		{ cat: 'Service Provider Settlement', alloc: '40%', color: 'bg-sky-500' },
+		{ cat: 'Burn Execution', alloc: '30%', color: 'bg-blue-600' },
+		{ cat: 'Liquidity Support', alloc: '15%', color: 'bg-indigo-500' },
+		{ cat: 'Treasury & Operations', alloc: '20%', color: 'bg-emerald-500' },
+		{ cat: 'Rewards & Growth', alloc: '10%', color: 'bg-purple-500' }
 	];
 </script>
 
@@ -117,25 +117,25 @@
 	</nav>
 
 	<section
-		class="relative flex min-h-screen flex-col items-center justify-center px-6 pt-64 pb-32 text-center"
+		class="relative flex min-h-screen flex-col items-center justify-center px-6 pt-32 pb-32 text-center md:pt-64"
 	>
 		{#if visible}
 			<div in:scale={{ start: 0.9, duration: 1500, delay: 200 }} class="max-w-6xl">
 				<div class="mb-6 inline-block rounded-full border border-sky-400/30 bg-sky-400/5 px-6 py-2">
 					<span class="text-[9px] font-black tracking-[0.5em] text-sky-400 uppercase italic"
-						>Ver. 2026.01 // Monetary Standard</span
+						>Whitepaper v1.0 // Solana Utility Token</span
 					>
 				</div>
 				<h1
 					class="mb-8 bg-linear-to-b from-white via-white to-white/20 bg-clip-text text-7xl leading-[0.85] font-black tracking-tighter text-transparent uppercase italic md:text-[10rem]"
 				>
-					Own the Future <br /> <span class="text-sky-500">at Half Price.</span>
+					Utility. Connect. <br /> <span class="text-sky-500">Empower.</span>
 				</h1>
 				<p
 					class="mx-auto mb-16 max-w-2xl text-lg leading-relaxed font-light text-white/40 md:text-2xl"
 				>
-					A decentralized consumer monetary system designed to transform how people access
-					technology.
+					Pera-X powers AI tools, app-to-phone calls, SMS bundles, AI website generation,
+					and utility bill discounts through a transparent token-to-service credit economy.
 				</p>
 				<div class="flex flex-col justify-center gap-6 md:flex-row">
 					<a
@@ -146,7 +146,7 @@
 					</a>
 					<button
 						class="glass rounded-4xl border-white/10 px-12 py-6 text-xs font-black tracking-widest uppercase transition-all hover:bg-white/5"
-						>Audit Whitepaper</button
+						>Read Whitepaper</button
 					>
 				</div>
 			</div>
@@ -177,7 +177,7 @@
 			</div>
 			<div>
 				<h2 class="mb-12 text-6xl leading-none font-black tracking-tighter uppercase italic">
-					Financial Inclusion <br /> <span class="text-sky-500">Meet High-Tech.</span>
+					Practical Services <br /> <span class="text-sky-500">Meet Solana.</span>
 				</h2>
 				<div class="space-y-12">
 					{#each visionPoints as feature}
@@ -206,10 +206,10 @@
 		<div class="mx-auto max-w-7xl">
 			<header class="mb-24 text-center">
 				<h2 class="text-6xl font-black tracking-tighter text-white uppercase italic">
-					The <span class="text-sky-500">Procurement</span> Engine
+					The <span class="text-sky-500">Utility</span> Engine
 				</h2>
 				<p class="mt-4 text-[10px] font-black tracking-[0.5em] text-white/30 uppercase">
-					Universal Hardware Access • Multi-Vendor Ecosystem
+					AI • Calls • SMS • Websites • Utility Bills
 				</p>
 			</header>
 			<div class="grid gap-10 lg:grid-cols-3">
@@ -237,17 +237,17 @@
 		<div class="mx-auto max-w-7xl">
 			<header class="mb-24 text-center">
 				<h2 class="text-6xl font-black tracking-tighter text-white uppercase italic">
-					Proof of <span class="text-sky-500">Fulfillment</span>
+					Proof of <span class="text-sky-500">Utility</span>
 				</h2>
 				<p
 					class="mt-4 text-[10px] leading-relaxed font-black tracking-[0.5em] text-white/30 uppercase"
 				>
-					Live Audit of Physical Redemptions • Trading Company Fulfillment
+					Service-Credit Activation • Trading Company Wallet Flow
 				</p>
 			</header>
 			<div class="relative flex overflow-hidden py-10">
 				<div class="animate-marquee flex gap-8 whitespace-nowrap">
-					{#each [{ item: 'iPhone 17 Pro', burn: '1,240 PX', brand: 'Apple' }, { item: 'Galaxy S26 Ultra', burn: '1,050 PX', brand: 'Samsung' }, { item: 'MacBook M5', burn: '2,100 PX', brand: 'Apple' }, { item: 'Sony Alpha 7R', burn: '1,850 PX', brand: 'Sony' }, { item: 'DJI Mavic 4', burn: '980 PX', brand: 'DJI' }] as delivery}
+					{#each [{ item: 'AI Document Pack', burn: '2,000 PX', brand: 'AI' }, { item: 'Call Credit Top-Up', burn: '1,500 PX', brand: 'Voice' }, { item: 'OTP SMS Bundle', burn: '900 PX', brand: 'SMS' }, { item: 'Electricity Bill Credit', burn: '3,250 PX', brand: 'Bills' }, { item: 'Website Builder Credits', burn: '2,750 PX', brand: 'Web' }] as delivery}
 						<div
 							class="glass flex w-80 flex-col gap-4 rounded-3xl border-white/5 p-8 shadow-xl backdrop-blur-md"
 						>
@@ -280,17 +280,17 @@
 		<div class="mx-auto max-w-7xl">
 			<header class="mb-24 text-center">
 				<h2 class="text-6xl font-black tracking-tighter text-white uppercase italic">
-					Institutional <span class="text-sky-500">Foundation</span>
+					Transparent <span class="text-sky-500">Economic Flow</span>
 				</h2>
 				<p
 					class="mt-4 text-[10px] leading-relaxed font-black tracking-[0.5em] text-white/30 uppercase"
 				>
-					Strategic Allocation & Monetary Discipline
+					Token-to-credit conversion and wallet-based execution
 				</p>
 			</header>
 			<div class="grid gap-12 lg:grid-cols-2">
 				<div class="glass rounded-[3rem] border-white/10 p-12 shadow-2xl backdrop-blur-3xl">
-					<h3 class="mb-10 text-3xl font-black text-white uppercase italic">Supply Allocation</h3>
+					<h3 class="mb-10 text-3xl font-black text-white uppercase italic">Service Revenue Flow</h3>
 					<div class="space-y-6">
 						{#each allocation as row}
 							<div class="flex flex-col gap-3">
@@ -309,12 +309,12 @@
 				<div class="flex flex-col gap-8">
 					<div class="glass rounded-[3rem] border-sky-400/20 bg-sky-400/5 p-12">
 						<h3 class="mb-6 text-2xl font-black text-white uppercase italic">
-							Vesting & Protection
+							Wallet Transparency
 						</h3>
 						<ul class="space-y-4 text-sm font-light text-white/50">
-							<li class="flex items-center gap-4">6-Month Institutional Cliff</li>
-							<li class="flex items-center gap-4">5% Quarterly Linear Unlock</li>
-							<li class="flex items-center gap-4">CBPE Dynamic Liquidity Intervention</li>
+							<li class="flex items-center gap-4">Trading Company Wallet receives service-converted tokens</li>
+							<li class="flex items-center gap-4">Burn Wallet receives the approved burn portion</li>
+							<li class="flex items-center gap-4">Provider, treasury, liquidity, rewards, team, and investor wallets are labeled</li>
 						</ul>
 					</div>
 				</div>
@@ -326,16 +326,16 @@
 		<div class="mx-auto max-w-7xl">
 			<header class="mb-24 text-center">
 				<h2 class="text-6xl font-black tracking-tighter text-white uppercase italic">
-					Global <span class="text-sky-500">Expansion</span>
+					Service <span class="text-sky-500">Coverage</span>
 				</h2>
 				<p
 					class="mt-4 text-[10px] leading-relaxed font-black tracking-[0.5em] text-white/30 uppercase"
 				>
-					A Multi-Trillion Dollar Addressable Market
+					Everyday utility categories connected to one PX credit model
 				</p>
 			</header>
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-				{#each [{ region: 'Africa', icon: '🌍', desc: 'Combating currency depreciation with stable digital buying power.' }, { region: 'Asia', icon: '🌏', desc: 'Dominating high-frequency consumer electronics upgrade cycles.' }, { region: 'Middle East', icon: '🕌', desc: 'Establishing a premium hub for luxury tech and enterprise procurement.' }, { region: 'Europe', icon: '🏛️', desc: 'Integrating into mature fintech and e-commerce payment processors.' }] as market}
+				{#each [{ region: 'AI Tools', icon: 'AI', desc: 'Writing, coding, documents, proposals, academic support, detection, and originality checks.' }, { region: 'Calls', icon: 'CALL', desc: 'App-to-phone calling where receivers need neither the Pera-X app nor internet access.' }, { region: 'SMS', icon: 'SMS', desc: 'Personal, bulk, OTP, transaction, campaign, and developer messaging services.' }, { region: 'Bills', icon: 'BILL', desc: 'Electricity, TV, internet, water, waste, and approved institutional bill payments.' }] as market}
 					<div
 						class="glass group rounded-[2.5rem] border-white/5 p-8 transition-all hover:-translate-y-2 hover:border-sky-500/30"
 					>
@@ -351,10 +351,10 @@
 				class="glass mt-16 rounded-[4rem] border-sky-400/10 bg-sky-400/5 p-12 text-center shadow-2xl"
 			>
 				<h3 class="mb-8 text-3xl font-black text-white uppercase italic">
-					Beyond Gadgets: The Pera-X Utility Ecosystem
+					One Token-to-Credit Economy
 				</h3>
 				<div class="grid grid-cols-2 gap-6 md:grid-cols-5">
-					{#each [{ label: 'Travel', icon: '✈️' }, { label: 'Education', icon: '🎓' }, { label: 'Healthcare', icon: '🏥' }, { label: 'Subscriptions', icon: '🔄' }, { label: 'Enterprise', icon: '🏢' }] as sector}
+					{#each [{ label: 'AI Credits', icon: 'AI' }, { label: 'Call Time', icon: 'CALL' }, { label: 'SMS Units', icon: 'SMS' }, { label: 'Build Credits', icon: 'WEB' }, { label: 'Bill Credits', icon: 'BILL' }] as sector}
 						<div class="flex flex-col items-center gap-2">
 							<div class="text-2xl">{sector.icon}</div>
 							<span class="text-[9px] font-black tracking-widest text-white/40 uppercase"
@@ -374,10 +374,10 @@
 		<div class="relative z-10 mx-auto max-w-6xl">
 			<header class="mb-32 text-center">
 				<h2 class="text-6xl font-black tracking-tighter text-white uppercase italic">
-					Deflationary <span class="text-sky-500">Expansion</span>
+					Utility <span class="text-sky-500">Roadmap</span>
 				</h2>
 				<p class="mt-4 text-[10px] font-black tracking-[0.5em] text-white/30 uppercase">
-					Roadmap to $5B+ Capital Maturity
+					Service adoption, transparent dashboards, and capped releases
 				</p>
 			</header>
 			<div class="space-y-40">
@@ -426,7 +426,7 @@
 				<h2
 					class="mb-8 text-4xl leading-[0.9] font-black tracking-tighter text-white uppercase italic md:text-7xl"
 				>
-					Not a Token. <br class="hidden md:block" /> <span class="text-sky-500">An Economy.</span>
+					Not Just Speculation. <br class="hidden md:block" /> <span class="text-sky-500">Real Utility.</span>
 				</h2>
 				<a
 					href="/dashboard"
@@ -439,7 +439,7 @@
 
 	<footer class="border-t border-white/5 py-20 text-center">
 		<p class="px-6 text-[9px] font-black tracking-[0.8em] text-white/20 uppercase">
-			Architected for $5B+ Capital Efficiency • Pera-X Core Logic
+			Solana Utility Token • AI, Communication, SMS, Websites, and Utility Bills
 		</p>
 	</footer>
 </div>

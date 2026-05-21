@@ -6,10 +6,12 @@
 	import { wallet } from '$lib/stores/wallet.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	// Derived Financial Intelligence
-	let currentTier = $derived(getEligibleTier(wallet.balance || 2500));
-	let progress = $derived(getNextTierProgress(wallet.balance || 2500));
-	let usdValue = $derived((wallet.balance || 2500) * 1.1842); // Based on DEX Parity
+	const holdingDays = 38;
+	const pxPrice = 0.00018;
+
+	let currentTier = $derived(getEligibleTier(holdingDays));
+	let progress = $derived(getNextTierProgress(holdingDays));
+	let usdValue = $derived((wallet.balance || 2500) * pxPrice);
 </script>
 
 <PlanetScene />
@@ -23,15 +25,15 @@
 		>
 			<div>
 				<h1 class="text-5xl font-black tracking-tighter text-white uppercase italic">
-					Institutional Portfolio
+					Utility Portfolio
 				</h1>
 				<p class="mt-2 text-[10px] font-black tracking-[0.4em] text-blue-400 uppercase">
-					Asset Maturity & Redemption Audit
+					Holdings, service credits, and utility bill discount status
 				</p>
 			</div>
 			<div class="glass flex items-center gap-4 rounded-2xl border-white/10 px-6 py-3">
 				<span class="text-[10px] font-black tracking-widest text-white/40 uppercase"
-					>Global Status:</span
+					>Discount Status:</span
 				>
 				<span class="text-xs font-black tracking-tighter text-blue-400 uppercase"
 					>{currentTier?.label || 'BRONZE'}</span
@@ -45,7 +47,7 @@
 			>
 				<div class="relative z-10">
 					<div class="mb-2 text-[10px] font-black tracking-[0.3em] text-white/30 uppercase">
-						Net Liquidity Value
+					Estimated PX Value
 					</div>
 					<div class="flex items-baseline gap-3">
 						<div class="text-6xl font-black tracking-tighter text-white">
@@ -65,9 +67,9 @@
 						</div>
 						<div>
 							<div class="mb-2 text-[9px] font-black tracking-widest text-white/20 uppercase">
-								Avg. Cost Basis
+								Holding Days
 							</div>
-							<div class="text-2xl font-bold text-white">$1.12</div>
+							<div class="text-2xl font-bold text-white">{holdingDays} Days</div>
 						</div>
 					</div>
 				</div>
@@ -79,7 +81,7 @@
 			<div class="glass flex flex-col justify-between rounded-[3rem] border-white/10 p-10">
 				<div>
 					<div class="mb-6 text-[10px] font-black tracking-[0.3em] text-white/30 uppercase">
-						Tier Velocity
+						Discount Progress
 					</div>
 					<div class="relative h-2 w-full overflow-hidden rounded-full bg-white/5">
 						<div
@@ -90,8 +92,8 @@
 					<div
 						class="mt-4 flex justify-between text-[9px] font-black tracking-widest text-white/40 uppercase"
 					>
-						<span>{progress.toFixed(1)}% to Next Tier</span>
-						<span class="text-blue-400">Target: Platinum</span>
+						<span>{progress.toFixed(1)}% to Next Band</span>
+						<span class="text-blue-400">Target: 60+ Days</span>
 					</div>
 				</div>
 
@@ -100,7 +102,7 @@
 						Current Privilege
 					</div>
 					<div class="text-lg font-bold text-white">
-						{currentTier?.discount || '7%'} Hardware Subsidy
+						{currentTier?.discount || '0%'} Utility Bill Discount
 					</div>
 				</div>
 			</div>
@@ -109,17 +111,17 @@
 		<div class="mt-12" in:fly={{ y: 20, delay: 400 }}>
 			<div class="glass rounded-[3rem] border-white/10 p-10">
 				<h2 class="mb-8 text-xs font-black tracking-[0.4em] text-white/30 uppercase">
-					Redemption Eligibility
+					Service Credit Balances
 				</h2>
 				<div class="grid gap-4 md:grid-cols-4">
-					{#each ['iPhone 17 Pro', 'MacBook Pro M5', 'Galaxy S26', 'Pixel 11'] as item}
+					{#each ['AI Credits', 'Call Time', 'SMS Units', 'Website Credits'] as item}
 						<div
 							class="rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-colors hover:bg-white/[0.05]"
 						>
 							<div class="mb-1 text-[10px] font-black tracking-widest text-white/60 uppercase">
 								{item}
 							</div>
-							<div class="text-xs font-bold text-emerald-400 uppercase">Eligible Now</div>
+							<div class="text-xs font-bold text-emerald-400 uppercase">Available</div>
 						</div>
 					{/each}
 				</div>

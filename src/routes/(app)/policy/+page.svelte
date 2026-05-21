@@ -3,27 +3,25 @@
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	// Parameters derived from the CBPE
 	const currentEpoch = 'EPOCH-42';
-	const burnRate = '7.5%'; // Targets 3-10% range
-	const recycleRate = '24.2%'; // Targets 10-40% range
+	const burnRate = '20%';
+	const recycleRate = '30%';
 
-	// Price Band Targets for Expansion Phase
-	const targetFloor = '$0.12';
-	const targetCeiling = '$0.25';
+	const targetFloor = '$0.00009';
+	const targetCeiling = '$0.00027';
 
 	const policyRules = [
 		{
-			title: 'Dynamic Quantity Adjustment',
-			desc: 'DQA logic stabilizes entry costs by adjusting PX requirements based on current market price.'
+			title: 'Dynamic Utility Pricing',
+			desc: 'Service value is calculated first, then converted into PX at the current market price.'
 		},
 		{
-			title: 'Band-Intervention Protocol',
-			desc: 'System triggers liquidity injection and reduces burn if price breaches the ceiling band.'
+			title: 'Service-Credit Activation Burn',
+			desc: 'Burn applies only after a user receives credits, and only from captured service revenue.'
 		},
 		{
-			title: 'Redemption Recycle',
-			desc: 'Redeemed tokens are split between burn, treasury, and market recycle to maintain flow.'
+			title: 'Capped Growth Release',
+			desc: 'At 200% growth, only approved vested or releasable allocations may release under capped rules.'
 		}
 	];
 </script>
@@ -39,7 +37,7 @@
 		<p
 			class="mt-4 max-w-2xl text-xs leading-relaxed font-bold tracking-[0.2em] text-white/40 uppercase"
 		>
-			Central Bank Policy Engine (CBPE) • Global Monetary Discipline
+			Published utility-token rules for burn, discounts, release caps, and wallet flows
 		</p>
 	</header>
 
@@ -50,25 +48,25 @@
 			<div class="grid gap-10 md:grid-cols-3">
 				<div class="space-y-2">
 					<div class="text-[9px] font-black tracking-[0.4em] text-white/20 uppercase italic">
-						Burn Velocity
+						Active Burn Rate
 					</div>
 					<div class="text-3xl font-black tracking-tighter text-blue-400">{burnRate}</div>
 					<div class="text-[8px] font-bold tracking-widest text-white/10 uppercase">
-						Target: 3–10%
+						Range: 2–30%
 					</div>
 				</div>
 				<div class="space-y-2">
 					<div class="text-[9px] font-black tracking-[0.4em] text-white/20 uppercase italic">
-						Recycle Rate
+						Max Bill Discount
 					</div>
 					<div class="text-3xl font-black tracking-tighter text-white">{recycleRate}</div>
 					<div class="text-[8px] font-bold tracking-widest text-white/10 uppercase">
-						Target: 10–40%
+						Requires 60+ holding days
 					</div>
 				</div>
 				<div class="space-y-2">
 					<div class="text-[9px] font-black tracking-[0.4em] text-white/20 uppercase italic">
-						Price Band Zone
+						Launch to 200% Growth
 					</div>
 					<div class="text-2xl font-black tracking-tighter text-emerald-400 uppercase italic">
 						{targetFloor} <span class="text-[10px] text-white/20 not-italic">—</span>
@@ -101,7 +99,7 @@
 				<div
 					class="mb-8 text-center text-[10px] font-black tracking-[0.3em] text-white/40 uppercase"
 				>
-					TVL Quorum Hash
+					Release Guard
 				</div>
 
 				<div class="flex flex-col items-center justify-center py-6">
@@ -109,7 +107,7 @@
 					<p
 						class="mt-4 text-center text-[10px] leading-relaxed font-bold tracking-widest text-white/20 uppercase"
 					>
-						Phase 3 Community <br /> Steering Activated
+						Maximum approved <br /> release allowance
 					</p>
 				</div>
 			</div>
@@ -119,7 +117,7 @@
 					Economic Status
 				</div>
 				<div class="text-[10px] leading-relaxed font-bold tracking-tighter text-white/40 uppercase">
-					Optimal Scarcity Secured. <br /> Price Stabilization Engine:
+					Service credit model active. <br /> Trading Company Wallet:
 					<span class="text-white">Active</span>
 				</div>
 			</div>

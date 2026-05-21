@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let rate: number = 7.5; // The monthly burn target
+	export let rate: number = 20; // Active service-revenue burn rate
 </script>
 
 <div
@@ -34,13 +34,13 @@
 			<div class="mb-1 flex items-center gap-2">
 				<div class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400"></div>
 				<span class="text-[10px] font-black tracking-[0.4em] text-blue-400/60 uppercase">
-					Monetary Contraction Engine
+					Service Activation Burn Engine
 				</span>
 			</div>
 			<div class="text-3xl font-black tracking-tighter text-white md:text-4xl">
 				Target: <span class="text-blue-400">{rate}%</span>
 				<span class="ml-2 text-xs font-light tracking-[0.2em] text-white/30 uppercase">
-					Burn / Epoch
+					Revenue Burn
 				</span>
 			</div>
 		</div>
@@ -55,7 +55,7 @@
 				</span>
 			</div>
 			<span class="text-[8px] font-bold tracking-[0.3em] text-white/20 uppercase">
-				Network Velocity: Optimized
+				Applies after credits are issued
 			</span>
 		</div>
 	</div>

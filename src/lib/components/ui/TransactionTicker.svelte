@@ -47,7 +47,7 @@
 			<div class="min-w-0 flex-1">
 				<div class="flex items-center gap-2">
 					<span class="truncate text-[9px] font-black tracking-[0.28em] text-white/55 uppercase">
-						{tx.type === 'BURN' ? 'REDEMPTION BURN' : tx.type}
+						{tx.type === 'BURN' ? 'SERVICE CREDIT BURN' : tx.type}
 					</span>
 
 					<span class="shrink-0 text-[8px] font-black tracking-[0.28em] text-blue-400/55 uppercase">

@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 
-	// Spread data proving 1:1 Hardware Parity
 	const auditData = [
-		{ exchange: 'Uniswap V4', price: '$1.1842', liquidity: '$420.5M', drift: '0.001%' },
-		{ exchange: 'Curve Finance', price: '$1.1839', liquidity: '$156.8M', drift: '0.003%' },
-		{ exchange: 'Pera-Native DEX', price: '$1.1845', liquidity: '$890.2M', drift: '0.000%' }
+		{ exchange: 'Raydium', price: '$0.000180', liquidity: '$4.2M', drift: '0.001%' },
+		{ exchange: 'Orca', price: '$0.000179', liquidity: '$1.6M', drift: '0.003%' },
+		{ exchange: 'Jupiter Route', price: '$0.000181', liquidity: '$8.9M', drift: '0.000%' }
 	];
 </script>
 
@@ -19,11 +18,11 @@
 					class="h-2 w-2 animate-pulse rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,1)]"
 				></div>
 				<h3 class="text-xs font-black tracking-[0.5em] text-white/40 uppercase italic">
-					Global Parity Audit
+					Solana Liquidity Audit
 				</h3>
 			</div>
 			<p class="mt-2 text-3xl font-black tracking-tighter text-white uppercase italic">
-				Cross-DEX <span class="font-light text-blue-500 not-italic">Peg Validation</span>
+				Dynamic <span class="font-light text-blue-500 not-italic">Utility Pricing</span>
 			</p>
 		</div>
 		<div class="text-right">
@@ -49,7 +48,7 @@
 				<div class="text-center">
 					<span class="text-sm font-black text-white italic">{item.price}</span>
 					<span class="block text-[7px] font-bold tracking-tighter text-white/10 uppercase"
-						>Current PX/USDC</span
+						>Current PX Quote</span
 					>
 				</div>
 				<div class="text-center">
@@ -70,8 +69,8 @@
 
 	<footer class="relative z-10 mt-8 flex items-center justify-between border-t border-white/5 pt-8">
 		<p class="max-w-xs text-[9px] leading-relaxed font-bold text-white/30 uppercase italic">
-			Verification secured via the Price Band Control System. Drift levels optimized for
-			institutional liquidity entry.
+			Service value is calculated first, then converted into PX using the current market
+			price at conversion time.
 		</p>
 		<div class="flex items-baseline gap-2">
 			<span class="text-[10px] font-black text-white/20 uppercase">System Health:</span>

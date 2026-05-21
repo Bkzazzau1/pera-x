@@ -2,16 +2,12 @@
 import { calculateGlobalParity, fetchParityMetrics } from '$lib/logic/Marketplace';
 
 export function createSwapStore() {
-	// 1. Core State: Mutable reactive values [cite: 13]
 	let fromAmount = $state(0);
 	let slippage = $state(0.5);
 
-	// 2. PBCS Logic: Read-only derived values
-	// ESLint Fixed: Using 'const' for read-only derived runes
 	const currentParity = $derived(calculateGlobalParity(fetchParityMetrics()));
 
-	// 3. Execution Estimate [cite: 10, 325]
-	const estimateOut = $derived(fromAmount * currentParity * (1 - slippage / 100));
+	const estimateOut = $derived((fromAmount / currentParity) * (1 - slippage / 100));
 
 	return {
 		// UI Getters
@@ -37,11 +33,10 @@ export function createSwapStore() {
 		},
 
 		/**
-		 * Triggers the atomic execution handled by the Trading Company[cite: 344, 346].
+		 * Triggers token acquisition. Service conversion happens after the user chooses credits.
 		 */
 		execute: () => {
-			console.log(`Executing Atomic Swap: ${fromAmount} PX at ${currentParity} Parity`);
-			// Settlement ensures market flow maintenance [cite: 347]
+			console.log(`Executing PX swap: ${fromAmount} USDT at ${currentParity} PX spot`);
 		}
 	};
 }

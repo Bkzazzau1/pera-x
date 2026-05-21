@@ -1,10 +1,9 @@
 <script lang="ts">
 
-	// Economic metrics for the PBCS Recycle Loop
 	const bridgeMetrics = {
 		totalRecycled: '$14.8M',
 		bridgeEfficiency: '99.2%',
-		activeLiquidity: '$890M',
+		activeLiquidity: '$8.9M',
 		flowRate: 'High'
 	};
 
@@ -26,17 +25,17 @@
 			<div class="flex items-center gap-3">
 				<div class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]"></div>
 				<h3 class="text-xs font-black tracking-[0.5em] text-white/40 uppercase">
-					Global Liquidity Bridge
+					Trading Company Wallet
 				</h3>
 			</div>
 			<p class="mt-2 text-3xl font-black tracking-tighter text-white uppercase italic">
-				Fiat-to-DEX <span class="font-light text-emerald-400 not-italic">Recycle Loop</span>
+				Service Revenue <span class="font-light text-emerald-400 not-italic">Allocation Flow</span>
 			</p>
 		</div>
 		<div class="text-right">
 			<span
 				class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1 text-[8px] font-black tracking-widest text-emerald-400 uppercase"
-				>PBCS Active</span
+				>Wallet Labeled</span
 			>
 		</div>
 	</header>
@@ -56,7 +55,7 @@
 				</svg>
 			</div>
 			<span class="text-[9px] font-black tracking-widest text-white/40 uppercase"
-				>Trading Co. Fees</span
+				>Service-Converted PX</span
 			>
 		</div>
 
@@ -86,7 +85,7 @@
 				</svg>
 			</div>
 			<span class="text-[9px] font-black tracking-widest text-emerald-400 uppercase italic"
-				>Sovereign DEX</span
+				>Burn / Settlement</span
 			>
 		</div>
 	</div>
@@ -94,7 +93,7 @@
 	<footer class="relative z-10 mt-8 grid grid-cols-2 gap-8 border-t border-white/5 pt-8">
 		<div>
 			<div class="text-[8px] font-black tracking-widest text-white/20 uppercase italic">
-				Aggregated Recovery
+				Service Revenue
 			</div>
 			<div class="mt-1 text-2xl font-black tracking-tighter text-white italic">
 				{bridgeMetrics.totalRecycled}
@@ -102,7 +101,7 @@
 		</div>
 		<div class="text-right">
 			<div class="text-[8px] font-black tracking-widest text-white/20 uppercase italic">
-				Efficiency Rating
+				Settlement Integrity
 			</div>
 			<div class="mt-1 text-2xl font-black tracking-tighter text-emerald-400 italic">
 				{bridgeMetrics.bridgeEfficiency}

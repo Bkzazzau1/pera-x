@@ -17,7 +17,7 @@
 		specHighlight: string;
 	} = $props();
 
-	// Derived Economic Metric: Visualizing the Supply Contraction
+	// Derived service-credit conversion amount.
 	let pxBurnImpact = $derived(discountedPrice.toLocaleString());
 </script>
 
@@ -47,7 +47,7 @@
 
 		<div class="mt-10 space-y-1">
 			<p class="text-[10px] font-bold tracking-widest text-white/20 uppercase line-through">
-				MSRP: ${price}
+				Service value: ${price}
 			</p>
 			<p class="text-4xl font-black tracking-tighter text-white italic">
 				{pxBurnImpact} <span class="text-xs text-blue-400 not-italic">PX</span>
@@ -60,19 +60,19 @@
 			<div
 				class="flex justify-between text-[8px] font-black tracking-widest text-red-400/60 uppercase"
 			>
-				<span>Burn Forecast</span>
-				<span>🔥 100% Finality</span>
+				<span>Service Activation Burn</span>
+				<span>2%-30% Dynamic</span>
 			</div>
 			<p class="mt-1 text-[8px] leading-relaxed font-bold text-white/20 uppercase">
-				Finalizing will permanently remove <span class="text-white">{pxBurnImpact} PX</span> from global
-				circulation.
+				After credits are issued, the approved burn is applied from the Trading Company
+				Wallet, not from user balances.
 			</p>
 		</div>
 
 		<button
 			class="w-full rounded-2xl border border-white/10 bg-white/5 py-5 text-[10px] font-black tracking-[0.3em] uppercase transition-all duration-500 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] active:scale-95"
 		>
-			Initialize Redemption
+			Convert to Credits
 		</button>
 	</div>
 </div>

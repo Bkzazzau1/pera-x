@@ -4,22 +4,21 @@
 	import { wallet } from '$lib/stores/wallet.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	// Internalized proposals derived from CBPE objectives
 	const proposals = [
 		{
 			id: 'PXIP-04',
-			title: 'Burn Coefficient Adjustment',
-			desc: 'Proposal to shift the dynamic burn rate from 7.5% to 9.2% to accelerate supply contraction during the current high-velocity epoch.',
+			title: 'Service Burn Band Adjustment',
+			desc: 'Proposal to keep the active service-revenue burn at 20% while usage dashboards show strong credit demand.',
 			status: 'Active',
 			votesFor: 68,
 			expires: '2d 14h'
 		},
 		{
 			id: 'PXIP-05',
-			title: 'Expansion: Tier 5 Mobility',
-			desc: 'Governance signal to activate the procurement bridge for luxury Electric Vehicles within the Platinum Tier.',
+			title: 'Provider Expansion: SMS and Bills',
+			desc: 'Governance signal to approve additional SMS, electricity, internet, and institutional bill providers.',
 			status: 'Draft',
-			votesFor: 12,
+			votesFor: 42,
 			expires: '8d 04h'
 		}
 	];
@@ -37,10 +36,10 @@
 	>
 		<div>
 			<h1 class="text-4xl font-black tracking-tighter text-white uppercase italic">
-				Executive <span class="font-light text-blue-500 not-italic">Governance</span>
+				Utility <span class="font-light text-blue-500 not-italic">Governance</span>
 			</h1>
 			<p class="mt-4 max-w-2xl text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">
-				Phase 2: Transitioning to DAO-Driven Monetary Policy
+				Policy steering for burns, discounts, provider approvals, and dashboard transparency
 			</p>
 		</div>
 
@@ -124,7 +123,7 @@
 					<div class="flex flex-col items-center">
 						<div class="text-4xl font-black tracking-tighter text-white">84.2M</div>
 						<div class="mt-2 text-[9px] font-black tracking-widest text-white/20 uppercase">
-							Circulating Quorum (PX)
+							Active Voting Power (PX)
 						</div>
 					</div>
 
@@ -136,8 +135,8 @@
 							<span class="text-white">12,402</span>
 						</div>
 						<div class="flex justify-between text-[9px] font-black tracking-widest uppercase">
-							<span class="text-white/40">Delegation Yield</span>
-							<span class="text-emerald-400">4.2% APR </span>
+							<span class="text-white/40">Provider Votes</span>
+							<span class="text-emerald-400">18 Active</span>
 						</div>
 					</div>
 				</div>
@@ -148,8 +147,8 @@
 					Governance Guard
 				</div>
 				<p class="text-[9px] leading-relaxed font-bold text-white/30 uppercase">
-					To maintain <span class="text-white">Sybil Resistance</span>, voting assets are
-					temporarily locked until the epoch concludes.
+					Policy votes must preserve service sustainability, compliant provider routing, and
+					the 30% discount cap.
 				</p>
 			</div>
 		</div>

@@ -2,87 +2,96 @@
 
 import { getEligibleTier } from './PolicyEngine';
 
-/** * PBCS Interface
- * Ensures swaps and redemptions stay within mandated monetary bands.
+/** * Utility pricing interface
+ * Converts real service value into PX using current market price.
  */
 export interface ParityMetrics {
 	spotPrice: number;
-	ceiling: number;
-	floor: number;
+	growthReleaseLevel: number;
+	launchPrice: number;
 }
 
-export interface Gadget {
+export interface ServiceCredit {
 	id: string;
 	name: string;
 	brand: string;
 	marketPrice: number; // Global MSRP in USD
-	category: 'Phone' | 'Laptop' | 'Watch' | 'Accessory';
+	category: 'AI' | 'Calling' | 'SMS' | 'Website' | 'Bills';
 	image: string;
 	specHighlight: string;
 }
 
 /**
- * High-End Hardware Inventory.
- * These assets drive the organic demand loop of the PeraX ecosystem.
+ * Whitepaper utility catalog.
+ * Users convert PX into service credits, minutes, SMS units, build credits, or bill credits.
  */
-export const GADGETS: Gadget[] = [
+export const SERVICE_CREDITS: ServiceCredit[] = [
 	{
 		id: '1',
-		name: 'iPhone 17 Pro',
-		brand: 'Apple',
-		marketPrice: 1200,
-		category: 'Phone',
-		image: '📱',
-		specHighlight: 'A19 Pro Chip • 2TB'
+		name: 'Agentic AI Pack',
+		brand: 'AI Tools',
+		marketPrice: 15,
+		category: 'AI',
+		image: 'AI',
+		specHighlight: 'Detector • Rephraser • Docs'
 	},
 	{
 		id: '2',
-		name: 'MacBook Pro M5',
-		brand: 'Apple',
-		marketPrice: 2400,
-		category: 'Laptop',
-		image: '💻',
-		specHighlight: 'M5 Max • 128GB RAM'
+		name: 'App-to-Phone Minutes',
+		brand: 'Voice API',
+		marketPrice: 10,
+		category: 'Calling',
+		image: 'CALL',
+		specHighlight: 'Normal Phone Routing'
 	},
 	{
 		id: '3',
-		name: 'Galaxy S26 Ultra',
-		brand: 'Samsung',
-		marketPrice: 1100,
-		category: 'Phone',
-		image: '📱',
-		specHighlight: '200MP • Quantum AI'
+		name: 'SMS Bundle',
+		brand: 'Messaging',
+		marketPrice: 8,
+		category: 'SMS',
+		image: 'SMS',
+		specHighlight: 'OTP • Bulk • Alerts'
 	},
 	{
 		id: '4',
-		name: 'Sony Alpha 7R V',
-		brand: 'Sony',
-		marketPrice: 3899,
-		category: 'Phone',
-		image: '📸',
-		specHighlight: '61.0MP Full-Frame'
+		name: 'AI Website Builder',
+		brand: 'Builder',
+		marketPrice: 25,
+		category: 'Website',
+		image: 'WEB',
+		specHighlight: 'Generate • Edit • Publish'
+	},
+	{
+		id: '5',
+		name: 'Utility Bill Credit',
+		brand: 'Bills',
+		marketPrice: 30,
+		category: 'Bills',
+		image: 'BILL',
+		specHighlight: 'Electricity • TV • Internet'
 	}
 ];
 
+export const GADGETS = SERVICE_CREDITS;
+
 /**
- * CBPE Data Fetcher
+ * Whitepaper pricing data.
  * Fetches real-time metrics based on current protocol phase.
  */
 export function fetchParityMetrics(): ParityMetrics {
 	return {
-		spotPrice: 0.1184, // Mid-point Growth Phase
-		ceiling: 0.12, // Expansion target ceiling
-		floor: 0.08 // Growth support floor
+		spotPrice: 0.00018,
+		launchPrice: 0.00009,
+		growthReleaseLevel: 0.00027
 	};
 }
 
 /**
- * PBCS Execution Logic
- * Prevents oracle manipulation and market overheating.
+ * Dynamic utility pricing.
+ * Service value is calculated first; token quantity is calculated after.
  */
 export function calculateGlobalParity(metrics: ParityMetrics): number {
-	if (metrics.spotPrice > metrics.ceiling) return metrics.ceiling;
-	if (metrics.spotPrice < metrics.floor) return metrics.floor;
 	return metrics.spotPrice;
 }
 
@@ -91,7 +100,7 @@ export function calculateGlobalParity(metrics: ParityMetrics): number {
  * Calculates the PX cost after applying tier-based subsidies.
  */
 export function calculatePXCost(usdPrice: number, pxRate: number, discountPercent: number): number {
-	// Subsidized value funded by Commerce Flow fees
+	// Utility bill discount does not reduce the user's credited service value.
 	const subsidizedValue = usdPrice * (1 - discountPercent);
 	return Math.round(subsidizedValue / pxRate);
 }
@@ -99,14 +108,14 @@ export function calculatePXCost(usdPrice: number, pxRate: number, discountPercen
 /**
  * Savings Summary for User Dashboard
  */
-export function getSavingsSummary(gadget: Gadget, balance: number) {
-	const tier = getEligibleTier(balance);
+export function getSavingsSummary(service: ServiceCredit, holdingDays: number) {
+	const tier = getEligibleTier(holdingDays);
 	const discount = tier ? parseFloat(tier.discount) / 100 : 0;
-	const savings = gadget.marketPrice * discount;
+	const savings = service.marketPrice * discount;
 
 	return {
 		tier: tier?.label || 'Ineligible',
-		finalPrice: gadget.marketPrice - savings,
+		finalPrice: service.marketPrice - savings,
 		totalSaved: savings
 	};
 }

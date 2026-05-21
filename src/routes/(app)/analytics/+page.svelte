@@ -8,9 +8,9 @@
 
 	// Analytics Context: Audited Economic Metrics
 	const metrics = [
-		{ label: 'Total Value Locked', value: '$1.42B', hint: '+12.4% this epoch' },
-		{ label: 'Avg. Burn per Hour', value: '42,500 PX', hint: 'Velocity: Optimal' },
-		{ label: 'Hardware Redemption Rate', value: '89.2%', hint: 'Supply side healthy' }
+		{ label: 'Service Revenue', value: '$1.42M', hint: 'Trading Company Wallet' },
+		{ label: 'Avg. Burn per Hour', value: '42,500 PX', hint: '2%-30% dynamic band' },
+		{ label: 'Credit Activation Rate', value: '89.2%', hint: 'AI, calls, SMS, web, bills' }
 	];
 </script>
 
@@ -23,7 +23,7 @@
 			Analytics <span class="font-light text-blue-500 not-italic">Hub</span>
 		</h1>
 		<p class="mt-4 max-w-2xl text-xs font-bold tracking-[0.2em] text-white/40 uppercase">
-			Protocol Performance & Price Band Control System Audit
+			Public dashboards for burn activity, utility usage, wallet activity, discount tiers, and supply
 		</p>
 	</header>
 
@@ -52,17 +52,17 @@
 		>
 			<div>
 				<div class="mb-8 text-[10px] font-black tracking-[0.4em] text-white/40 uppercase italic">
-					Liquidity Depth Audit
+					Wallet Flow Audit
 				</div>
 
 				<div class="mt-6 space-y-6">
 					<div class="flex items-center justify-between">
 						<div class="flex flex-col">
 							<span class="text-[9px] font-black tracking-widest text-white/30 uppercase"
-								>Buy Wall (USDT)</span
+								>Provider Settlement</span
 							>
 							<span class="text-[8px] font-bold text-white/10 uppercase italic"
-								>Recycled Capital</span
+								>Voice, SMS, AI, bills</span
 							>
 						</div>
 						<span class="text-xl font-black tracking-tighter text-emerald-400 italic">$890M</span>
@@ -71,10 +71,10 @@
 					<div class="flex items-center justify-between">
 						<div class="flex flex-col">
 							<span class="text-[9px] font-black tracking-widest text-white/30 uppercase"
-								>Sell Wall (PX)</span
+								>Burn Wallet</span
 							>
 							<span class="text-[8px] font-bold text-white/10 uppercase italic"
-								>Circulating Risk</span
+								>Service revenue portion</span
 							>
 						</div>
 						<span class="text-xl font-black tracking-tighter text-blue-400 italic">$420M</span>
@@ -84,7 +84,7 @@
 
 					<div class="flex items-center justify-between">
 						<span class="text-[9px] font-black tracking-widest text-white/30 uppercase italic"
-							>Slippage Audit</span
+							>Usage Dashboard</span
 						>
 						<span class="text-xs font-bold tracking-widest text-white">0.02% @ 10M</span>
 					</div>
@@ -97,11 +97,11 @@
 				<div class="mb-2 flex items-center gap-2">
 					<span class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400"></span>
 					<span class="text-[9px] font-black tracking-widest text-blue-400 uppercase"
-						>PBCS Integrity</span
+						>Utility Integrity</span
 					>
 				</div>
 				<div class="text-lg leading-none font-black tracking-tighter text-white uppercase italic">
-					Optimal Parity <br /> <span class="font-light text-blue-500 not-italic">Secured</span>
+					Credits Issued <br /> <span class="font-light text-blue-500 not-italic">Before Burn</span>
 				</div>
 			</div>
 		</div>

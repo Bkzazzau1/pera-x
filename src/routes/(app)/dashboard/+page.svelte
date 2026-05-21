@@ -26,7 +26,7 @@
 	// ✅ still used by Policy Engine cards (keep)
 	const policyModules = [
 		{ name: 'Swap', href: '/swap', tag: 'DEX v4' },
-		{ name: 'Redeem', href: '/redeem', tag: 'Direct Burn' },
+		{ name: 'Services', href: '/redeem', tag: 'Credits' },
 		{ name: 'Governance', href: '/governance', tag: 'Quorum' },
 		{ name: 'Portfolio', href: '/portfolio', tag: 'Vault' },
 		{ name: 'Analytics', href: '/analytics', tag: 'Audit' },
@@ -44,7 +44,7 @@
 		<!-- ✅ TOP SUMMARY ROW -->
 		<div class="grid gap-6 lg:grid-cols-3">
 			<div class="lg:col-span-2">
-				<BurnVisualizer rate={7.5} />
+				<BurnVisualizer rate={20} />
 			</div>
 
 			<div class="self-stretch">
@@ -52,7 +52,7 @@
 					label="Circulating Supply"
 					value="156,000,000"
 					variant="neon"
-					hint="DEX Liquidity Audit"
+					hint="Supply Dashboard"
 					heartbeat={true}
 					heartbeatLabel="CIRCULATING"
 					heartbeatHeight={18}
@@ -69,16 +69,16 @@
 					<LogisticsNode />
 					<div class="flex flex-col gap-6 md:gap-8">
 						<StatCard
-							label="Units in Transit"
+							label="Credits Issued"
 							value="4,525"
 							variant="neon"
-							hint="Global Hub Aggregate"
+							hint="AI, Calls, SMS, Web, Bills"
 						/>
 						<StatCard
-							label="Verification Rate"
+							label="Provider Settlement"
 							value="100%"
 							variant="neon"
-							hint="Trading Co. Manifest"
+							hint="Approved partner routing"
 						/>
 					</div>
 				</div>
@@ -121,7 +121,7 @@
 									Policy Engine
 								</h2>
 								<p class="mt-2 text-[10px] font-bold tracking-[0.25em] text-white/30 uppercase">
-									Execution modules • Routed by protocol mandate
+									Service modules • Routed through token-to-credit policy
 								</p>
 							</div>
 
@@ -217,10 +217,10 @@
 				<div class="overflow-hidden">
 					<header class="mb-4 px-2">
 						<h3 class="text-[9px] font-black tracking-[0.5em] text-white/20 uppercase italic">
-							Live Fulfillment Audit
+							Live Service Audit
 						</h3>
 						<p class="mt-2 text-[10px] font-bold tracking-widest text-sky-400 uppercase">
-							Atomic Burn Proof
+							Service Activation Burn
 						</p>
 					</header>
 
@@ -249,7 +249,7 @@
 						</div>
 					</div>
 					<p class="text-[10px] leading-relaxed font-bold text-white/30 uppercase italic">
-						Verified redemptions via Trading Company mandate.
+						Service-converted tokens credited through the Trading Company Wallet.
 					</p>
 				</div>
 			</aside>

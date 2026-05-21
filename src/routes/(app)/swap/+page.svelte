@@ -10,11 +10,10 @@
 	let isConfirming = $state(false);
 
 	/**
-	 * Final Atomic Execution.
-	 * Logic to trigger the on-chain swap via the Trading Company flow.
+	 * Final token acquisition execution.
+	 * Service conversion and burn are handled in the credit portal.
 	 */
 	async function handleExecution() {
-		// Settlement logic handled by the non-profit Trading Company mandate [cite: 83]
 		swapStore.execute();
 		isConfirming = false;
 	}
@@ -33,12 +32,12 @@
 	<div class="mx-auto max-w-xl">
 		<header class="mb-10 text-center" in:fly={{ y: -10, duration: 600 }}>
 			<h1 class="text-4xl font-black tracking-tighter text-white uppercase italic">
-				Liquidity <span class="font-light text-blue-500 not-italic">Portal</span>
+				PX <span class="font-light text-blue-500 not-italic">Swap</span>
 			</h1>
 			<p
 				class="mt-2 text-[10px] leading-relaxed font-black tracking-[0.3em] text-blue-400 uppercase"
 			>
-				Verified DCMS-Native Execution • Multi-Vendor Settlement [cite: 215, 334]
+				Acquire PX on Solana before converting into service credits
 			</p>
 		</header>
 
@@ -92,7 +91,7 @@
 						class="mb-4 flex justify-between text-[10px] font-black tracking-widest text-white/30 uppercase"
 					>
 						<span>Receive Assets</span>
-						<span>Est. Rate: ${swapStore.currentParity.toFixed(4)}</span>
+						<span>Est. Rate: ${swapStore.currentParity.toFixed(6)}</span>
 					</div>
 					<div class="flex items-center justify-between">
 						<div class="text-4xl font-black tracking-tighter text-white/90">
@@ -129,7 +128,7 @@
 				disabled={swapStore.fromAmount <= 0}
 				class="mt-8 w-full rounded-[1.5rem] bg-white px-6 py-6 text-[11px] font-black tracking-[0.3em] text-black uppercase shadow-xl transition-all hover:bg-blue-400 hover:text-white active:scale-95 disabled:opacity-20"
 			>
-				Execute Atomic Swap
+				Execute PX Swap
 			</button>
 		</div>
 	</div>

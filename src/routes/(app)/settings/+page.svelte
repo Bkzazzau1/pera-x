@@ -4,7 +4,6 @@
 	import { wallet } from '$lib/stores/wallet.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	// 1. Explicitly Type the Keys for $5B Security
 	type SettingKey = 'notifications' | 'biometrics' | 'privacyMode';
 
 	let settings = $state<Record<SettingKey, boolean>>({
@@ -14,13 +13,13 @@
 	});
 
 	const toggles: { id: SettingKey; label: string; desc: string }[] = [
-		{ id: 'biometrics', label: 'Biometric Signing', desc: 'Use FaceID/TouchID for atomic swaps' },
-		{ id: 'privacyMode', label: 'Privacy Shroud', desc: 'Mask balances from external observers' }
+		{ id: 'biometrics', label: 'Biometric Signing', desc: 'Confirm swaps and credit conversion' },
+		{ id: 'privacyMode', label: 'Privacy Mode', desc: 'Mask wallet balances and service usage' }
 	];
 
 	const sessions = [
-		{ device: 'iPhone 17 Pro', location: 'London, UK', status: 'Active' },
-		{ device: 'MacBook Pro M5', location: 'San Francisco, US', status: 'Idle' }
+		{ device: 'Pera-X Web App', location: 'Lagos, NG', status: 'Active' },
+		{ device: 'Service Credit Portal', location: 'Cloud Session', status: 'Idle' }
 	];
 </script>
 
@@ -33,7 +32,7 @@
 			System <span class="font-light text-blue-500 not-italic">Control</span>
 		</h1>
 		<p class="mt-4 max-w-2xl text-[10px] font-black tracking-[0.2em] text-white/40 uppercase">
-			Sovereign Identity & Security Preferences
+			Wallet security, service-credit preferences, and privacy controls
 		</p>
 	</header>
 
@@ -61,7 +60,7 @@
 							>Connected Identity</span
 						>
 						<span class="font-mono text-[10px] text-white/30"
-							>{wallet.address || '0x71C...60a5'}</span
+							>{wallet.address || '8xQ9...PXsol'}</span
 						>
 					</div>
 					<button
