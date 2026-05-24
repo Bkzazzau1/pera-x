@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
 	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
@@ -10,7 +11,7 @@
 		{
 			t: 'Token-to-Service Credits',
 			d: 'Users convert Pera-X into AI credits, call time, SMS units, website builder credits, or utility bill credits.',
-			icon: 'PX'
+			icon: 'PEX'
 		},
 		{
 			t: '2%-30% Dynamic Burn',
@@ -50,9 +51,9 @@
 
 	const vendors = [
 		{
-			name: 'Agentic AI',
+			name: 'AI Lab',
 			icon: 'AI',
-			desc: 'AI detector, plagiarism checker, rephraser, grammar assistant, document generation, code help, and academic support.',
+			desc: 'Upload documents for AI detection, plagiarism checking, and humanized rewrite results.',
 			tier: 'AI Credits'
 		},
 		{
@@ -94,9 +95,7 @@
 			>
 				P
 			</div>
-			<div class="text-2xl font-black tracking-widest uppercase italic">
-				PERA-X
-			</div>
+			<div class="text-2xl font-black tracking-widest uppercase italic">PERA-X</div>
 		</div>
 		<div
 			class="hidden gap-12 text-[10px] font-black tracking-[0.4em] text-white/40 uppercase md:flex"
@@ -109,7 +108,7 @@
 			>
 		</div>
 		<a
-			href="/dashboard"
+			href={resolve('/dashboard')}
 			class="glass rounded-2xl px-8 py-3 text-[10px] font-black tracking-[0.2em] text-sky-400 transition-all hover:bg-sky-400 hover:text-white hover:shadow-[0_0_30px_rgba(14,165,233,0.3)]"
 		>
 			LAUNCH SYSTEM
@@ -134,12 +133,12 @@
 				<p
 					class="mx-auto mb-16 max-w-2xl text-lg leading-relaxed font-light text-white/40 md:text-2xl"
 				>
-					Pera-X powers AI tools, app-to-phone calls, SMS bundles, AI website generation,
-					and utility bill discounts through a transparent token-to-service credit economy.
+					Pera-X powers AI tools, app-to-phone calls, SMS bundles, AI website generation, and
+					utility bill discounts through a transparent token-to-service credit economy.
 				</p>
 				<div class="flex flex-col justify-center gap-6 md:flex-row">
 					<a
-						href="/dashboard"
+						href={resolve('/dashboard')}
 						class="group relative overflow-hidden rounded-4xl bg-white px-12 py-6 font-black text-black transition-all hover:scale-105 active:scale-95"
 					>
 						<span class="relative z-10">ENTER THE CORE</span>
@@ -172,7 +171,7 @@
 					<div class="mb-1 text-[9px] font-black tracking-widest text-emerald-400 uppercase">
 						Live Status
 					</div>
-					<div class="text-2xl font-black italic">PX: 1.1842 USDT</div>
+					<div class="text-2xl font-black italic">PEX: 1.1842 USDT</div>
 				</div>
 			</div>
 			<div>
@@ -180,7 +179,7 @@
 					Practical Services <br /> <span class="text-sky-500">Meet Solana.</span>
 				</h2>
 				<div class="space-y-12">
-					{#each visionPoints as feature}
+					{#each visionPoints as feature (feature.t)}
 						<div class="group flex gap-8">
 							<div
 								class="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl border border-white/10 bg-white/5 text-2xl transition-all group-hover:border-sky-500/50"
@@ -213,7 +212,7 @@
 				</p>
 			</header>
 			<div class="grid gap-10 lg:grid-cols-3">
-				{#each vendors as vendor}
+				{#each vendors as vendor (vendor.name)}
 					<div
 						class="glass group rounded-[3rem] border-white/5 p-12 transition-all hover:border-sky-500/30"
 					>
@@ -247,7 +246,7 @@
 			</header>
 			<div class="relative flex overflow-hidden py-10">
 				<div class="animate-marquee flex gap-8 whitespace-nowrap">
-					{#each [{ item: 'AI Document Pack', burn: '2,000 PX', brand: 'AI' }, { item: 'Call Credit Top-Up', burn: '1,500 PX', brand: 'Voice' }, { item: 'OTP SMS Bundle', burn: '900 PX', brand: 'SMS' }, { item: 'Electricity Bill Credit', burn: '3,250 PX', brand: 'Bills' }, { item: 'Website Builder Credits', burn: '2,750 PX', brand: 'Web' }] as delivery}
+					{#each [{ item: 'AI Document Pack', burn: '2,000 PEX', brand: 'AI' }, { item: 'Call Credit Top-Up', burn: '1,500 PEX', brand: 'Voice' }, { item: 'OTP SMS Bundle', burn: '900 PEX', brand: 'SMS' }, { item: 'Electricity Bill Credit', burn: '3,250 PEX', brand: 'Bills' }, { item: 'Website Builder Credits', burn: '2,750 PEX', brand: 'Web' }] as delivery (delivery.item)}
 						<div
 							class="glass flex w-80 flex-col gap-4 rounded-3xl border-white/5 p-8 shadow-xl backdrop-blur-md"
 						>
@@ -290,9 +289,11 @@
 			</header>
 			<div class="grid gap-12 lg:grid-cols-2">
 				<div class="glass rounded-[3rem] border-white/10 p-12 shadow-2xl backdrop-blur-3xl">
-					<h3 class="mb-10 text-3xl font-black text-white uppercase italic">Service Revenue Flow</h3>
+					<h3 class="mb-10 text-3xl font-black text-white uppercase italic">
+						Service Revenue Flow
+					</h3>
 					<div class="space-y-6">
-						{#each allocation as row}
+						{#each allocation as row (row.cat)}
 							<div class="flex flex-col gap-3">
 								<div
 									class="flex justify-between text-[10px] font-black tracking-widest text-white/40 uppercase"
@@ -312,9 +313,15 @@
 							Wallet Transparency
 						</h3>
 						<ul class="space-y-4 text-sm font-light text-white/50">
-							<li class="flex items-center gap-4">Trading Company Wallet receives service-converted tokens</li>
-							<li class="flex items-center gap-4">Burn Wallet receives the approved burn portion</li>
-							<li class="flex items-center gap-4">Provider, treasury, liquidity, rewards, team, and investor wallets are labeled</li>
+							<li class="flex items-center gap-4">
+								Trading Company Wallet receives service-converted tokens
+							</li>
+							<li class="flex items-center gap-4">
+								Burn Wallet receives the approved burn portion
+							</li>
+							<li class="flex items-center gap-4">
+								Provider, treasury, liquidity, rewards, team, and investor wallets are labeled
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -331,11 +338,11 @@
 				<p
 					class="mt-4 text-[10px] leading-relaxed font-black tracking-[0.5em] text-white/30 uppercase"
 				>
-					Everyday utility categories connected to one PX credit model
+					Everyday utility categories connected to one PEX credit model
 				</p>
 			</header>
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-				{#each [{ region: 'AI Tools', icon: 'AI', desc: 'Writing, coding, documents, proposals, academic support, detection, and originality checks.' }, { region: 'Calls', icon: 'CALL', desc: 'App-to-phone calling where receivers need neither the Pera-X app nor internet access.' }, { region: 'SMS', icon: 'SMS', desc: 'Personal, bulk, OTP, transaction, campaign, and developer messaging services.' }, { region: 'Bills', icon: 'BILL', desc: 'Electricity, TV, internet, water, waste, and approved institutional bill payments.' }] as market}
+				{#each [{ region: 'AI Lab', icon: 'AI', desc: 'Document upload tools for AI detection, plagiarism checking, and humanizer results.' }, { region: 'Calls', icon: 'CALL', desc: 'App-to-phone calling where receivers need neither the Pera-X app nor internet access.' }, { region: 'SMS', icon: 'SMS', desc: 'Personal, bulk, OTP, transaction, campaign, and developer messaging services.' }, { region: 'Bills', icon: 'BILL', desc: 'Electricity, TV, internet, water, waste, and approved institutional bill payments.' }] as market (market.region)}
 					<div
 						class="glass group rounded-[2.5rem] border-white/5 p-8 transition-all hover:-translate-y-2 hover:border-sky-500/30"
 					>
@@ -354,7 +361,7 @@
 					One Token-to-Credit Economy
 				</h3>
 				<div class="grid grid-cols-2 gap-6 md:grid-cols-5">
-					{#each [{ label: 'AI Credits', icon: 'AI' }, { label: 'Call Time', icon: 'CALL' }, { label: 'SMS Units', icon: 'SMS' }, { label: 'Build Credits', icon: 'WEB' }, { label: 'Bill Credits', icon: 'BILL' }] as sector}
+					{#each [{ label: 'AI Credits', icon: 'AI' }, { label: 'Call Time', icon: 'CALL' }, { label: 'SMS Units', icon: 'SMS' }, { label: 'Build Credits', icon: 'WEB' }, { label: 'Bill Credits', icon: 'BILL' }] as sector (sector.label)}
 						<div class="flex flex-col items-center gap-2">
 							<div class="text-2xl">{sector.icon}</div>
 							<span class="text-[9px] font-black tracking-widest text-white/40 uppercase"
@@ -381,7 +388,7 @@
 				</p>
 			</header>
 			<div class="space-y-40">
-				{#each milestones as milestone}
+				{#each milestones as milestone (milestone.q)}
 					<div
 						class="relative flex flex-col {milestone.side === 'right'
 							? 'md:items-end'
@@ -426,10 +433,11 @@
 				<h2
 					class="mb-8 text-4xl leading-[0.9] font-black tracking-tighter text-white uppercase italic md:text-7xl"
 				>
-					Not Just Speculation. <br class="hidden md:block" /> <span class="text-sky-500">Real Utility.</span>
+					Not Just Speculation. <br class="hidden md:block" />
+					<span class="text-sky-500">Real Utility.</span>
 				</h2>
 				<a
-					href="/dashboard"
+					href={resolve('/dashboard')}
 					class="inline-block w-full rounded-3xl bg-sky-500 px-10 py-5 text-sm font-black text-white shadow-[0_0_40px_rgba(14,165,233,0.3)] transition-all hover:scale-110 active:scale-95 md:w-auto md:rounded-[2.5rem] md:px-20 md:py-8 md:text-lg"
 					>ENTER DASHBOARD</a
 				>

@@ -9,7 +9,7 @@
 	// Analytics Context: Audited Economic Metrics
 	const metrics = [
 		{ label: 'Service Revenue', value: '$1.42M', hint: 'Trading Company Wallet' },
-		{ label: 'Avg. Burn per Hour', value: '42,500 PX', hint: '2%-30% dynamic band' },
+		{ label: 'Avg. Burn per Hour', value: '42,500 PEX', hint: '2%-30% dynamic band' },
 		{ label: 'Credit Activation Rate', value: '89.2%', hint: 'AI, calls, SMS, web, bills' }
 	];
 </script>
@@ -23,12 +23,13 @@
 			Analytics <span class="font-light text-blue-500 not-italic">Hub</span>
 		</h1>
 		<p class="mt-4 max-w-2xl text-xs font-bold tracking-[0.2em] text-white/40 uppercase">
-			Public dashboards for burn activity, utility usage, wallet activity, discount tiers, and supply
+			Public dashboards for burn activity, utility usage, wallet activity, discount tiers, and
+			supply
 		</p>
 	</header>
 
 	<div class="grid gap-8 lg:grid-cols-3">
-		{#each metrics as metric, i}
+		{#each metrics as metric, i (metric.label)}
 			<div in:fly={{ y: 20, delay: i * 100 }}>
 				<StatCard label={metric.label} value={metric.value} hint={metric.hint} variant="neon" />
 			</div>

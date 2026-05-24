@@ -2,6 +2,7 @@
 	import ParityMonitor from '$lib/components/ui/ParityMonitor.svelte';
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
 	import { fetchParityMetrics } from '$lib/logic/DEXParity';
+	import { resolve } from '$app/paths';
 	import { fade, fly } from 'svelte/transition';
 
 	// Real-time market data retrieval
@@ -17,7 +18,7 @@
 			Market <span class="font-light text-blue-500 not-italic">Radar</span>
 		</h1>
 		<p class="mt-4 max-w-2xl text-xs font-bold tracking-[0.2em] text-white/40 uppercase">
-			Solana DEX access for acquiring PX before converting into service credits
+			Solana DEX access for acquiring PEX before converting into service credits
 		</p>
 	</header>
 
@@ -38,10 +39,10 @@
 			</div>
 
 			<div class="grid gap-6 md:grid-cols-2">
-				{#each venues as venue}
+				{#each venues as venue (venue.provider)}
 					<a
 						class="glass group relative overflow-hidden rounded-[2.5rem] border-white/5 p-8 transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30"
-						href="https://jup.ag/swap/USDC-PX"
+						href="https://jup.ag/swap/USDC-PEX"
 						target="_blank"
 						rel="noreferrer"
 					>
@@ -89,7 +90,7 @@
 					Trader Confidence
 				</div>
 				<ul class="space-y-6">
-					{#each [{ label: 'SPL Mint Integrity', desc: 'Verify the official Solana mint before swap' }, { label: 'Route Review', desc: 'Check depth and price impact before execution' }, { label: 'Anti-Phishing', desc: 'Always use official protocol portals' }] as rule}
+					{#each [{ label: 'SPL Mint Integrity', desc: 'Verify the official Solana mint before swap' }, { label: 'Route Review', desc: 'Check depth and price impact before execution' }, { label: 'Anti-Phishing', desc: 'Always use official protocol portals' }] as rule (rule.label)}
 						<li class="flex gap-4">
 							<div
 								class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-500/10"
@@ -126,9 +127,11 @@
 					Notice
 				</div>
 				<p class="text-[9px] leading-relaxed font-bold text-amber-500/60 uppercase">
-					DEX trading does not trigger service-revenue burns. Burn begins after PX is
-					converted into credits through the
-					<a href="/redeem" class="text-amber-500 underline decoration-2">Service Portal</a>.
+					DEX trading does not trigger service-revenue burns. Burn begins after PEX is converted
+					into credits through the
+					<a href={resolve('/redeem')} class="text-amber-500 underline decoration-2"
+						>Service Portal</a
+					>.
 				</p>
 			</div>
 		</div>

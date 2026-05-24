@@ -200,7 +200,7 @@
 				/>
 
 				<!-- minimal nodes -->
-				{#each data as point, i}
+				{#each data as point, i (point.month)}
 					<g>
 						<circle
 							cx={getX(i)}
@@ -255,7 +255,7 @@
 
 		<!-- x labels (compact, every other on mobile) -->
 		<div class="absolute inset-x-0 bottom-2 z-10 flex justify-between px-2">
-			{#each data as point, idx}
+			{#each data as point, idx (`label-${point.month}`)}
 				<span
 					class="text-[8px] font-black tracking-tight text-white/12 uppercase transition-colors group-hover:text-white/35
 					{idx % 2 !== 0 ? 'hidden sm:block' : ''}"

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { wallet } from '$lib/stores/wallet.svelte';
 	import { fade, fly, scale } from 'svelte/transition';
 
@@ -13,7 +14,7 @@
 
 	const enterDashboard = async () => {
 		await wallet.triggerTransition();
-		goto('/dashboard');
+		goto(resolve('/dashboard'));
 	};
 </script>
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
 	import WalletModal from '$lib/components/ui/WalletModal.svelte';
 	import { wallet } from '$lib/stores/wallet.svelte';
@@ -16,14 +17,14 @@
 		{ label: 'Trade', path: '/trade' },
 		{ label: 'Redeem', path: '/redeem' },
 		{ label: 'Analytics', path: '/analytics' }
-	];
+	] as const;
 
 	const quickActions = [
 		{ label: 'Trade', path: '/trade', tag: 'DEX' },
 		{ label: 'Services', path: '/redeem', tag: 'CREDITS' },
 		{ label: 'Swap', path: '/swap', tag: 'ROUTE' },
 		{ label: 'Policy', path: '/policy', tag: 'ENGINE' }
-	];
+	] as const;
 
 	let { children } = $props();
 
@@ -92,7 +93,7 @@
 
 	// Ticker text
 	const tickerItems = [
-		'PX SYSTEM VIEW • SOLANA UTILITY TOKEN',
+		'PEX SYSTEM VIEW • SOLANA UTILITY TOKEN',
 		'TOKEN-TO-CREDIT FLOW • TRADING COMPANY WALLET',
 		'SERVICE BURNS: 2%-30% • LEDGER: ENABLED',
 		'AI • CALLS • SMS • WEBSITES • UTILITY BILLS',
@@ -281,10 +282,10 @@
 				{#if showQuickActions}
 					<div id="mobile-quick-actions" transition:slide class="px-3 pb-3">
 						<div class="grid grid-cols-2 gap-2">
-							{#each quickActions as act}
+							{#each quickActions as act (act.path)}
 								<button
 									type="button"
-									onclick={() => goto(act.path)}
+									onclick={() => goto(resolve(act.path))}
 									class="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3 px-4 py-4 text-left transition-all active:scale-95
 									{isActive(act.path)
 										? 'border-blue-400/30 bg-blue-400/10'
@@ -324,13 +325,13 @@
 				transition:slide
 				class="mt-6 flex flex-col gap-2 rounded-4xl border border-white/10 bg-black/60 p-4 backdrop-blur-3xl lg:hidden"
 			>
-				{#each navLinks as link}
+				{#each navLinks as link (link.path)}
 					<a
 						class="flex w-full items-center justify-between rounded-2xl px-6 py-5 text-[11px] font-black tracking-[0.3em] uppercase transition-all
 						{isActive(link.path)
 							? 'border border-blue-400/20 bg-blue-400/10 text-blue-400'
 							: 'border border-transparent text-white/60 hover:bg-white/5'}"
-						href={link.path}
+						href={resolve(link.path)}
 						onclick={() => (showMobileNav = false)}
 					>
 						{link.label}

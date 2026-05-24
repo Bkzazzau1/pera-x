@@ -36,7 +36,7 @@ export function createSwapStore() {
 		 * Triggers token acquisition. Service conversion happens after the user chooses credits.
 		 */
 		execute: () => {
-			console.log(`Executing PX swap: ${fromAmount} USDT at ${currentParity} PX spot`);
+			console.log(`Executing PEX swap: ${fromAmount} USDT at ${currentParity} PEX spot`);
 		}
 	};
 }

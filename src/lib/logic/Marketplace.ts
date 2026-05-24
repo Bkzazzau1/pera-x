@@ -3,7 +3,7 @@
 import { getEligibleTier } from './PolicyEngine';
 
 /** * Utility pricing interface
- * Converts real service value into PX using current market price.
+ * Converts real service value into PEX using current market price.
  */
 export interface ParityMetrics {
 	spotPrice: number;
@@ -23,17 +23,17 @@ export interface ServiceCredit {
 
 /**
  * Whitepaper utility catalog.
- * Users convert PX into service credits, minutes, SMS units, build credits, or bill credits.
+ * Users convert PEX into service credits, minutes, SMS units, build credits, or bill credits.
  */
 export const SERVICE_CREDITS: ServiceCredit[] = [
 	{
 		id: '1',
-		name: 'Agentic AI Pack',
-		brand: 'AI Tools',
+		name: 'AI Document Tools',
+		brand: 'AI Lab',
 		marketPrice: 15,
 		category: 'AI',
 		image: 'AI',
-		specHighlight: 'Detector • Rephraser • Docs'
+		specHighlight: 'Detector • Plagiarism • Humanizer'
 	},
 	{
 		id: '2',
@@ -97,12 +97,16 @@ export function calculateGlobalParity(metrics: ParityMetrics): number {
 
 /**
  * Dynamic Discount Engine
- * Calculates the PX cost after applying tier-based subsidies.
+ * Calculates the PEX cost after applying tier-based subsidies.
  */
-export function calculatePXCost(usdPrice: number, pxRate: number, discountPercent: number): number {
+export function calculatePEXCost(
+	usdPrice: number,
+	pexRate: number,
+	discountPercent: number
+): number {
 	// Utility bill discount does not reduce the user's credited service value.
 	const subsidizedValue = usdPrice * (1 - discountPercent);
-	return Math.round(subsidizedValue / pxRate);
+	return Math.round(subsidizedValue / pexRate);
 }
 
 /**

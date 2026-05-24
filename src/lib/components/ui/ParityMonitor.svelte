@@ -31,7 +31,7 @@
 			class="z-20 flex h-full items-center bg-blue-600 px-4 shadow-[20px_0_40px_rgba(0,0,0,0.5)] md:px-6"
 		>
 			<span class="text-[8px] font-black tracking-[0.28em] text-white uppercase md:text-[9px]">
-				PX Spot: ${globalPrice.toFixed(6)}
+				PEX Spot: ${globalPrice.toFixed(6)}
 			</span>
 		</div>
 
@@ -45,7 +45,7 @@
 
 		<!-- FIX: tighter vertical padding and spacing -->
 		<div class="animate-marquee flex items-center py-1 whitespace-nowrap md:py-2">
-			{#each [...pools, ...pools] as pool}
+			{#each [...pools, ...pools] as pool, i (`${pool.provider}-${i}`)}
 				<div class="flex items-center gap-3 px-8 md:gap-4 md:px-10">
 					<span class="text-[8px] font-bold tracking-widest text-white/30 uppercase md:text-[9px]">
 						{pool.provider}
@@ -55,9 +55,8 @@
 					</span>
 					<div class="flex items-center gap-1.5">
 						<span
-							class="h-1 w-1 rounded-full {pool.status === 'OPTIMAL'
-								? 'bg-emerald-400'
-								: 'bg-amber-400'}"
+							class="{pool.status === 'OPTIMAL' ? 'bg-emerald-400' : 'bg-amber-400'} h-1
+								w-1 rounded-full"
 						></span>
 						<span
 							class="text-[7px] font-black tracking-tight text-white/20 uppercase md:text-[8px]"

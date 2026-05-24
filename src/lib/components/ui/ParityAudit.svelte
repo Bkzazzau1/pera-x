@@ -34,7 +34,7 @@
 	</header>
 
 	<div class="relative z-10 space-y-4">
-		{#each auditData as item, i}
+		{#each auditData as item, i (item.exchange)}
 			<div
 				class="group grid grid-cols-4 items-center rounded-2xl border border-white/5 bg-white/1 p-5 transition-all hover:bg-white/3"
 				in:fly={{ y: 10, delay: i * 100 }}
@@ -48,7 +48,7 @@
 				<div class="text-center">
 					<span class="text-sm font-black text-white italic">{item.price}</span>
 					<span class="block text-[7px] font-bold tracking-tighter text-white/10 uppercase"
-						>Current PX Quote</span
+						>Current PEX Quote</span
 					>
 				</div>
 				<div class="text-center">
@@ -69,8 +69,8 @@
 
 	<footer class="relative z-10 mt-8 flex items-center justify-between border-t border-white/5 pt-8">
 		<p class="max-w-xs text-[9px] leading-relaxed font-bold text-white/30 uppercase italic">
-			Service value is calculated first, then converted into PX using the current market
-			price at conversion time.
+			Service value is calculated first, then converted into PEX using the current market price at
+			conversion time.
 		</p>
 		<div class="flex items-baseline gap-2">
 			<span class="text-[10px] font-black text-white/20 uppercase">System Health:</span>

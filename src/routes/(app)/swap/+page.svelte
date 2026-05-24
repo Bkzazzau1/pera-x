@@ -2,7 +2,7 @@
 	import { swapStore } from '$lib/stores/swap.svelte';
 	import { wallet } from '$lib/stores/wallet.svelte';
 	import { fade, fly } from 'svelte/transition';
-// High-Fidelity Infrastructure
+	// High-Fidelity Infrastructure
 	import ParityMonitor from '$lib/components/ui/ParityMonitor.svelte';
 	import SwapConfirm from '$lib/components/ui/SwapConfirm.svelte';
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
@@ -32,12 +32,12 @@
 	<div class="mx-auto max-w-xl">
 		<header class="mb-10 text-center" in:fly={{ y: -10, duration: 600 }}>
 			<h1 class="text-4xl font-black tracking-tighter text-white uppercase italic">
-				PX <span class="font-light text-blue-500 not-italic">Swap</span>
+				PEX <span class="font-light text-blue-500 not-italic">Swap</span>
 			</h1>
 			<p
 				class="mt-2 text-[10px] leading-relaxed font-black tracking-[0.3em] text-blue-400 uppercase"
 			>
-				Acquire PX on Solana before converting into service credits
+				Acquire PEX on Solana before converting into service credits
 			</p>
 		</header>
 
@@ -101,7 +101,7 @@
 							class="flex items-center gap-2 rounded-xl border border-blue-500/30 bg-blue-500/20 px-4 py-2"
 						>
 							<span class="text-sm font-black tracking-tighter text-blue-400 uppercase italic"
-								>PX</span
+								>PEX</span
 							>
 						</div>
 					</div>
@@ -128,7 +128,7 @@
 				disabled={swapStore.fromAmount <= 0}
 				class="mt-8 w-full rounded-[1.5rem] bg-white px-6 py-6 text-[11px] font-black tracking-[0.3em] text-black uppercase shadow-xl transition-all hover:bg-blue-400 hover:text-white active:scale-95 disabled:opacity-20"
 			>
-				Execute PX Swap
+				Execute PEX Swap
 			</button>
 		</div>
 	</div>

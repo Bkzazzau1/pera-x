@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	const bridgeMetrics = {
 		totalRecycled: '$14.8M',
 		bridgeEfficiency: '99.2%',
@@ -55,7 +54,7 @@
 				</svg>
 			</div>
 			<span class="text-[9px] font-black tracking-widest text-white/40 uppercase"
-				>Service-Converted PX</span
+				>Service-Converted PEX</span
 			>
 		</div>
 

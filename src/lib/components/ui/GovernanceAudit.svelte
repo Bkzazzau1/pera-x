@@ -24,7 +24,7 @@
 					{quorumTotal}
 				</div>
 				<div class="mt-1 text-[8px] font-black tracking-widest text-sky-500 uppercase">
-					Active Quorum (PX)
+					Active Quorum (PEX)
 				</div>
 			</div>
 			<div class="text-right">
@@ -46,7 +46,7 @@
 			Active Policy Steering
 		</h4>
 
-		{#each activeProposals as prop, i}
+		{#each activeProposals as prop, i (prop.id)}
 			<div
 				class="glass group relative overflow-hidden rounded-2xl border border-white/5 p-4 transition-all hover:border-blue-500/30"
 				in:fly={{ x: 20, delay: i * 150 }}

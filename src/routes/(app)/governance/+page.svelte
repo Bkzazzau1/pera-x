@@ -49,7 +49,7 @@
 					>Voting Power</span
 				>
 				<span class="text-xl font-black tracking-tighter text-white"
-					>{votingPower} <span class="text-xs text-blue-400">PX</span></span
+					>{votingPower} <span class="text-xs text-blue-400">PEX</span></span
 				>
 			</div>
 			<div class="h-10 w-[1px] bg-white/10"></div>
@@ -66,7 +66,7 @@
 
 	<div class="grid gap-8 lg:grid-cols-3">
 		<div class="space-y-6 lg:col-span-2">
-			{#each proposals as proposal, i}
+			{#each proposals as proposal, i (proposal.id)}
 				<div
 					class="glass group relative overflow-hidden rounded-[2.5rem] border-white/5 p-10 transition-all hover:border-blue-500/30"
 					in:fly={{ y: 20, delay: i * 150 }}
@@ -123,7 +123,7 @@
 					<div class="flex flex-col items-center">
 						<div class="text-4xl font-black tracking-tighter text-white">84.2M</div>
 						<div class="mt-2 text-[9px] font-black tracking-widest text-white/20 uppercase">
-							Active Voting Power (PX)
+							Active Voting Power (PEX)
 						</div>
 					</div>
 
@@ -147,8 +147,8 @@
 					Governance Guard
 				</div>
 				<p class="text-[9px] leading-relaxed font-bold text-white/30 uppercase">
-					Policy votes must preserve service sustainability, compliant provider routing, and
-					the 30% discount cap.
+					Policy votes must preserve service sustainability, compliant provider routing, and the 30%
+					discount cap.
 				</p>
 			</div>
 		</div>

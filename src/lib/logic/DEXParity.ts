@@ -15,21 +15,21 @@ export const fetchParityMetrics = (): PoolMetrics[] => {
 	return [
 		{
 			provider: 'Raydium',
-			pair: 'PX/USDT',
+			pair: 'PEX/USDT',
 			price: 0.00018,
 			liquidity: 4.2,
 			status: 'OPTIMAL'
 		},
 		{
 			provider: 'Jupiter Route',
-			pair: 'PX/USDC',
+			pair: 'PEX/USDC',
 			price: 0.000181,
 			liquidity: 8.9,
 			status: 'OPTIMAL'
 		},
 		{
 			provider: 'Orca',
-			pair: 'PX/SOL',
+			pair: 'PEX/SOL',
 			price: 0.000179,
 			liquidity: 1.6,
 			status: 'SLIPPAGE_RISK'

@@ -39,6 +39,8 @@
 		renderer.domElement.style.height = '100%';
 		renderer.domElement.style.display = 'block';
 
+		// Three.js owns this canvas after Svelte provides the host element.
+		// eslint-disable-next-line svelte/no-dom-manipulating
 		container.appendChild(renderer.domElement);
 
 		// 2. Utility core

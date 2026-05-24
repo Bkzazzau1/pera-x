@@ -3,7 +3,6 @@
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	const currentEpoch = 'EPOCH-42';
 	const burnRate = '20%';
 	const recycleRate = '30%';
 
@@ -13,7 +12,7 @@
 	const policyRules = [
 		{
 			title: 'Dynamic Utility Pricing',
-			desc: 'Service value is calculated first, then converted into PX at the current market price.'
+			desc: 'Service value is calculated first, then converted into PEX at the current market price.'
 		},
 		{
 			title: 'Service-Credit Activation Burn',
@@ -80,7 +79,7 @@
 					Active Protocol Constraints
 				</div>
 				<div class="grid gap-4">
-					{#each policyRules as rule}
+					{#each policyRules as rule (rule.title)}
 						<div
 							class="rounded-2xl border border-white/5 bg-white/2 p-6 transition-all hover:border-blue-500/20 hover:bg-white/5"
 						>

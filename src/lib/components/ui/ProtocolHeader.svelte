@@ -1,18 +1,17 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
 	import { wallet } from '$lib/stores/wallet.svelte';
 	import { onMount } from 'svelte';
 	import { fade, slide } from 'svelte/transition';
-
-	const {} = $props(); // ensure proper reactivity w/out needing unused slot props
 
 	const navLinks = [
 		{ label: 'DASHBOARD', path: '/dashboard', code: 'DB-01' },
 		{ label: 'TRADE', path: '/trade', code: 'TR-02' },
 		{ label: 'REDEEM', path: '/redeem', code: 'RD-03' },
 		{ label: 'ANALYTICS', path: '/analytics', code: 'AN-04' }
-	];
+	] as const;
 
 	let showMobileNav = $state(false);
 	let now = $state(new Date());
@@ -69,13 +68,13 @@
 
 	<div class="mx-auto max-w-7xl px-4 md:px-8">
 		<div class="flex h-20 items-center justify-between gap-8">
-			<a href="/" class="group flex items-center gap-4">
+			<a href={resolve('/')} class="group flex items-center gap-4">
 				<div class="relative">
 					<div class="absolute inset-0 animate-pulse rounded-xl bg-sky-500/20 blur-xl"></div>
 					<div
 						class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-linear-to-br from-sky-500/20 to-blue-600/5 font-black text-sky-400 italic backdrop-blur-2xl transition-all group-hover:border-sky-400/40"
 					>
-						PX
+						PEX
 					</div>
 				</div>
 				<div class="hidden flex-col sm:flex">
@@ -89,9 +88,9 @@
 			</a>
 
 			<nav class="hidden flex-1 items-center justify-center gap-1 lg:flex">
-				{#each navLinks as link}
+				{#each navLinks as link (link.path)}
 					<a
-						href={link.path}
+						href={resolve(link.path)}
 						class="group relative px-6 py-2 text-[10px] font-black tracking-[0.25em] uppercase transition-all
 						{$page.url.pathname.includes(link.path) ? 'text-sky-400' : 'text-white/40 hover:text-white'}"
 					>
@@ -149,10 +148,10 @@
 			class="border-t border-white/5 bg-black/90 p-6 backdrop-blur-3xl lg:hidden"
 		>
 			<div class="grid gap-3">
-				{#each navLinks as link}
+				{#each navLinks as link (link.path)}
 					<button
 						onclick={() => {
-							goto(link.path);
+							goto(resolve(link.path));
 							showMobileNav = false;
 						}}
 						class="flex items-center justify-between rounded-2xl border border-white/5 bg-white/2 px-6 py-5 transition-all active:scale-95

@@ -71,7 +71,7 @@
 				</div>
 
 				<div class="grid gap-6 md:grid-cols-2">
-					{#each toggles as toggle}
+					{#each toggles as toggle (toggle.label)}
 						<div
 							class="flex items-start justify-between rounded-2xl border border-white/5 bg-white/2 p-6"
 						>
@@ -110,7 +110,7 @@
 					Active Sessions
 				</div>
 				<div class="space-y-4">
-					{#each sessions as session}
+					{#each sessions as session (`${session.device}-${session.location}`)}
 						<div class="rounded-2xl border border-white/5 bg-white/2 p-5">
 							<div class="mb-2 flex items-start justify-between">
 								<span class="text-xs font-black tracking-tighter text-white uppercase"

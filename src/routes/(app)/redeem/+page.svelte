@@ -2,13 +2,12 @@
 	import GadgetCard from '$lib/components/ui/GadgetCard.svelte';
 	import ParityMonitor from '$lib/components/ui/ParityMonitor.svelte';
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
-	import { SERVICE_CREDITS, calculatePXCost } from '$lib/logic/Marketplace';
+	import { SERVICE_CREDITS, calculatePEXCost } from '$lib/logic/Marketplace';
 	import { getEligibleTier } from '$lib/logic/PolicyEngine';
-	import { wallet } from '$lib/stores/wallet.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	// Current PX market price used for dynamic utility pricing.
-	const pxSpot = 0.00018;
+	// Current PEX market price used for dynamic utility pricing.
+	const pexSpot = 0.00018;
 	const holdingDays = 38;
 
 	// Svelte 5 Runes: Parse string-based discount to satisfy arithmetic types
@@ -28,8 +27,8 @@
 			<p
 				class="max-w-lg text-[11px] leading-relaxed font-bold tracking-widest text-white/40 uppercase"
 			>
-				Convert Pera-X into AI credits, call time, SMS units, website builder credits, or
-				utility payment credits.
+				Convert Pera-X into AI credits, call time, SMS units, website builder credits, or utility
+				payment credits.
 			</p>
 
 			<div class="glass flex items-center gap-3 rounded-2xl border-blue-400/20 px-6 py-3 shadow-lg">
@@ -53,13 +52,13 @@
 	</header>
 
 	<main class="grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-		{#each SERVICE_CREDITS as gadget, i}
+		{#each SERVICE_CREDITS as gadget, i (gadget.id)}
 			<div in:fly={{ y: 30, delay: i * 100, duration: 800 }}>
 				<GadgetCard
 					name={gadget.name}
 					brand={gadget.brand}
 					price={gadget.marketPrice}
-					discountedPrice={calculatePXCost(gadget.marketPrice, pxSpot, discountMult)}
+					discountedPrice={calculatePEXCost(gadget.marketPrice, pexSpot, discountMult)}
 					icon={gadget.image}
 					specHighlight={gadget.specHighlight}
 				/>

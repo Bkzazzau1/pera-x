@@ -34,7 +34,7 @@
 
 	<!-- Ledger items -->
 	<div class="space-y-2">
-		{#each history as event, i}
+		{#each history as event, i (event.id)}
 			<div
 				in:fly={{ x: -10, delay: i * 80, duration: 500 }}
 				class="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/2 px-3 py-3 transition-all hover:border-blue-400/30 hover:bg-white/4"
@@ -56,7 +56,9 @@
 					>
 						-{event.amount}
 					</span>
-					<span class="text-[9px] font-black tracking-widest text-blue-400/50 uppercase"> PX </span>
+					<span class="text-[9px] font-black tracking-widest text-blue-400/50 uppercase">
+						PEX
+					</span>
 				</div>
 			</div>
 		{/each}

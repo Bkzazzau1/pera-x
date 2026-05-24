@@ -47,7 +47,7 @@
 			>
 				<div class="relative z-10">
 					<div class="mb-2 text-[10px] font-black tracking-[0.3em] text-white/30 uppercase">
-					Estimated PX Value
+						Estimated PEX Value
 					</div>
 					<div class="flex items-baseline gap-3">
 						<div class="text-6xl font-black tracking-tighter text-white">
@@ -59,10 +59,10 @@
 					<div class="mt-10 grid grid-cols-2 gap-10">
 						<div>
 							<div class="mb-2 text-[9px] font-black tracking-widest text-white/20 uppercase">
-								PX Holdings
+								PEX Holdings
 							</div>
 							<div class="text-2xl font-bold text-white">
-								{(wallet.balance || 2500).toLocaleString()} PX
+								{(wallet.balance || 2500).toLocaleString()} PEX
 							</div>
 						</div>
 						<div>
@@ -114,7 +114,7 @@
 					Service Credit Balances
 				</h2>
 				<div class="grid gap-4 md:grid-cols-4">
-					{#each ['AI Credits', 'Call Time', 'SMS Units', 'Website Credits'] as item}
+					{#each ['AI Credits', 'Call Time', 'SMS Units', 'Website Credits'] as item (item)}
 						<div
 							class="rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-colors hover:bg-white/[0.05]"
 						>

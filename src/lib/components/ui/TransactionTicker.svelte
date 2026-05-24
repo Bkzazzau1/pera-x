@@ -73,12 +73,12 @@
 					<span
 						class="max-w-[48vw] truncate text-[18px] leading-none font-black tracking-tight
 							text-white tabular-nums sm:text-[20px]"
-						title={`-${fmt.format(tx.amount)} PX`}
+						title={`-${fmt.format(tx.amount)} PEX`}
 					>
 						-{fmt.format(tx.amount)}
 					</span>
 					<span class="shrink-0 text-[9px] font-black tracking-[0.28em] text-white/25 uppercase">
-						PX
+						PEX
 					</span>
 				</div>
 

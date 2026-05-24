@@ -48,8 +48,5 @@ export function getNextTierProgress(holdingDays: number) {
 	const currentTier = sorted.filter((t) => t.minHoldingDays <= holdingDays).pop();
 	const min = currentTier ? currentTier.minHoldingDays : 0;
 
-	return Math.min(
-		100,
-		Math.max(0, ((holdingDays - min) / (nextTier.minHoldingDays - min)) * 100)
-	);
+	return Math.min(100, Math.max(0, ((holdingDays - min) / (nextTier.minHoldingDays - min)) * 100));
 }

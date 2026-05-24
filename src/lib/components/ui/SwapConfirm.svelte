@@ -5,8 +5,6 @@
 	export let isOpen = false;
 	export let onConfirm: () => void;
 	export let onCancel: () => void;
-
-	$: minReceived = swapStore.estimateOut;
 </script>
 
 {#if isOpen}
@@ -43,7 +41,7 @@
 						>You Receive</span
 					>
 					<span class="text-xl font-bold text-white"
-						>{swapStore.estimateOut.toFixed(2)} <span class="text-blue-400">PX</span></span
+						>{swapStore.estimateOut.toFixed(2)} <span class="text-blue-400">PEX</span></span
 					>
 				</div>
 
@@ -52,7 +50,7 @@
 				<div class="space-y-3 rounded-2xl border border-white/5 bg-white/5 p-5">
 					<div class="flex justify-between text-[9px] font-bold tracking-widest uppercase">
 						<span class="text-white/40">Spot Rate</span>
-						<span class="text-blue-400">1 PX = ${swapStore.currentParity.toFixed(6)}</span>
+						<span class="text-blue-400">1 PEX = ${swapStore.currentParity.toFixed(6)}</span>
 					</div>
 					<div class="flex justify-between text-[9px] font-bold tracking-widest uppercase">
 						<span class="text-white/40">Slippage Tolerance</span>
@@ -60,7 +58,7 @@
 					</div>
 					<div class="flex justify-between text-[9px] font-bold tracking-widest uppercase">
 						<span class="text-white/40">Min. Guaranteed</span>
-						<span class="text-emerald-400">{minReceived.toFixed(2)} PX</span>
+						<span class="text-emerald-400">{swapStore.estimateOut.toFixed(2)} PEX</span>
 					</div>
 				</div>
 			</div>

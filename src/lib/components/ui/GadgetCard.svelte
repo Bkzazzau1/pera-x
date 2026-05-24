@@ -50,7 +50,7 @@
 				Service value: ${price}
 			</p>
 			<p class="text-4xl font-black tracking-tighter text-white italic">
-				{pxBurnImpact} <span class="text-xs text-blue-400 not-italic">PX</span>
+				{pxBurnImpact} <span class="text-xs text-blue-400 not-italic">PEX</span>
 			</p>
 		</div>
 	</div>
@@ -64,8 +64,8 @@
 				<span>2%-30% Dynamic</span>
 			</div>
 			<p class="mt-1 text-[8px] leading-relaxed font-bold text-white/20 uppercase">
-				After credits are issued, the approved burn is applied from the Trading Company
-				Wallet, not from user balances.
+				After credits are issued, the approved burn is applied from the Trading Company Wallet, not
+				from user balances.
 			</p>
 		</div>
 

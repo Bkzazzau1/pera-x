@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-// UI Components
+	// UI Components
 	import BurnHistory from '$lib/components/ui/BurnHistory.svelte';
 	import BurnVisualizer from '$lib/components/ui/BurnVisualizer.svelte';
 	import GovernanceAudit from '$lib/components/ui/GovernanceAudit.svelte';
@@ -17,7 +17,7 @@
 	import TransactionTicker from '$lib/components/ui/TransactionTicker.svelte';
 	import WalletModal from '$lib/components/ui/WalletModal.svelte';
 	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
-// Logic & Stores
+	// Logic & Stores
 	import { startNetworkSimulation } from '$lib/logic/NetworkSimulator';
 
 	onMount(() => {
