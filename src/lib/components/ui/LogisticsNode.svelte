@@ -10,14 +10,16 @@
 </script>
 
 <div
-	class="glass glow-hover relative overflow-hidden rounded-[3.5rem] border border-white/10 p-10 shadow-2xl backdrop-blur-3xl transition-all duration-700"
+	class="glass glow-hover relative overflow-hidden rounded-3xl border border-white/10 p-5 shadow-2xl backdrop-blur-3xl transition-all duration-700 sm:p-6 md:rounded-[3.5rem] md:p-10"
 >
 	<div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-blue-500/5 blur-[100px]"></div>
 	<div
 		class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.03),transparent_70%)]"
 	></div>
 
-	<header class="relative z-10 mb-10 flex items-start justify-between">
+	<header
+		class="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between md:mb-10"
+	>
 		<div>
 			<div class="flex items-center gap-3">
 				<div
@@ -27,11 +29,13 @@
 					Service Credit Node
 				</h3>
 			</div>
-			<p class="mt-2 text-3xl font-black tracking-tighter text-white uppercase italic">
+			<p
+				class="mt-2 text-2xl leading-none font-black tracking-tighter text-white uppercase italic md:text-3xl"
+			>
 				Token-to-Credit <span class="font-light text-blue-500 not-italic">Activation Audit</span>
 			</p>
 		</div>
-		<div class="text-right">
+		<div class="text-left sm:text-right">
 			<span
 				class="rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[8px] font-black tracking-[0.3em] text-white/60 uppercase"
 				>Node Ver: 2026.4</span
@@ -42,10 +46,10 @@
 	<div class="relative z-10 space-y-5">
 		{#each logisticsData as item, i (item.hub)}
 			<div
-				class="group flex items-center justify-between rounded-2xl border border-white/5 bg-white/1 p-5 transition-all hover:bg-white/3"
+				class="group flex flex-col gap-4 rounded-2xl border border-white/5 bg-white/1 p-4 transition-all hover:bg-white/3 sm:flex-row sm:items-center sm:justify-between sm:p-5"
 				in:fly={{ x: -20, delay: i * 150 }}
 			>
-				<div class="flex items-center gap-5">
+				<div class="flex min-w-0 items-center gap-4 sm:gap-5">
 					<div class="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white/5">
 						<div
 							class="absolute inset-0 rounded-xl bg-blue-500/10 opacity-0 transition-opacity group-hover:opacity-100"
@@ -75,7 +79,9 @@
 					</div>
 				</div>
 
-				<div class="flex flex-col items-end gap-1">
+				<div
+					class="flex flex-row items-center justify-between gap-3 sm:flex-col sm:items-end sm:gap-1"
+				>
 					<span class="text-[9px] font-black tracking-widest text-sky-400 uppercase italic"
 						>{item.status}</span
 					>
@@ -87,7 +93,9 @@
 		{/each}
 	</div>
 
-	<footer class="relative z-10 mt-8 flex items-center justify-between border-t border-white/5 pt-8">
+	<footer
+		class="relative z-10 mt-8 flex flex-col gap-4 border-t border-white/5 pt-6 sm:flex-row sm:items-center sm:justify-between md:pt-8"
+	>
 		<div class="flex flex-col">
 			<span class="text-[8px] font-black tracking-widest text-white/20 uppercase"
 				>Global Aggregate</span
@@ -97,7 +105,7 @@
 			>
 		</div>
 		<button
-			class="glass rounded-xl border-white/10 px-6 py-2.5 text-[9px] font-black tracking-widest text-white/60 uppercase transition-all hover:text-white"
+			class="glass rounded-xl border-white/10 px-5 py-2.5 text-[9px] font-black tracking-widest text-white/60 uppercase transition-all hover:text-white"
 		>
 			Usage Dashboard
 		</button>

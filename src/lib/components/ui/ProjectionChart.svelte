@@ -95,8 +95,8 @@
 	<!-- CHART ZONE (smaller height) -->
 	<button
 		type="button"
-		class="chart-shell group relative w-full flex-1 overflow-hidden rounded-3xl border border-white/10 bg-black/15 p-3 focus:outline-none md:p-4"
-		style="min-height: 260px;"
+		class="chart-shell group relative w-full flex-1 overflow-hidden rounded-2xl border border-white/10 bg-black/15 p-3 focus:outline-none sm:rounded-3xl md:p-4"
+		style="min-height: clamp(190px, 58vw, 260px);"
 		aria-label="Projection chart"
 		onmousemove={onMove}
 		onmouseleave={onLeave}
@@ -273,7 +273,7 @@
 
 	<!-- Footer (compact) -->
 	<footer
-		class="relative z-10 mt-4 flex items-end justify-between gap-4 border-t border-white/5 pt-4 md:mt-5"
+		class="relative z-10 mt-4 flex flex-col gap-4 border-t border-white/5 pt-4 sm:flex-row sm:items-end sm:justify-between md:mt-5"
 	>
 		<div class="min-w-0">
 			<span class="text-[9px] font-black tracking-[0.32em] text-white/25 uppercase italic">
@@ -289,12 +289,12 @@
 
 		<div class="flex items-center gap-2">
 			<button
-				class="rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-[9px] font-black tracking-[0.28em] text-white/60 uppercase transition-all hover:bg-white/10 hover:text-white active:scale-95"
+				class="rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-[9px] font-black tracking-[0.22em] text-white/60 uppercase transition-all hover:bg-white/10 hover:text-white active:scale-95 sm:tracking-[0.28em]"
 			>
 				Ledger
 			</button>
 			<button
-				class="rounded-2xl border border-blue-400/20 bg-blue-500/15 px-4 py-2 text-[9px] font-black tracking-[0.28em] text-blue-300 uppercase transition-all hover:bg-blue-500/22 active:scale-95"
+				class="rounded-2xl border border-blue-400/20 bg-blue-500/15 px-4 py-2 text-[9px] font-black tracking-[0.22em] text-blue-300 uppercase transition-all hover:bg-blue-500/22 active:scale-95 sm:tracking-[0.28em]"
 			>
 				Export
 			</button>

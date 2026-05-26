@@ -38,12 +38,12 @@
 <PlanetScene />
 
 <div class="relative z-10 w-full pb-8 selection:bg-blue-500/30" in:fade={{ duration: 1000 }}>
-	<section class="flex flex-col gap-8 overflow-hidden">
+	<section class="flex flex-col gap-6 overflow-hidden md:gap-8">
 		<!-- ✅ HEADER REMOVED (GLOBAL ProtocolHeader is used instead) -->
 		<!-- ✅ MOBILE QUICK ACTIONS REMOVED (GLOBAL ProtocolHeader is used instead) -->
 
 		<!-- ✅ TOP SUMMARY ROW -->
-		<div class="grid gap-6 lg:grid-cols-3">
+		<div class="grid gap-4 sm:gap-6 lg:grid-cols-3">
 			<div class="lg:col-span-2">
 				<BurnVisualizer rate={20} />
 			</div>
@@ -64,9 +64,9 @@
 		</div>
 
 		<!-- ✅ MAIN + RIGHT RAIL -->
-		<div class="grid w-full gap-6 lg:grid-cols-[1fr_400px] lg:gap-8">
-			<main class="space-y-8 md:space-y-10">
-				<div class="grid gap-6 md:gap-8 lg:grid-cols-2">
+		<div class="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-8">
+			<main class="min-w-0 space-y-6 md:space-y-10">
+				<div class="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2">
 					<LogisticsNode />
 					<div class="flex flex-col gap-6 md:gap-8">
 						<StatCard
@@ -84,13 +84,13 @@
 					</div>
 				</div>
 
-				<div class="glass w-full overflow-hidden rounded-[3rem] border-white/5 p-1">
+				<div class="glass w-full overflow-hidden rounded-3xl border-white/5 p-1 md:rounded-[3rem]">
 					<ProjectionChart />
 				</div>
 
 				<!-- ✅ POLICY ENGINE -->
 				<div
-					class="glass glow-hover relative overflow-hidden rounded-[2.5rem] border border-white/10 p-6 md:rounded-[3.5rem] md:p-12"
+					class="glass glow-hover relative overflow-hidden rounded-3xl border border-white/10 p-5 sm:p-6 md:rounded-[3.5rem] md:p-12"
 				>
 					<div class="pointer-events-none absolute inset-0">
 						<div
@@ -117,7 +117,7 @@
 						<div class="mb-6 flex flex-wrap items-center justify-between gap-4 md:mb-10">
 							<div>
 								<h2
-									class="text-3xl font-black tracking-tighter uppercase italic sm:text-4xl md:text-6xl"
+									class="text-3xl leading-none font-black tracking-tighter uppercase italic sm:text-4xl md:text-6xl"
 								>
 									Policy Engine
 								</h2>
@@ -141,12 +141,12 @@
 							</div>
 						</div>
 
-						<div class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
+						<div class="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-3">
 							{#each policyModules as module (module.href)}
 								<button
 									type="button"
 									onclick={() => goto(resolve(module.href))}
-									class="glass group relative flex aspect-square items-center justify-center overflow-hidden rounded-4xl border border-white/5 p-5 transition-all duration-500 hover:-translate-y-0.5 hover:border-blue-500/40 hover:bg-white/4 active:translate-y-0 md:rounded-[2.5rem] md:p-7"
+									class="glass group relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border border-white/5 p-4 transition-all duration-500 hover:-translate-y-0.5 hover:border-blue-500/40 hover:bg-white/4 active:translate-y-0 md:rounded-[2.5rem] md:p-7"
 								>
 									<div
 										class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -174,7 +174,7 @@
 
 										<div class="space-y-2">
 											<span
-												class="block text-[11px] font-black tracking-[0.32em] uppercase transition-all duration-300 group-hover:tracking-[0.4em]"
+												class="block text-[10px] font-black tracking-[0.24em] uppercase transition-all duration-300 sm:text-[11px] sm:tracking-[0.32em] sm:group-hover:tracking-[0.4em]"
 											>
 												{module.name}
 											</span>
@@ -208,7 +208,7 @@
 			</main>
 
 			<aside
-				class="flex flex-col overflow-hidden rounded-[3.5rem] border border-white/10 bg-white/2 p-6 shadow-2xl backdrop-blur-[60px] md:p-8"
+				class="flex min-w-0 flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/2 p-5 shadow-2xl backdrop-blur-[60px] sm:p-6 md:rounded-[3.5rem] md:p-8"
 			>
 				<GovernanceAudit />
 				<div
@@ -239,7 +239,7 @@
 				<LiquidityBridge />
 
 				<div
-					class="mt-8 shrink-0 rounded-4xl border border-emerald-500/20 bg-emerald-500/5 p-6 backdrop-blur-md"
+					class="mt-6 shrink-0 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 p-5 backdrop-blur-md md:mt-8 md:rounded-4xl md:p-6"
 				>
 					<div class="mb-2 flex items-center gap-2">
 						<div

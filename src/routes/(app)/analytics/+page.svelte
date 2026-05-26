@@ -17,9 +17,12 @@
 <PlanetScene />
 <ParityMonitor />
 
-<div class="relative z-10 min-h-screen bg-transparent p-8 pb-32 lg:p-16" in:fade>
-	<header class="mb-12" in:fly={{ y: -20, duration: 800 }}>
-		<h1 class="text-4xl font-black tracking-tighter text-white uppercase italic">
+<div
+	class="relative z-10 min-h-screen bg-transparent px-0 py-6 pb-24 sm:px-2 md:p-8 md:pb-32 lg:p-16"
+	in:fade
+>
+	<header class="mb-8 md:mb-12" in:fly={{ y: -20, duration: 800 }}>
+		<h1 class="text-3xl font-black tracking-tighter text-white uppercase italic sm:text-4xl">
 			Analytics <span class="font-light text-blue-500 not-italic">Hub</span>
 		</h1>
 		<p class="mt-4 max-w-2xl text-xs font-bold tracking-[0.2em] text-white/40 uppercase">
@@ -28,7 +31,7 @@
 		</p>
 	</header>
 
-	<div class="grid gap-8 lg:grid-cols-3">
+	<div class="grid gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-8">
 		{#each metrics as metric, i (metric.label)}
 			<div in:fly={{ y: 20, delay: i * 100 }}>
 				<StatCard label={metric.label} value={metric.value} hint={metric.hint} variant="neon" />
@@ -41,14 +44,14 @@
 
 		<div class="lg:col-span-2" in:fly={{ y: 20, delay: 500 }}>
 			<div
-				class="glass overflow-hidden rounded-[3rem] border border-white/5 p-1 shadow-2xl backdrop-blur-3xl"
+				class="glass overflow-hidden rounded-3xl border border-white/5 p-1 shadow-2xl backdrop-blur-3xl md:rounded-[3rem]"
 			>
 				<ProjectionChart />
 			</div>
 		</div>
 
 		<div
-			class="glass flex flex-col justify-between rounded-[3rem] border-white/10 p-10 shadow-2xl backdrop-blur-3xl"
+			class="glass flex flex-col justify-between rounded-3xl border-white/10 p-5 shadow-2xl backdrop-blur-3xl sm:p-6 md:rounded-[3rem] md:p-10"
 			in:fly={{ y: 20, delay: 700 }}
 		>
 			<div>
@@ -57,7 +60,7 @@
 				</div>
 
 				<div class="mt-6 space-y-6">
-					<div class="flex items-center justify-between">
+					<div class="flex items-center justify-between gap-4">
 						<div class="flex flex-col">
 							<span class="text-[9px] font-black tracking-widest text-white/30 uppercase"
 								>Provider Settlement</span
@@ -69,7 +72,7 @@
 						<span class="text-xl font-black tracking-tighter text-emerald-400 italic">$890M</span>
 					</div>
 
-					<div class="flex items-center justify-between">
+					<div class="flex items-center justify-between gap-4">
 						<div class="flex flex-col">
 							<span class="text-[9px] font-black tracking-widest text-white/30 uppercase"
 								>Burn Wallet</span
@@ -93,7 +96,7 @@
 			</div>
 
 			<div
-				class="mt-10 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-6 transition-all hover:bg-blue-500/10"
+				class="mt-8 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-5 transition-all hover:bg-blue-500/10 md:mt-10 md:p-6"
 			>
 				<div class="mb-2 flex items-center gap-2">
 					<span class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400"></span>

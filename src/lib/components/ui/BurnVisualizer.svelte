@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="glass glow-hover group relative h-full min-h-45 w-full overflow-hidden rounded-[2.5rem] border-white/5 transition-all duration-700 md:min-h-55"
+	class="glass glow-hover group relative h-full min-h-42 w-full overflow-hidden rounded-3xl border-white/5 transition-all duration-700 md:min-h-55 md:rounded-[2.5rem]"
 >
 	<svg
 		class="absolute inset-0 h-full w-full opacity-30 transition-opacity duration-1000 group-hover:opacity-50"
@@ -29,23 +29,29 @@
 		</defs>
 	</svg>
 
-	<div class="relative z-10 flex h-full items-center justify-between px-6 md:px-10">
-		<div class="flex flex-col">
+	<div
+		class="relative z-10 flex h-full flex-col justify-center gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 md:px-10"
+	>
+		<div class="flex min-w-0 flex-col">
 			<div class="mb-1 flex items-center gap-2">
 				<div class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400"></div>
 				<span class="text-[10px] font-black tracking-[0.4em] text-blue-400/60 uppercase">
 					Service Activation Burn Engine
 				</span>
 			</div>
-			<div class="text-3xl font-black tracking-tighter text-white md:text-4xl">
+			<div class="text-2xl leading-tight font-black tracking-tighter text-white md:text-4xl">
 				Target: <span class="text-blue-400">{rate}%</span>
-				<span class="ml-2 text-xs font-light tracking-[0.2em] text-white/30 uppercase">
+				<span
+					class="block text-[10px] font-light tracking-[0.2em] text-white/30 uppercase sm:ml-2 sm:inline sm:text-xs"
+				>
 					Revenue Burn
 				</span>
 			</div>
 		</div>
 
-		<div class="flex flex-col items-end gap-2">
+		<div
+			class="flex shrink-0 flex-row items-center justify-between gap-3 sm:flex-col sm:items-end sm:justify-start sm:gap-2"
+		>
 			<div
 				class="flex items-center gap-3 rounded-xl border border-blue-400/20 bg-blue-400/10 px-4 py-2 shadow-[0_0_25px_rgba(59,130,246,0.2)]"
 			>

@@ -9,9 +9,11 @@
 </script>
 
 <div
-	class="glass glow-hover relative overflow-hidden rounded-[3rem] border border-white/10 p-10 shadow-2xl backdrop-blur-3xl transition-all duration-700"
+	class="glass glow-hover relative overflow-hidden rounded-3xl border border-white/10 p-5 shadow-2xl backdrop-blur-3xl transition-all duration-700 sm:p-6 md:rounded-[3rem] md:p-10"
 >
-	<header class="relative z-10 mb-8 flex items-start justify-between">
+	<header
+		class="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+	>
 		<div>
 			<div class="flex items-center gap-3">
 				<div
@@ -21,11 +23,13 @@
 					Solana Liquidity Audit
 				</h3>
 			</div>
-			<p class="mt-2 text-3xl font-black tracking-tighter text-white uppercase italic">
+			<p
+				class="mt-2 text-2xl leading-none font-black tracking-tighter text-white uppercase italic md:text-3xl"
+			>
 				Dynamic <span class="font-light text-blue-500 not-italic">Utility Pricing</span>
 			</p>
 		</div>
-		<div class="text-right">
+		<div class="text-left sm:text-right">
 			<span
 				class="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1 text-[8px] font-black tracking-widest text-blue-400 uppercase"
 				>Oracle: Active</span
@@ -36,7 +40,7 @@
 	<div class="relative z-10 space-y-4">
 		{#each auditData as item, i (item.exchange)}
 			<div
-				class="group grid grid-cols-4 items-center rounded-2xl border border-white/5 bg-white/1 p-5 transition-all hover:bg-white/3"
+				class="group grid grid-cols-2 gap-4 rounded-2xl border border-white/5 bg-white/1 p-4 transition-all hover:bg-white/3 sm:grid-cols-4 sm:items-center sm:p-5"
 				in:fly={{ y: 10, delay: i * 100 }}
 			>
 				<div class="flex flex-col">
@@ -45,19 +49,19 @@
 					>
 					<span class="text-[8px] font-bold text-white/20 uppercase">Aggregator Node</span>
 				</div>
-				<div class="text-center">
+				<div class="text-left sm:text-center">
 					<span class="text-sm font-black text-white italic">{item.price}</span>
 					<span class="block text-[7px] font-bold tracking-tighter text-white/10 uppercase"
 						>Current PEX Quote</span
 					>
 				</div>
-				<div class="text-center">
+				<div class="text-left sm:text-center">
 					<span class="text-sm font-black text-blue-400 italic">{item.liquidity}</span>
 					<span class="block text-[7px] font-bold tracking-tighter text-blue-400/20 uppercase"
 						>Pool Depth</span
 					>
 				</div>
-				<div class="text-right">
+				<div class="text-left sm:text-right">
 					<span class="text-[9px] font-black text-emerald-400 uppercase">Drift: {item.drift}</span>
 					<div class="mt-1 h-1 w-full overflow-hidden rounded-full bg-white/5">
 						<div class="h-full bg-emerald-500/50" style="width: 98%"></div>
@@ -67,7 +71,9 @@
 		{/each}
 	</div>
 
-	<footer class="relative z-10 mt-8 flex items-center justify-between border-t border-white/5 pt-8">
+	<footer
+		class="relative z-10 mt-8 flex flex-col gap-4 border-t border-white/5 pt-6 sm:flex-row sm:items-center sm:justify-between sm:pt-8"
+	>
 		<p class="max-w-xs text-[9px] leading-relaxed font-bold text-white/30 uppercase italic">
 			Service value is calculated first, then converted into PEX using the current market price at
 			conversion time.

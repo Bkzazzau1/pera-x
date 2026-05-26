@@ -30,7 +30,7 @@
 </script>
 
 <div
-	class="glass glow-hover group relative flex min-h-45 flex-col justify-between overflow-hidden rounded-3xl p-6 transition-all duration-700 ease-out md:min-h-55 md:rounded-4xl md:p-7"
+	class="glass glow-hover group relative flex min-h-36 flex-col justify-between overflow-hidden rounded-2xl p-4 transition-all duration-700 ease-out sm:min-h-40 sm:rounded-3xl sm:p-5 md:min-h-55 md:rounded-4xl md:p-7"
 	in:fly={{ y: 20, duration: 800 }}
 >
 	<div
@@ -58,7 +58,7 @@
 
 				<!-- value -->
 				<div
-					class={'mt-3 text-2xl leading-none font-black tracking-tighter whitespace-nowrap tabular-nums transition-all duration-500 md:mt-4 md:text-4xl ' +
+					class={'mt-3 max-w-full overflow-hidden text-2xl leading-none font-black tracking-tighter text-ellipsis tabular-nums transition-all duration-500 sm:whitespace-nowrap md:mt-4 md:text-4xl ' +
 						(variant === 'neon'
 							? 'bg-linear-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(96,165,250,0.4)]'
 							: 'text-white/90')}
@@ -102,7 +102,7 @@
 	</div>
 
 	{#if hint}
-		<div class="relative z-10 mt-4 border-t border-white/5 pt-4 md:mt-6 md:pt-5">
+		<div class="relative z-10 mt-4 border-t border-white/5 pt-3 md:mt-6 md:pt-5">
 			<div class="flex items-center justify-between gap-2">
 				<span
 					class="truncate text-[8px] font-bold tracking-widest text-white/20 uppercase italic md:text-[10px] md:tracking-[0.2em]"

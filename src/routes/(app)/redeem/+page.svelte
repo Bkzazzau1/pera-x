@@ -18,9 +18,14 @@
 <PlanetScene />
 <ParityMonitor />
 
-<div class="relative z-10 min-h-screen bg-transparent p-6 pb-32 md:p-12" in:fade>
-	<header class="mb-16 max-w-6xl" in:fly={{ y: -20, duration: 800 }}>
-		<h1 class="mb-4 text-5xl font-black tracking-tighter text-white uppercase italic">
+<div
+	class="relative z-10 min-h-screen bg-transparent px-0 py-6 pb-24 sm:px-2 md:p-12 md:pb-32"
+	in:fade
+>
+	<header class="mb-10 max-w-6xl md:mb-16" in:fly={{ y: -20, duration: 800 }}>
+		<h1
+			class="mb-4 text-4xl leading-none font-black tracking-tighter text-white uppercase italic sm:text-5xl"
+		>
 			Service <span class="font-light text-blue-500 not-italic">Credits</span>
 		</h1>
 		<div class="flex flex-wrap items-center gap-6">
@@ -31,7 +36,9 @@
 				payment credits.
 			</p>
 
-			<div class="glass flex items-center gap-3 rounded-2xl border-blue-400/20 px-6 py-3 shadow-lg">
+			<div
+				class="glass flex w-full items-center gap-3 rounded-2xl border-blue-400/20 px-4 py-3 shadow-lg sm:w-auto sm:px-6"
+			>
 				<div class="flex flex-col">
 					<span class="text-[8px] font-black tracking-[0.2em] text-white/30 uppercase">Status</span>
 					<span class="text-xs font-black tracking-tighter text-blue-400 uppercase">
@@ -51,7 +58,7 @@
 		</div>
 	</header>
 
-	<main class="grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+	<main class="grid max-w-7xl grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
 		{#each SERVICE_CREDITS as gadget, i (gadget.id)}
 			<div in:fly={{ y: 30, delay: i * 100, duration: 800 }}>
 				<GadgetCard

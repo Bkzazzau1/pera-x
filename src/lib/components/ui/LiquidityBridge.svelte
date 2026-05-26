@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="glass glow-hover relative overflow-hidden rounded-[3rem] border border-white/10 p-10 shadow-2xl backdrop-blur-3xl transition-all duration-700"
+	class="glass glow-hover relative overflow-hidden rounded-3xl border border-white/10 p-5 shadow-2xl backdrop-blur-3xl transition-all duration-700 sm:p-6 md:rounded-[3rem] md:p-10"
 >
 	<div
 		class="absolute -top-32 -right-32 h-96 w-96 animate-pulse rounded-full bg-emerald-500/5 blur-[120px]"
@@ -19,7 +19,9 @@
 		class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.03),transparent_70%)]"
 	></div>
 
-	<header class="relative z-10 mb-10 flex items-start justify-between">
+	<header
+		class="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between md:mb-10"
+	>
 		<div>
 			<div class="flex items-center gap-3">
 				<div class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]"></div>
@@ -27,11 +29,13 @@
 					Trading Company Wallet
 				</h3>
 			</div>
-			<p class="mt-2 text-3xl font-black tracking-tighter text-white uppercase italic">
+			<p
+				class="mt-2 text-2xl leading-none font-black tracking-tighter text-white uppercase italic md:text-3xl"
+			>
 				Service Revenue <span class="font-light text-emerald-400 not-italic">Allocation Flow</span>
 			</p>
 		</div>
-		<div class="text-right">
+		<div class="text-left sm:text-right">
 			<span
 				class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1 text-[8px] font-black tracking-widest text-emerald-400 uppercase"
 				>Wallet Labeled</span
@@ -39,10 +43,10 @@
 		</div>
 	</header>
 
-	<div class="relative z-10 grid grid-cols-3 items-center gap-6 py-8">
+	<div class="relative z-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-5 sm:gap-6 md:py-8">
 		<div class="flex flex-col items-center gap-4 text-center">
 			<div
-				class="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/5 bg-white/2 shadow-inner"
+				class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/5 bg-white/2 shadow-inner sm:h-16 sm:w-16"
 			>
 				<svg class="h-8 w-8 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path
@@ -72,7 +76,7 @@
 
 		<div class="flex flex-col items-center gap-4 text-center">
 			<div
-				class="flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_30px_rgba(52,211,153,0.1)]"
+				class="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 shadow-[0_0_30px_rgba(52,211,153,0.1)] sm:h-16 sm:w-16"
 			>
 				<svg class="h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path
@@ -89,7 +93,9 @@
 		</div>
 	</div>
 
-	<footer class="relative z-10 mt-8 grid grid-cols-2 gap-8 border-t border-white/5 pt-8">
+	<footer
+		class="relative z-10 mt-6 grid grid-cols-1 gap-5 border-t border-white/5 pt-6 sm:grid-cols-2 sm:gap-8 sm:pt-8"
+	>
 		<div>
 			<div class="text-[8px] font-black tracking-widest text-white/20 uppercase italic">
 				Service Revenue
@@ -98,7 +104,7 @@
 				{bridgeMetrics.totalRecycled}
 			</div>
 		</div>
-		<div class="text-right">
+		<div class="text-left sm:text-right">
 			<div class="text-[8px] font-black tracking-widest text-white/20 uppercase italic">
 				Settlement Integrity
 			</div>
