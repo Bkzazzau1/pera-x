@@ -1,42 +1,76 @@
-# sv
+# Pera-X dApp
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Investor-ready SvelteKit dApp for the Pera-X Solana utility-token ecosystem.
 
-## Creating a project
+Pera-X separates the token and platform-spending layer:
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
+```text
+PEX = Solana ecosystem token / asset
+Credits = internal platform spending balance for services
 ```
 
-To recreate this project with the same configuration:
+Users can follow the dApp to understand the protocol, connect a wallet, view the dashboard, explore trading/redeem flows, and move from the token layer into the real utility platform.
 
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography" --install npm .
+## Live Utility Site
+
+```text
+https://app.pera-x.xyz
 ```
+
+This link is now exposed inside the dApp header as **Utility App** so users, investors, and community members can move from the PEX dashboard to the actual service platform.
+
+## Current dApp Sections
+
+- Marketing landing page for the Pera-X utility story.
+- Protocol dashboard for supply, burn, service audit, and settlement narrative.
+- Trade route for PEX trading flow.
+- Redeem route for utility/service redemption direction.
+- Analytics route for public protocol metrics.
+- Global header with wallet connection and utility-site link.
+
+## Smart Contract Alignment
+
+The dApp narrative is aligned with the `Pera-X-ecosystem` contract model:
+
+- PEX utility payment transfer to Trading Company token accounts.
+- External utility-payment recording.
+- Trading Company burn execution.
+- Market-conditional release policy.
+- Pause and emergency-pause controls.
+- Authority transfer controls.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies:
+
+```sh
+npm install
+```
+
+Start development server:
 
 ```sh
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+Build production version:
 
 ```sh
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview production build:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```sh
+npm run preview
+```
+
+## Recommended Next Improvements
+
+1. Replace all simulated dashboard numbers with backend/contract-fed data.
+2. Add verified contract/program ID and token mint display.
+3. Add clear labels for Devnet/Mainnet status.
+4. Wire wallet connection to real Solana wallet adapters.
+5. Add direct transaction flow for PEX-to-Credits utility payment.
+6. Add a `/utility` bridge page explaining how PEX converts into Credits on the utility platform.
+7. Publish analytics from real events: payments, burns, supply, releases, and service activations.
