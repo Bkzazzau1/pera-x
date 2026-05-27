@@ -6,6 +6,8 @@
 	import { onMount } from 'svelte';
 	import { fade, slide } from 'svelte/transition';
 
+	const utilityAppUrl = 'https://app.pera-x.xyz';
+
 	const navLinks = [
 		{ label: 'DASHBOARD', path: '/dashboard', code: 'DB-01' },
 		{ label: 'TRADE', path: '/trade', code: 'TR-02' },
@@ -58,6 +60,9 @@
 					><span class="h-1 w-1 rounded-full bg-sky-500"></span> LATENCY: {latencyMs ??
 						'--'}MS</span
 				>
+				<a href={utilityAppUrl} target="_blank" rel="noreferrer" class="text-cyan-300/60 transition hover:text-cyan-200"
+					>UTILITY APP: LIVE</a
+				>
 			</div>
 			<div class="flex gap-6">
 				<span class="text-sky-400/50">PROTOCOL: PERA-X v2.0.26</span>
@@ -82,7 +87,7 @@
 						>Pera-X</span
 					>
 					<span class="mt-1 text-[9px] font-black tracking-[0.4em] text-sky-500/40 uppercase"
-						>Monetary Standard</span
+						>Token-to-Credits Protocol</span
 					>
 				</div>
 			</a>
@@ -106,9 +111,26 @@
 						</span>
 					</a>
 				{/each}
+				<a
+					href={utilityAppUrl}
+					target="_blank"
+					rel="noreferrer"
+					class="group relative px-6 py-2 text-[10px] font-black tracking-[0.25em] text-cyan-300/70 uppercase transition-all hover:text-cyan-200"
+				>
+					<span class="relative"><span class="mr-1 text-[7px] opacity-30">UT-05</span>UTILITY</span>
+				</a>
 			</nav>
 
 			<div class="flex items-center gap-4">
+				<a
+					href={utilityAppUrl}
+					target="_blank"
+					rel="noreferrer"
+					class="hidden rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-[10px] font-black tracking-widest text-cyan-300 transition-all hover:bg-cyan-400 hover:text-black active:scale-95 md:inline-flex"
+				>
+					OPEN UTILITY
+				</a>
+
 				<button
 					onclick={() => wallet.connect()}
 					class="group relative overflow-hidden rounded-xl border border-sky-400/30 bg-sky-400/10 px-6 py-3 text-[10px] font-black tracking-widest text-sky-400 transition-all hover:bg-sky-400 hover:text-white active:scale-95"
@@ -116,7 +138,7 @@
 					<div
 						class="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
 					></div>
-					{wallet.address ? 'SYNCED' : 'CONNECT TERMINAL'}
+					{wallet.address ? 'SYNCED' : 'CONNECT WALLET'}
 				</button>
 
 				<button
@@ -170,6 +192,22 @@
 						</div>
 					</button>
 				{/each}
+				<a
+					href={utilityAppUrl}
+					target="_blank"
+					rel="noreferrer"
+					class="flex items-center justify-between rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-6 py-5 text-cyan-200 transition-all active:scale-95"
+				>
+					<div class="flex flex-col items-start">
+						<span class="text-[7px] font-black tracking-widest opacity-40">UT-05</span>
+						<span class="text-xs font-black tracking-[0.3em] uppercase">Utility App</span>
+					</div>
+					<div
+						class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[8px]"
+					>
+						↗
+					</div>
+				</a>
 			</div>
 			<div
 				class="mt-8 flex justify-between rounded-xl bg-sky-500/5 p-4 text-[9px] font-black tracking-widest text-sky-500/50 uppercase"
