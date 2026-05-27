@@ -11,16 +11,15 @@
 	const navLinks = [
 		{ label: 'DASHBOARD', path: '/dashboard', code: 'DB-01' },
 		{ label: 'TRADE', path: '/trade', code: 'TR-02' },
-		{ label: 'REDEEM', path: '/redeem', code: 'RD-03' },
-		{ label: 'ANALYTICS', path: '/analytics', code: 'AN-04' },
-		{ label: 'UTILITY', path: '/utility', code: 'UT-05' }
+		{ label: 'UTILITY', path: '/utility', code: 'UT-03' },
+		{ label: 'CONTRACT', path: '/contract', code: 'CT-04' },
+		{ label: 'ANALYTICS', path: '/analytics', code: 'AN-05' }
 	] as const;
 
 	let showMobileNav = $state(false);
 	let now = $state(new Date());
 	let latencyMs = $state<number | null>(null);
 
-	// High-Fidelity Time Formatting (WAT)
 	const wat = $derived.by(() => {
 		const formatter = new Intl.DateTimeFormat('en-GB', {
 			timeZone: 'Africa/Lagos',
@@ -32,7 +31,6 @@
 		return { time: formatter.format(now), tz: 'WAT' };
 	});
 
-	// Node Telemetry Simulation
 	function updateTelemetry() {
 		latencyMs = Math.floor(14 + Math.random() * 8);
 	}
@@ -97,7 +95,7 @@
 				{#each navLinks as link (link.path)}
 					<a
 						href={resolve(link.path)}
-						class="group relative px-5 py-2 text-[10px] font-black tracking-[0.22em] uppercase transition-all
+						class="group relative px-4 py-2 text-[10px] font-black tracking-[0.2em] uppercase transition-all
 						{$page.url.pathname.includes(link.path) ? 'text-sky-400' : 'text-white/40 hover:text-white'}"
 					>
 						{#if $page.url.pathname.includes(link.path)}
