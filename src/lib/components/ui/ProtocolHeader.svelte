@@ -12,7 +12,8 @@
 		{ label: 'DASHBOARD', path: '/dashboard', code: 'DB-01' },
 		{ label: 'TRADE', path: '/trade', code: 'TR-02' },
 		{ label: 'REDEEM', path: '/redeem', code: 'RD-03' },
-		{ label: 'ANALYTICS', path: '/analytics', code: 'AN-04' }
+		{ label: 'ANALYTICS', path: '/analytics', code: 'AN-04' },
+		{ label: 'UTILITY', path: '/utility', code: 'UT-05' }
 	] as const;
 
 	let showMobileNav = $state(false);
@@ -96,7 +97,7 @@
 				{#each navLinks as link (link.path)}
 					<a
 						href={resolve(link.path)}
-						class="group relative px-6 py-2 text-[10px] font-black tracking-[0.25em] uppercase transition-all
+						class="group relative px-5 py-2 text-[10px] font-black tracking-[0.22em] uppercase transition-all
 						{$page.url.pathname.includes(link.path) ? 'text-sky-400' : 'text-white/40 hover:text-white'}"
 					>
 						{#if $page.url.pathname.includes(link.path)}
@@ -111,14 +112,6 @@
 						</span>
 					</a>
 				{/each}
-				<a
-					href={utilityAppUrl}
-					target="_blank"
-					rel="noreferrer"
-					class="group relative px-6 py-2 text-[10px] font-black tracking-[0.25em] text-cyan-300/70 uppercase transition-all hover:text-cyan-200"
-				>
-					<span class="relative"><span class="mr-1 text-[7px] opacity-30">UT-05</span>UTILITY</span>
-				</a>
 			</nav>
 
 			<div class="flex items-center gap-4">
@@ -199,8 +192,8 @@
 					class="flex items-center justify-between rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-6 py-5 text-cyan-200 transition-all active:scale-95"
 				>
 					<div class="flex flex-col items-start">
-						<span class="text-[7px] font-black tracking-widest opacity-40">UT-05</span>
-						<span class="text-xs font-black tracking-[0.3em] uppercase">Utility App</span>
+						<span class="text-[7px] font-black tracking-widest opacity-40">APP</span>
+						<span class="text-xs font-black tracking-[0.3em] uppercase">Open Utility App</span>
 					</div>
 					<div
 						class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[8px]"
