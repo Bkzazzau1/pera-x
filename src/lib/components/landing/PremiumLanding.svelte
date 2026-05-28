@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import PlanetScene from '$lib/components/visuals/PlanetScene.svelte';
+	import BusinessLandingBackground from '$lib/components/landing/BusinessLandingBackground.svelte';
 	import { onMount } from 'svelte';
-	import { fade, fly, scale } from 'svelte/transition';
+	import { fly, scale } from 'svelte/transition';
 
 	let mounted = false;
 	onMount(() => (mounted = true));
@@ -60,6 +60,12 @@
 		{ n: '03', title: 'Spend on real services', body: 'Credits are consumed across AI, calls, SMS, numbers, bills, and web tools without exposing users to token volatility per action.' },
 		{ n: '04', title: 'Record settlement and burn', body: 'Service revenue is routed through Trading Company logic, recorded, and used for burn/policy transparency.' }
 	] as const;
+
+	const trustSignals = [
+		{ label: 'Utility-first economy', value: 'PEX + Credits', desc: 'PEX is the asset. Credits are the spending layer.' },
+		{ label: 'Backend transparency', value: 'Status APIs', desc: 'Protocol and service catalog are exposed from the utility gateway.' },
+		{ label: 'Safety controls', value: 'Pause + Gates', desc: 'Pause, emergency pause, authority flow, burn and release checks.' }
+	] as const;
 </script>
 
 <svelte:head>
@@ -70,16 +76,9 @@
 	/>
 </svelte:head>
 
-<div class="fixed inset-0 z-0 opacity-55">
-	<PlanetScene />
-</div>
+<BusinessLandingBackground />
 
-<div class="premium-landing relative z-10 min-h-screen overflow-x-hidden bg-[#020617] text-white selection:bg-cyan-400/30">
-	<div class="pointer-events-none fixed inset-0 z-0">
-		<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.16),transparent_32%),radial-gradient(circle_at_80%_35%,rgba(0,229,255,0.10),transparent_28%),linear-gradient(180deg,rgba(2,6,23,0.15),rgba(2,6,23,0.96)_70%)]"></div>
-		<div class="absolute inset-0 opacity-[0.06] landing-grid"></div>
-	</div>
-
+<div class="premium-landing relative z-10 min-h-screen overflow-x-hidden bg-transparent text-white selection:bg-cyan-400/30">
 	<nav class="fixed top-0 z-50 w-full border-b border-white/5 bg-[#020617]/70 backdrop-blur-2xl">
 		<div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-5 lg:px-8">
 			<a href={resolve('/')} class="group flex items-center gap-4">
@@ -170,6 +169,18 @@
 					</div>
 				</div>
 			{/if}
+		</div>
+	</section>
+
+	<section class="relative z-10 px-5 pb-10 lg:px-8">
+		<div class="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
+			{#each trustSignals as signal}
+				<div class="glass rounded-[2rem] border-white/5 p-6">
+					<div class="mb-3 text-[8px] font-black tracking-[0.34em] text-cyan-300/70 uppercase">{signal.label}</div>
+					<div class="mb-3 text-2xl font-black uppercase italic text-white">{signal.value}</div>
+					<p class="text-sm leading-relaxed text-white/42">{signal.desc}</p>
+				</div>
+			{/each}
 		</div>
 	</section>
 
@@ -274,13 +285,6 @@
 </div>
 
 <style>
-	.landing-grid {
-		background-image:
-			linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-			linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
-		background-size: 54px 54px;
-	}
-
 	.premium-landing :global(.glass) {
 		background: rgba(255, 255, 255, 0.025);
 		border: 1px solid rgba(255, 255, 255, 0.08);
