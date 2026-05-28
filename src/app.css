@@ -32,6 +32,55 @@ body {
 		0 25px 50px -12px rgba(0, 0, 0, 0.8);
 }
 
+/* Marketing header brand alignment */
+.perax-bg nav.fixed > .group:first-child {
+	gap: 1rem;
+}
+
+.perax-bg nav.fixed > .group:first-child > div:first-child {
+	position: relative;
+	height: 52px;
+	width: 52px;
+	border-radius: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(37, 99, 235, 0.08));
+	color: transparent;
+	box-shadow: 0 0 32px rgba(14, 165, 233, 0.25);
+	backdrop-filter: blur(24px);
+}
+
+.perax-bg nav.fixed > .group:first-child > div:first-child::after {
+	content: 'PEX';
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #38bdf8;
+	font-size: 20px;
+	font-style: italic;
+	font-weight: 900;
+	letter-spacing: -0.04em;
+}
+
+.perax-bg nav.fixed > .group:first-child > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	font-size: 2rem;
+	line-height: 1;
+	letter-spacing: -0.04em;
+}
+
+.perax-bg nav.fixed > .group:first-child > div:nth-child(2)::after {
+	content: 'TOKEN-TO-CREDITS PROTOCOL';
+	font-size: 9px;
+	font-style: normal;
+	font-weight: 900;
+	letter-spacing: 0.4em;
+	color: rgba(14, 165, 233, 0.55);
+}
+
 /* FIX: Ensure the planet stays behind everything */
 #planet-canvas-container {
 	position: fixed !important;
