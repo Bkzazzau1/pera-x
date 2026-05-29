@@ -47,24 +47,24 @@
 		'Pause, emergency pause, and two-step authority transfer protect operations.'
 	] as const;
 
-	const backendLayer = [
-		{ title: 'Protocol Status', endpoint: 'GET /protocol/status', desc: 'Program, supply, network, burn mode, utility URL, and wallet configuration.' },
-		{ title: 'Utility Catalog', endpoint: 'GET /utility/catalog', desc: 'AI Lab, Calls, SMS, Numbers, Bills, and Website Tools served to the app.' },
-		{ title: 'Credits Engine', endpoint: 'POST /credits/buy', desc: 'PEX, card, stablecoin, and virtual-account payments become internal Credits.' },
-		{ title: 'Telecom Layer', endpoint: '/telecom/*', desc: 'Calls, SMS, phone numbers, renewals, and communication usage flows.' }
-	] as const;
-
 	const flow = [
 		{ n: '01', title: 'Acquire or hold PEX', body: 'PEX remains the Solana ecosystem asset for holding, utility access, discounts, and protocol participation.' },
-		{ n: '02', title: 'Convert into Credits', body: 'The backend prices PEX, fiat, stablecoin, and VA payments into a stable internal service balance.' },
+		{ n: '02', title: 'Convert into Credits', body: 'The platform prices supported payments into a stable internal service balance.' },
 		{ n: '03', title: 'Spend on real services', body: 'Credits are consumed across AI, calls, SMS, numbers, bills, and web tools without exposing users to token volatility per action.' },
 		{ n: '04', title: 'Record settlement and burn', body: 'Service revenue is routed through Trading Company logic, recorded, and used for burn/policy transparency.' }
 	] as const;
 
 	const trustSignals = [
 		{ label: 'Utility-first economy', value: 'PEX + Credits', desc: 'PEX is the asset. Credits are the spending layer.' },
-		{ label: 'Backend transparency', value: 'Status APIs', desc: 'Protocol and service catalog are exposed from the utility gateway.' },
+		{ label: 'User-facing clarity', value: 'No complexity', desc: 'Users see services, credits, and value — not technical endpoints.' },
 		{ label: 'Safety controls', value: 'Pause + Gates', desc: 'Pause, emergency pause, authority flow, burn and release checks.' }
+	] as const;
+
+	const businessServices = [
+		{ title: 'AI & document tools', tag: 'AI Credits', desc: 'Detection, plagiarism checks, document intelligence, and humanized rewrite support.' },
+		{ title: 'Global communication', tag: 'Call + SMS Units', desc: 'International calling, messaging, OTP, alerts, campaigns, and developer communication.' },
+		{ title: 'Digital utility payments', tag: 'Bill Credits', desc: 'Electricity, TV, internet, water, waste, and approved institutional bill categories.' },
+		{ title: 'Web service economy', tag: 'Build Credits', desc: 'AI-assisted websites, landing pages, business pages, and future creator tools.' }
 	] as const;
 </script>
 
@@ -93,8 +93,8 @@
 
 			<div class="hidden items-center gap-10 text-[10px] font-black tracking-[0.38em] text-white/35 uppercase lg:flex">
 				<a href="#utility" class="transition hover:text-cyan-300">Utility</a>
+				<a href="#coverage" class="transition hover:text-cyan-300">Coverage</a>
 				<a href="#protocol" class="transition hover:text-cyan-300">Protocol</a>
-				<a href="#backend" class="transition hover:text-cyan-300">Backend</a>
 				<a href="#flow" class="transition hover:text-cyan-300">Flow</a>
 			</div>
 
@@ -123,7 +123,7 @@
 					</h1>
 
 					<p class="mt-8 max-w-2xl text-lg leading-relaxed font-light text-white/50 md:text-xl">
-						Pera-X connects PEX to a real Credits economy for AI tools, international calls, SMS, foreign numbers, utility bills, and web services — with backend settlement and smart-contract transparency.
+						Pera-X connects PEX to a real Credits economy for AI tools, international calls, SMS, foreign numbers, utility bills, and web services — with settlement and smart-contract transparency behind the scenes.
 					</p>
 
 					<div class="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -203,6 +203,28 @@
 		</div>
 	</section>
 
+	<section id="coverage" class="relative z-10 px-5 py-28 lg:px-8">
+		<div class="mx-auto max-w-7xl">
+			<div class="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+				<div>
+					<div class="mb-4 text-[10px] font-black tracking-[0.45em] text-cyan-300 uppercase">Business utility coverage</div>
+					<h2 class="text-5xl leading-none font-black tracking-tighter uppercase italic md:text-7xl">Everyday services. One credit model.</h2>
+				</div>
+				<a href={utilityAppUrl} target="_blank" rel="noreferrer" class="rounded-3xl bg-white px-8 py-4 text-xs font-black tracking-widest text-black uppercase transition hover:scale-105 active:scale-95">Open Utility App</a>
+			</div>
+
+			<div class="grid gap-5 md:grid-cols-2">
+				{#each businessServices as service}
+					<div class="glass rounded-[2.4rem] border-white/5 p-7 transition hover:border-cyan-300/20">
+						<div class="mb-4 inline-flex rounded-full border border-cyan-300/15 bg-cyan-300/10 px-4 py-2 text-[9px] font-black tracking-widest text-cyan-300 uppercase">{service.tag}</div>
+						<h3 class="mb-3 text-2xl font-black uppercase italic">{service.title}</h3>
+						<p class="text-sm leading-relaxed text-white/45">{service.desc}</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
 	<section id="flow" class="relative z-10 px-5 py-28 lg:px-8">
 		<div class="mx-auto max-w-7xl rounded-[3.5rem] border border-white/10 bg-white/[0.025] p-6 shadow-2xl backdrop-blur-3xl md:p-12">
 			<div class="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
@@ -239,28 +261,6 @@
 					<div class="glass flex gap-5 rounded-[2rem] border-white/5 p-6">
 						<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-xs font-black text-cyan-300">{String(index + 1).padStart(2, '0')}</div>
 						<p class="text-sm leading-relaxed text-white/55 md:text-base">{control}</p>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<section id="backend" class="relative z-10 px-5 py-28 lg:px-8">
-		<div class="mx-auto max-w-7xl">
-			<div class="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-				<div>
-					<div class="mb-4 text-[10px] font-black tracking-[0.45em] text-cyan-300 uppercase">Backend gateway</div>
-					<h2 class="text-5xl leading-none font-black tracking-tighter uppercase italic md:text-7xl">The utility engine behind the token.</h2>
-				</div>
-				<a href={utilityAppUrl} target="_blank" rel="noreferrer" class="rounded-3xl bg-white px-8 py-4 text-xs font-black tracking-widest text-black uppercase transition hover:scale-105 active:scale-95">Open Utility App</a>
-			</div>
-
-			<div class="grid gap-5 md:grid-cols-2">
-				{#each backendLayer as layer (layer.endpoint)}
-					<div class="glass rounded-[2.4rem] border-white/5 p-7 transition hover:border-cyan-300/20">
-						<div class="mb-4 font-mono text-xs text-cyan-300">{layer.endpoint}</div>
-						<h3 class="mb-3 text-2xl font-black uppercase italic">{layer.title}</h3>
-						<p class="text-sm leading-relaxed text-white/45">{layer.desc}</p>
 					</div>
 				{/each}
 			</div>
